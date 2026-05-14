@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Coming Soon – diese Zeile entfernen wenn die Praxis öffnet
+[[redirects]]
+  from = "/"
+  to   = "/coming-soon.html"
+  status = 200
+
 # Weiterleitungen
 [[redirects]]
   from = "/admin"
