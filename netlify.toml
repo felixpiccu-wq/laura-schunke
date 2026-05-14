@@ -5,7 +5,17 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Coming Soon – diese Zeile entfernen wenn die Praxis öffnet
+# Coming Soon – diese drei Blöcke entfernen wenn die Praxis öffnet
+[[redirects]]
+  from = "/preview"
+  to   = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/*"
+  to   = "/:splat"
+  status = 200
+
 [[redirects]]
   from = "/"
   to   = "/coming-soon.html"
