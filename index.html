@@ -597,7 +597,10 @@
     .blog-card h3 { font-size: 1rem; margin-bottom: 0.6rem; line-height: 1.4; }
     .blog-card p  { font-size: 0.87rem; color: var(--brown-mid); line-height: 1.65; flex: 1; }
     .blog-read-more { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 500; color: var(--sage); margin-top: 1rem; }
-    @media (max-width: 760px) { .blog-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-grid .blog-card:not(:first-child) { display: none; }
+    }
 
     /* ============================================
        KONTAKT
