@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
   <style>
     :root {
       --cream:     #F5F0E8;
@@ -161,11 +163,42 @@
     textarea:focus { border-color: var(--sage); }
 
     #titleInput { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; }
-    #bodyInput {
-      min-height: 380px;
+
+    /* ---- EasyMDE Overrides ---- */
+    .EasyMDEContainer { display: flex; flex-direction: column; }
+    .EasyMDEContainer .CodeMirror {
+      font-family: var(--font-body);
+      font-size: 1rem;
       line-height: 1.8;
-      font-size: 0.95rem;
+      color: var(--brown);
+      background: var(--white);
+      border: 1.5px solid rgba(74,55,40,0.15);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      padding: 1rem;
+      min-height: 340px;
     }
+    .EasyMDEContainer .CodeMirror-focused { border-color: var(--sage); }
+    .editor-toolbar {
+      border: 1.5px solid rgba(74,55,40,0.15);
+      border-radius: 10px 10px 0 0;
+      background: var(--cream);
+      padding: 0.4rem 0.6rem;
+      opacity: 1;
+    }
+    .editor-toolbar button {
+      color: var(--brown-mid) !important;
+      border-radius: 6px;
+    }
+    .editor-toolbar button:hover,
+    .editor-toolbar button.active {
+      background: var(--sage-light) !important;
+      border-color: transparent !important;
+      color: var(--sage-dark) !important;
+    }
+    .editor-toolbar i.separator { border-color: rgba(74,55,40,0.15); }
+    .editor-statusbar { display: none; }
+    .CodeMirror-scroll { min-height: 340px; }
 
     .filename-preview {
       font-size: 0.8rem; color: var(--brown-mid);
@@ -363,18 +396,7 @@
 
       <div class="field-group">
         <label class="field-label" for="bodyInput">Artikel-Text</label>
-        <textarea id="bodyInput" placeholder="Schreib hier deinen Artikel...
-
-## Überschrift mit ##
-
-Normaler Text kommt einfach so.
-
-- Aufzählung mit -
-- Zweiter Punkt
-
-**fett** · *kursiv*
-
-> Hervorgehobenes Zitat mit >"></textarea>
+        <textarea id="bodyInput"></textarea>
       </div>
 
     </div>
@@ -414,6 +436,40 @@ Normaler Text kommt einfach so.
 <div class="toast" id="toast"></div>
 
 <script>
+  // ── EDITOR ───────────────────────────────────────────────────
+  let editor;
+
+  function initEditor(initialValue) {
+    if (editor) return;
+    editor = new EasyMDE({
+      element: document.getElementById('bodyInput'),
+      placeholder: 'Schreib hier deinen Artikel …',
+      spellChecker: false,
+      status: false,
+      autosave: { enabled: false },
+      minHeight: '340px',
+      toolbar: [
+        { name: 'bold',           action: EasyMDE.toggleBold,          className: 'fa fa-bold',          title: 'Fett (Strg+B)' },
+        { name: 'italic',         action: EasyMDE.toggleItalic,        className: 'fa fa-italic',        title: 'Kursiv (Strg+I)' },
+        '|',
+        { name: 'heading-2',      action: EasyMDE.toggleHeading2,      className: 'fa fa-header fa-header-x fa-header-2', title: 'Überschrift' },
+        { name: 'heading-3',      action: EasyMDE.toggleHeading3,      className: 'fa fa-header fa-header-x fa-header-3', title: 'Kleinere Überschrift' },
+        '|',
+        { name: 'unordered-list', action: EasyMDE.toggleUnorderedList, className: 'fa fa-list-ul',       title: 'Aufzählungsliste' },
+        { name: 'ordered-list',   action: EasyMDE.toggleOrderedList,   className: 'fa fa-list-ol',       title: 'Nummerierte Liste' },
+        '|',
+        { name: 'quote',          action: EasyMDE.toggleBlockquote,    className: 'fa fa-quote-left',    title: 'Zitat / Hervorhebung' },
+        { name: 'link',           action: EasyMDE.drawLink,            className: 'fa fa-link',          title: 'Link einfügen' },
+      ],
+    });
+    if (initialValue) editor.value(initialValue);
+    editor.codemirror.on('change', () => {
+      updatePreview();
+      updateFilename();
+      scheduleSave();
+    });
+  }
+
   // ── PASSWORT ──────────────────────────────────────────────────
   const SESSION_KEY = 'ls_editor_auth';
 
@@ -459,6 +515,7 @@ Normaler Text kommt einfach so.
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('app').classList.add('visible');
     loadDraft();
+    initEditor();
   }
 
   // ── MOBILE TABS ───────────────────────────────────────────────
@@ -499,7 +556,7 @@ Normaler Text kommt einfach so.
   const DRAFT_KEY = 'ls_draft';
   let saveTimer;
 
-  ['titleInput','dateInput','excerptInput','bodyInput'].forEach(id => {
+  ['titleInput','dateInput','excerptInput'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => {
       updatePreview();
       updateFilename();
@@ -525,7 +582,7 @@ Normaler Text kommt einfach so.
     const title   = document.getElementById('titleInput').value.trim();
     const date    = document.getElementById('dateInput').value;
     const excerpt = document.getElementById('excerptInput').value.trim();
-    const body    = document.getElementById('bodyInput').value.trim();
+    const body    = editor ? editor.value().trim() : '';
 
     const hasContent = title || body;
     document.getElementById('previewEmpty').style.display  = hasContent ? 'none'  : 'block';
@@ -548,7 +605,7 @@ Normaler Text kommt einfach so.
       title:   document.getElementById('titleInput').value,
       date:    document.getElementById('dateInput').value,
       excerpt: document.getElementById('excerptInput').value,
-      body:    document.getElementById('bodyInput').value,
+      body:    editor ? editor.value() : '',
     };
     localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
     document.getElementById('draftBadge').textContent = 'Entwurf gespeichert ✓';
@@ -562,7 +619,7 @@ Normaler Text kommt einfach so.
       if (d.title)   document.getElementById('titleInput').value   = d.title;
       if (d.date)    document.getElementById('dateInput').value    = d.date;
       if (d.excerpt) document.getElementById('excerptInput').value = d.excerpt;
-      if (d.body)    document.getElementById('bodyInput').value    = d.body;
+      if (d.body && editor) editor.value(d.body);
       const len = (d.excerpt || '').length;
       document.getElementById('excerptCount').textContent = `${len} / 160 Zeichen`;
       updatePreview();
@@ -578,7 +635,7 @@ Normaler Text kommt einfach so.
     const title   = document.getElementById('titleInput').value.trim();
     const date    = document.getElementById('dateInput').value || todayISO();
     const excerpt = document.getElementById('excerptInput').value.trim();
-    const body    = document.getElementById('bodyInput').value.trim();
+    const body    = editor ? editor.value().trim() : '';
 
     if (!title) { showToast('Bitte einen Titel eingeben.', 'error'); return; }
     if (!body)  { showToast('Bitte einen Text schreiben.', 'error'); return; }
@@ -627,7 +684,7 @@ Normaler Text kommt einfach so.
     document.getElementById('titleInput').value   = '';
     document.getElementById('dateInput').value    = todayISO();
     document.getElementById('excerptInput').value = '';
-    document.getElementById('bodyInput').value    = '';
+    if (editor) editor.value('');
     document.getElementById('excerptCount').textContent = '0 / 160 Zeichen';
     document.getElementById('successOverlay').classList.remove('show');
     document.getElementById('publishBtn').disabled = false;
