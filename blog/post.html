@@ -56,7 +56,15 @@
     /* ---- ARTIKEL ---- */
     .post-hero {
       background: var(--white);
-      border-bottom: 1px solid rgba(74,55,40,0.08);
+      position: relative;
+    }
+    .post-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 180px;
+      background: linear-gradient(to bottom, transparent, var(--white));
+      pointer-events: none;
     }
     .post-hero-img {
       width: 100%;
