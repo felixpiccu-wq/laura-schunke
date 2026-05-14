@@ -54,7 +54,9 @@
       display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
     }
     .nav-logo {
-      font-family: var(--font-heading); font-size: 1.2rem; font-weight: 600; color: var(--brown);
+      display: flex; align-items: center; gap: 0.55rem;
+      font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--brown);
+      text-decoration: none;
     }
     .nav-back {
       display: flex; align-items: center; gap: 0.4rem;
@@ -156,7 +158,10 @@
 
 <nav class="nav" aria-label="Navigation">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">Laura Schunke</a>
+    <a href="/" class="nav-logo" aria-label="Laura Schunke – Startseite">
+        <svg width="22" height="26" viewBox="0 0 26 30" fill="none" aria-hidden="true"><line x1="13" y1="28" x2="13" y2="5" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/><path d="M13 22 C19 20 24 13 21 7 C15 9 12 17 13 22Z" fill="#7A9E7E"/><path d="M13 15 C7 13 3 7 6 2 C11 4 14 11 13 15Z" fill="#7A9E7E" fill-opacity="0.6"/><circle cx="13" cy="4" r="2.5" fill="#7A9E7E" fill-opacity="0.35"/></svg>
+        Laura Schunke
+      </a>
     <a href="/" class="nav-back">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
       Zurück zur Website
