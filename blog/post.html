@@ -217,7 +217,6 @@
   async function loadPost() {
     const slug = getSlug();
     if (!slug) { showError('Kein Artikel angegeben.'); return; }
-    if (GITHUB_USER === 'felixpiccu-wq') { showError('GitHub-Konfiguration fehlt.'); return; }
 
     try {
       const url = `${RAW_BASE}/${slug}.md`;

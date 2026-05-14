@@ -208,7 +208,6 @@
   const grid       = document.getElementById('postsGrid');
   const loadingMsg = document.getElementById('loadingMsg');
 
-  /* Placeholder-Karten anzeigen (solange noch keine Posts existieren) */
   function showPlaceholders() {
     loadingMsg.remove();
     const placeholders = [
@@ -272,11 +271,6 @@
 
   /* Posts laden */
   async function loadPosts() {
-    /* Wenn Platzhalter-Konfiguration noch nicht ausgefüllt */
-    if (GITHUB_USER === 'felixpiccu-wq' || GITHUB_REPO === 'laura-schunke') {
-      showPlaceholders();
-      return;
-    }
     try {
       const res = await fetch(API_BASE);
       if (!res.ok) throw new Error('API-Fehler');
