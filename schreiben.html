@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog schreiben | Laura Schunke</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+  <style>
+    :root {
+      --cream:     #F5F0E8;
+      --sage:      #7A9E7E;
+      --sage-dark: #5E8262;
+      --sage-light:#EAF0EA;
+      --brown:     #4A3728;
+      --brown-mid: #6B5547;
+      --white:     #FFFFFF;
+      --red:       #c0392b;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--brown);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- LOGIN ---- */
+    .login-screen {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .login-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: clamp(2rem,5vw,3rem) clamp(2rem,5vw,3.5rem);
+      width: 100%; max-width: 420px;
+      box-shadow: 0 8px 40px rgba(74,55,40,0.12);
+      text-align: center;
+    }
+    .login-card .logo {
+      font-family: var(--font-heading);
+      font-size: 1.4rem; font-weight: 600;
+      color: var(--brown); margin-bottom: 0.5rem;
+    }
+    .login-card .sub {
+      font-size: 0.9rem; color: var(--brown-mid); margin-bottom: 2rem;
+    }
+    .login-card label {
+      display: block; text-align: left;
+      font-size: 0.82rem; font-weight: 500; color: var(--brown-mid);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .login-card input[type="password"] {
+      width: 100%; padding: 0.85rem 1.1rem;
+      border: 1.5px solid rgba(74,55,40,0.18);
+      border-radius: 12px; font-size: 1rem;
+      font-family: var(--font-body); color: var(--brown);
+      background: var(--cream);
+      outline: none; transition: border-color 0.2s;
+      margin-bottom: 1rem;
+    }
+    .login-card input[type="password"]:focus { border-color: var(--sage); }
+    .login-error {
+      font-size: 0.87rem; color: var(--red);
+      margin-bottom: 0.75rem; min-height: 1.2em;
+    }
+    .btn-primary {
+      width: 100%; padding: 0.9rem;
+      background: var(--sage); color: #fff;
+      border: none; border-radius: 12px;
+      font-size: 1rem; font-weight: 500;
+      font-family: var(--font-body);
+      cursor: pointer; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--sage-dark); transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ---- APP SHELL ---- */
+    .app { display: none; flex-direction: column; min-height: 100vh; }
+    .app.visible { display: flex; }
+
+    .app-header {
+      background: var(--white);
+      border-bottom: 1px solid rgba(74,55,40,0.1);
+      padding: 0.9rem clamp(1rem,3vw,2rem);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .app-logo { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--brown); }
+    .app-logo span { color: var(--sage); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .draft-badge {
+      font-size: 0.78rem; color: var(--brown-mid);
+      padding: 0.25rem 0.7rem; border-radius: 9999px;
+      background: var(--cream); border: 1px solid rgba(74,55,40,0.12);
+    }
+    .btn-publish {
+      padding: 0.65rem 1.6rem;
+      background: var(--sage); color: #fff;
+      border: none; border-radius: 9999px;
+      font-size: 0.9rem; font-weight: 500;
+      font-family: var(--font-body);
+      cursor: pointer; transition: background 0.2s, transform 0.2s;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-publish:hover { background: var(--sage-dark); transform: translateY(-1px); }
+    .btn-publish:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ---- MAIN LAYOUT ---- */
+    .editor-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 0;
+    }
+    @media (max-width: 900px) {
+      .editor-layout { grid-template-columns: 1fr; }
+      .preview-panel { display: none; }
+      .preview-panel.active { display: flex; }
+      .write-panel.hidden { display: none; }
+    }
+
+    /* ---- WRITE PANEL ---- */
+    .write-panel {
+      border-right: 1px solid rgba(74,55,40,0.1);
+      overflow-y: auto;
+      padding: clamp(1.5rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+
+    .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .field-label {
+      font-size: 0.78rem; font-weight: 500; color: var(--sage-dark);
+      text-transform: uppercase; letter-spacing: 0.09em;
+    }
+    .field-hint { font-size: 0.78rem; color: var(--brown-mid); margin-top: 0.2rem; }
+
+    input[type="text"], input[type="date"], textarea {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1.5px solid rgba(74,55,40,0.15);
+      border-radius: 10px;
+      font-size: 0.97rem; font-family: var(--font-body);
+      color: var(--brown); background: var(--white);
+      outline: none; transition: border-color 0.2s;
+      resize: none;
+    }
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    textarea:focus { border-color: var(--sage); }
+
+    #titleInput { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; }
+    #bodyInput {
+      min-height: 380px;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    .filename-preview {
+      font-size: 0.8rem; color: var(--brown-mid);
+      font-family: monospace;
+      background: var(--cream);
+      padding: 0.4rem 0.75rem; border-radius: 6px;
+      border: 1px solid rgba(74,55,40,0.1);
+    }
+
+    /* mobile preview tabs */
+    .mobile-tabs {
+      display: none;
+      gap: 0;
+      background: var(--white);
+      border-bottom: 1px solid rgba(74,55,40,0.1);
+      padding: 0 1rem;
+    }
+    @media (max-width: 900px) { .mobile-tabs { display: flex; } }
+    .mobile-tab {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--brown-mid); cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .mobile-tab.active { color: var(--sage); border-color: var(--sage); }
+
+    /* ---- PREVIEW PANEL ---- */
+    .preview-panel {
+      overflow-y: auto;
+      padding: clamp(1.5rem,3vw,2.5rem) clamp(1rem,3vw,2rem);
+      background: var(--cream);
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .preview-label {
+      font-size: 0.78rem; font-weight: 500; color: var(--brown-mid);
+      text-transform: uppercase; letter-spacing: 0.09em;
+    }
+    .preview-content {
+      background: var(--white);
+      border-radius: 16px;
+      padding: clamp(1.5rem,3vw,2.5rem);
+      box-shadow: 0 2px 12px rgba(74,55,40,0.07);
+    }
+    .preview-meta {
+      font-size: 0.82rem; color: var(--sage); font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem;
+    }
+    .preview-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600; color: var(--brown);
+      line-height: 1.25; margin-bottom: 0.75rem;
+    }
+    .preview-excerpt {
+      font-size: 1rem; color: var(--brown-mid);
+      line-height: 1.7; margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(74,55,40,0.1);
+    }
+    .preview-body { color: var(--brown-mid); font-size: 0.97rem; line-height: 1.85; }
+    .preview-body p { margin-bottom: 1.1rem; }
+    .preview-body h2 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--brown); margin: 2rem 0 0.6rem; }
+    .preview-body h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--brown); margin: 1.5rem 0 0.5rem; }
+    .preview-body ul, .preview-body ol { margin: 0.5rem 0 1rem 1.5rem; }
+    .preview-body li { margin-bottom: 0.3rem; }
+    .preview-body strong { color: var(--brown); }
+    .preview-body blockquote {
+      border-left: 3px solid var(--sage);
+      padding: 0.75rem 1.25rem;
+      margin: 1.25rem 0;
+      background: var(--sage-light);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+    .preview-empty {
+      text-align: center; padding: 3rem 1rem;
+      color: var(--brown-mid); opacity: 0.5;
+      font-size: 0.95rem;
+    }
+
+    /* ---- TOAST / STATUS ---- */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      padding: 0.85rem 1.75rem; border-radius: 12px;
+      font-size: 0.93rem; font-weight: 500;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      z-index: 9999; opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .toast.show { opacity: 1; }
+    .toast.success { background: var(--sage); color: #fff; }
+    .toast.error   { background: var(--red); color: #fff; }
+
+    /* ---- SUCCESS OVERLAY ---- */
+    .success-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(74,55,40,0.4);
+      backdrop-filter: blur(4px);
+      z-index: 500;
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .success-overlay.show { display: flex; }
+    .success-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 2.5rem 3rem;
+      max-width: 460px; width: 100%;
+      text-align: center;
+      box-shadow: 0 12px 60px rgba(74,55,40,0.2);
+    }
+    .success-icon {
+      width: 64px; height: 64px;
+      background: var(--sage-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .success-card h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--brown); margin-bottom: 0.6rem; }
+    .success-card p  { color: var(--brown-mid); margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .success-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .btn-outline {
+      padding: 0.7rem 1.5rem; border-radius: 9999px;
+      border: 1.5px solid var(--sage); color: var(--sage);
+      background: transparent; font-size: 0.9rem; font-weight: 500;
+      font-family: var(--font-body); cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-outline:hover { background: var(--sage); color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="logo">Laura Schunke</div>
+    <p class="sub">Blog-Editor · Bitte einloggen</p>
+    <label for="pwInput">Passwort</label>
+    <input type="password" id="pwInput" placeholder="••••••••" autocomplete="current-password" />
+    <div class="login-error" id="loginError"></div>
+    <button class="btn-primary" id="loginBtn">Einloggen</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+
+  <header class="app-header">
+    <div class="app-logo">Laura Schunke <span>· Blog schreiben</span></div>
+    <div class="header-actions">
+      <span class="draft-badge" id="draftBadge">Entwurf gespeichert</span>
+      <button class="btn-publish" id="publishBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Veröffentlichen
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-tabs">
+    <div class="mobile-tab active" id="tabWrite" onclick="switchTab('write')">Schreiben</div>
+    <div class="mobile-tab" id="tabPreview" onclick="switchTab('preview')">Vorschau</div>
+  </div>
+
+  <div class="editor-layout">
+
+    <!-- SCHREIBEN -->
+    <div class="write-panel" id="writePanel">
+
+      <div class="field-group">
+        <label class="field-label" for="titleInput">Titel</label>
+        <input type="text" id="titleInput" placeholder="Worum geht es in diesem Artikel?" />
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="field-group">
+          <label class="field-label" for="dateInput">Datum</label>
+          <input type="date" id="dateInput" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Dateiname</label>
+          <div class="filename-preview" id="filenamePreview">—</div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="excerptInput">Teaser-Text</label>
+        <textarea id="excerptInput" rows="2" placeholder="Kurze Vorschau für die Blog-Übersicht (max. 160 Zeichen)"></textarea>
+        <span class="field-hint" id="excerptCount">0 / 160 Zeichen</span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="bodyInput">Artikel-Text</label>
+        <textarea id="bodyInput" placeholder="Schreib hier deinen Artikel...
+
+## Überschrift mit ##
+
+Normaler Text kommt einfach so.
+
+- Aufzählung mit -
+- Zweiter Punkt
+
+**fett** · *kursiv*
+
+> Hervorgehobenes Zitat mit >"></textarea>
+      </div>
+
+    </div>
+
+    <!-- VORSCHAU -->
+    <div class="preview-panel" id="previewPanel">
+      <div class="preview-label">Vorschau</div>
+      <div class="preview-content">
+        <div id="previewEmpty" class="preview-empty">Fang an zu schreiben – die Vorschau erscheint hier.</div>
+        <div id="previewFilled" style="display:none">
+          <p class="preview-meta" id="prevDate"></p>
+          <h1 class="preview-title" id="prevTitle"></h1>
+          <p class="preview-excerpt" id="prevExcerpt"></p>
+          <div class="preview-body" id="prevBody"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-card">
+    <div class="success-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7A9E7E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Artikel veröffentlicht!</h2>
+    <p>Der Artikel ist live. Netlify baut die Website gerade neu – das dauert ca. 1–2 Minuten.</p>
+    <div class="success-actions">
+      <a href="/blog/" class="btn-outline" target="_blank">Blog ansehen</a>
+      <button class="btn-primary" style="width:auto;padding:0.7rem 1.5rem;border-radius:9999px;" onclick="resetEditor()">Neuer Artikel</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── PASSWORT ──────────────────────────────────────────────────
+  const SESSION_KEY = 'ls_editor_auth';
+
+  function checkSession() {
+    if (sessionStorage.getItem(SESSION_KEY) === '1') showApp();
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', doLogin);
+  document.getElementById('pwInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doLogin();
+  });
+
+  async function doLogin() {
+    const pw = document.getElementById('pwInput').value.trim();
+    if (!pw) return;
+    const btn = document.getElementById('loginBtn');
+    btn.disabled = true; btn.textContent = '…';
+
+    // Passwort wird server-seitig geprüft – wir testen mit einem Dummy-Call
+    try {
+      const res = await fetch('/.netlify/functions/publish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw, filename: '__test__', content: '' })
+      });
+      const data = await res.json();
+      if (res.status === 401) {
+        document.getElementById('loginError').textContent = 'Falsches Passwort – bitte nochmal versuchen.';
+        btn.disabled = false; btn.textContent = 'Einloggen';
+        return;
+      }
+      // 200 oder 500 (fehlende Datei) = Passwort war korrekt
+      sessionStorage.setItem(SESSION_KEY, '1');
+      sessionStorage.setItem(SESSION_KEY + '_pw', pw);
+      showApp();
+    } catch {
+      document.getElementById('loginError').textContent = 'Verbindungsfehler – bitte Seite neu laden.';
+      btn.disabled = false; btn.textContent = 'Einloggen';
+    }
+  }
+
+  function showApp() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').classList.add('visible');
+    loadDraft();
+  }
+
+  // ── MOBILE TABS ───────────────────────────────────────────────
+  function switchTab(tab) {
+    const write   = document.getElementById('writePanel');
+    const preview = document.getElementById('previewPanel');
+    document.getElementById('tabWrite').classList.toggle('active', tab === 'write');
+    document.getElementById('tabPreview').classList.toggle('active', tab === 'preview');
+    if (tab === 'write') {
+      write.classList.remove('hidden');
+      preview.classList.remove('active');
+    } else {
+      write.classList.add('hidden');
+      preview.classList.add('active');
+    }
+  }
+
+  // ── SLUGIFY ───────────────────────────────────────────────────
+  function slugify(text) {
+    return text.toLowerCase()
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  }
+
+  function todayISO() {
+    return new Date().toISOString().slice(0,10);
+  }
+
+  function formatDateDE(str) {
+    if (!str) return '';
+    return new Date(str + 'T12:00:00').toLocaleDateString('de-DE',{year:'numeric',month:'long',day:'numeric'});
+  }
+
+  // ── DATUM AUTO-FILL ───────────────────────────────────────────
+  document.getElementById('dateInput').value = todayISO();
+
+  // ── LIVE PREVIEW + AUTOSAVE ───────────────────────────────────
+  const DRAFT_KEY = 'ls_draft';
+  let saveTimer;
+
+  ['titleInput','dateInput','excerptInput','bodyInput'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      updatePreview();
+      updateFilename();
+      scheduleSave();
+    });
+  });
+
+  document.getElementById('excerptInput').addEventListener('input', function() {
+    const len = this.value.length;
+    const counter = document.getElementById('excerptCount');
+    counter.textContent = `${len} / 160 Zeichen`;
+    counter.style.color = len > 160 ? '#c0392b' : '';
+  });
+
+  function updateFilename() {
+    const title = document.getElementById('titleInput').value.trim();
+    const date  = document.getElementById('dateInput').value || todayISO();
+    const slug  = title ? slugify(title) : 'artikel';
+    document.getElementById('filenamePreview').textContent = `${date}-${slug}.md`;
+  }
+
+  function updatePreview() {
+    const title   = document.getElementById('titleInput').value.trim();
+    const date    = document.getElementById('dateInput').value;
+    const excerpt = document.getElementById('excerptInput').value.trim();
+    const body    = document.getElementById('bodyInput').value.trim();
+
+    const hasContent = title || body;
+    document.getElementById('previewEmpty').style.display  = hasContent ? 'none'  : 'block';
+    document.getElementById('previewFilled').style.display = hasContent ? 'block' : 'none';
+
+    document.getElementById('prevDate').textContent    = formatDateDE(date);
+    document.getElementById('prevTitle').textContent   = title || 'Kein Titel';
+    document.getElementById('prevExcerpt').textContent = excerpt;
+    document.getElementById('prevBody').innerHTML      = body ? marked.parse(body) : '';
+  }
+
+  function scheduleSave() {
+    clearTimeout(saveTimer);
+    document.getElementById('draftBadge').textContent = 'Wird gespeichert …';
+    saveTimer = setTimeout(saveDraft, 800);
+  }
+
+  function saveDraft() {
+    const draft = {
+      title:   document.getElementById('titleInput').value,
+      date:    document.getElementById('dateInput').value,
+      excerpt: document.getElementById('excerptInput').value,
+      body:    document.getElementById('bodyInput').value,
+    };
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+    document.getElementById('draftBadge').textContent = 'Entwurf gespeichert ✓';
+  }
+
+  function loadDraft() {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) { updateFilename(); return; }
+      const d = JSON.parse(raw);
+      if (d.title)   document.getElementById('titleInput').value   = d.title;
+      if (d.date)    document.getElementById('dateInput').value    = d.date;
+      if (d.excerpt) document.getElementById('excerptInput').value = d.excerpt;
+      if (d.body)    document.getElementById('bodyInput').value    = d.body;
+      const len = (d.excerpt || '').length;
+      document.getElementById('excerptCount').textContent = `${len} / 160 Zeichen`;
+      updatePreview();
+      updateFilename();
+      document.getElementById('draftBadge').textContent = 'Entwurf geladen';
+    } catch { updateFilename(); }
+  }
+
+  // ── VERÖFFENTLICHEN ───────────────────────────────────────────
+  document.getElementById('publishBtn').addEventListener('click', publishPost);
+
+  async function publishPost() {
+    const title   = document.getElementById('titleInput').value.trim();
+    const date    = document.getElementById('dateInput').value || todayISO();
+    const excerpt = document.getElementById('excerptInput').value.trim();
+    const body    = document.getElementById('bodyInput').value.trim();
+
+    if (!title) { showToast('Bitte einen Titel eingeben.', 'error'); return; }
+    if (!body)  { showToast('Bitte einen Text schreiben.', 'error'); return; }
+
+    const slug     = slugify(title) || 'artikel';
+    const filename = `${date}-${slug}.md`;
+    const content  = buildMarkdown({ title, date, excerpt, body });
+    const password = sessionStorage.getItem(SESSION_KEY + '_pw') || '';
+
+    const btn = document.getElementById('publishBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Wird veröffentlicht …';
+
+    try {
+      const res  = await fetch('/.netlify/functions/publish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password, filename, content }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        showToast(data.error || 'Fehler beim Veröffentlichen.', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Veröffentlichen';
+        return;
+      }
+
+      // Entwurf löschen
+      localStorage.removeItem(DRAFT_KEY);
+      document.getElementById('successOverlay').classList.add('show');
+
+    } catch {
+      showToast('Verbindungsfehler – bitte nochmal versuchen.', 'error');
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Veröffentlichen';
+    }
+  }
+
+  function buildMarkdown({ title, date, excerpt, body }) {
+    const esc = s => s.replace(/"/g, '\\"');
+    return `---\ntitle: "${esc(title)}"\ndate: ${date}\nexcerpt: "${esc(excerpt)}"\n---\n\n${body}\n`;
+  }
+
+  function resetEditor() {
+    document.getElementById('titleInput').value   = '';
+    document.getElementById('dateInput').value    = todayISO();
+    document.getElementById('excerptInput').value = '';
+    document.getElementById('bodyInput').value    = '';
+    document.getElementById('excerptCount').textContent = '0 / 160 Zeichen';
+    document.getElementById('successOverlay').classList.remove('show');
+    document.getElementById('publishBtn').disabled = false;
+    document.getElementById('publishBtn').innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Veröffentlichen';
+    document.getElementById('draftBadge').textContent = 'Entwurf gespeichert';
+    updatePreview(); updateFilename();
+  }
+
+  // ── TOAST ─────────────────────────────────────────────────────
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // ── INIT ──────────────────────────────────────────────────────
+  checkSession();
+  updateFilename();
+</script>
+
+</body>
+</html>
