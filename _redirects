@@ -1,0 +1,8 @@
+# Netlify Redirects
+# Dokumentation: https://docs.netlify.com/routing/redirects/
+
+# Blog-Posts: Einzelansicht über Template
+/blog/post/*    /blog/post.html    200
+
+# Admin-Shortcut
+/admin          /admin/index.html  200
