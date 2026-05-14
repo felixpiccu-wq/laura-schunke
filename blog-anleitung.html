@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog-Anleitung | Laura Schunke</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:     #F5F0E8;
+      --sage:      #7A9E7E;
+      --sage-dark: #5E8262;
+      --sage-light:#EAF0EA;
+      --brown:     #4A3728;
+      --brown-mid: #6B5547;
+      --white:     #FFFFFF;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--brown);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    .nav {
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(74,55,40,0.08);
+      padding: 1rem 0;
+    }
+    .nav-inner {
+      max-width: 860px; margin: 0 auto;
+      padding: 0 clamp(20px,5vw,48px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--brown); text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      background: var(--brown);
+      color: var(--white);
+      padding: clamp(48px,8vw,80px) 0;
+      text-align: center;
+    }
+    .hero-inner { max-width: 640px; margin: 0 auto; padding: 0 clamp(20px,5vw,48px); }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem; border-radius: 9999px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 { font-family: var(--font-heading); font-size: clamp(1.8rem,4vw,2.5rem); font-weight: 600; margin-bottom: 0.75rem; }
+    .hero p { color: rgba(255,255,255,0.7); font-size: 1.05rem; }
+
+    /* MAIN */
+    .wrap { max-width: 860px; margin: 0 auto; padding: clamp(40px,6vw,72px) clamp(20px,5vw,48px); }
+
+    /* STEP CARDS */
+    .steps { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 3rem; }
+    .step {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      box-shadow: 0 2px 12px rgba(74,55,40,0.07);
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 2.5rem; height: 2.5rem;
+      background: var(--sage);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 1rem;
+      margin-top: 0.15rem;
+    }
+    .step h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--brown); margin-bottom: 0.35rem; }
+    .step p  { color: var(--brown-mid); font-size: 0.95rem; margin-bottom: 0; }
+    .step a  { color: var(--sage); font-weight: 500; }
+    .step img.screenshot {
+      display: block; margin-top: 0.75rem;
+      max-width: 100%; border-radius: 8px;
+      border: 1px solid rgba(74,55,40,0.1);
+    }
+
+    /* CODE BOX */
+    .code-section { margin-bottom: 3rem; }
+    .code-section h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--brown); margin-bottom: 0.5rem; }
+    .code-section .sub { color: var(--brown-mid); font-size: 0.95rem; margin-bottom: 1.25rem; }
+
+    .code-box {
+      background: var(--brown);
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+      white-space: pre;
+      overflow-x: auto;
+      position: relative;
+    }
+    .code-comment { color: rgba(122,158,126,0.9); }
+    .code-key     { color: #f9c859; }
+    .code-val     { color: #a8d8a8; }
+    .code-md      { color: rgba(255,255,255,0.75); }
+
+    .copy-btn {
+      position: absolute; top: 1rem; right: 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px; cursor: pointer;
+      font-size: 0.78rem; font-family: var(--font-body);
+      transition: background 0.2s;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* FIELDS TABLE */
+    .fields-section { margin-bottom: 3rem; }
+    .fields-section h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--brown); margin-bottom: 0.5rem; }
+    .fields-section .sub { color: var(--brown-mid); font-size: 0.95rem; margin-bottom: 1.25rem; }
+
+    .fields-table { width: 100%; border-collapse: collapse; }
+    .fields-table th {
+      text-align: left; font-size: 0.8rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--sage); padding: 0.6rem 1rem;
+      border-bottom: 2px solid rgba(122,158,126,0.2);
+    }
+    .fields-table td {
+      padding: 0.9rem 1rem; font-size: 0.92rem;
+      border-bottom: 1px solid rgba(74,55,40,0.07);
+      vertical-align: top;
+    }
+    .fields-table tr:last-child td { border-bottom: none; }
+    .fields-table td:first-child { font-family: 'Courier New', monospace; color: var(--sage-dark); font-size: 0.85rem; }
+    .fields-table td:nth-child(2) { color: var(--brown-mid); }
+    .badge-req {
+      display: inline-block; font-size: 0.7rem; font-weight: 500;
+      background: var(--sage-light); color: var(--sage-dark);
+      padding: 0.15rem 0.5rem; border-radius: 9999px;
+    }
+    .badge-opt {
+      display: inline-block; font-size: 0.7rem; font-weight: 500;
+      background: rgba(74,55,40,0.08); color: var(--brown-mid);
+      padding: 0.15rem 0.5rem; border-radius: 9999px;
+    }
+    .fields-wrap {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(74,55,40,0.07);
+      overflow: hidden;
+      padding: 0 0.5rem;
+    }
+
+    /* MARKDOWN GUIDE */
+    .md-section { margin-bottom: 3rem; }
+    .md-section h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--brown); margin-bottom: 0.5rem; }
+    .md-section .sub { color: var(--brown-mid); font-size: 0.95rem; margin-bottom: 1.25rem; }
+
+    .md-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    @media (max-width: 600px) { .md-grid { grid-template-columns: 1fr; } }
+    .md-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(74,55,40,0.06);
+    }
+    .md-card .label { font-size: 0.78rem; font-weight: 500; color: var(--sage); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    .md-card code { font-family: 'Courier New', monospace; font-size: 0.88rem; color: var(--brown); background: var(--cream); padding: 0.15rem 0.4rem; border-radius: 4px; }
+    .md-card .result { font-size: 0.9rem; color: var(--brown-mid); margin-top: 0.35rem; }
+
+    /* FILENAME */
+    .filename-section { margin-bottom: 3rem; }
+    .filename-section h2 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--brown); margin-bottom: 0.5rem; }
+    .filename-section .sub { color: var(--brown-mid); font-size: 0.95rem; margin-bottom: 1.25rem; }
+    .filename-box {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 2px 12px rgba(74,55,40,0.07);
+    }
+    .filename-box .example { font-family: 'Courier New', monospace; font-size: 1rem; color: var(--sage-dark); margin-bottom: 0.75rem; }
+    .filename-parts { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .fp {
+      padding: 0.4rem 0.85rem; border-radius: 8px;
+      font-family: 'Courier New', monospace; font-size: 0.85rem; font-weight: 500;
+    }
+    .fp-date  { background: #fef3c7; color: #92400e; }
+    .fp-slug  { background: var(--sage-light); color: var(--sage-dark); }
+    .fp-ext   { background: rgba(74,55,40,0.08); color: var(--brown-mid); }
+    .filename-box p { color: var(--brown-mid); font-size: 0.92rem; }
+
+    /* TIP BOX */
+    .tip {
+      background: var(--sage-light);
+      border-left: 3px solid var(--sage);
+      border-radius: 0 12px 12px 0;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem; color: var(--brown-mid);
+    }
+    .tip strong { color: var(--brown); }
+
+    /* FOOTER */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.5);
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Laura Schunke</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge">Nur für dich</span>
+    <h1>So schreibst du einen neuen Blogartikel</h1>
+    <p>Schritt für Schritt – ohne technisches Wissen</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- STEPS -->
+  <section class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h3>GitHub öffnen und einloggen</h3>
+        <p>Geh auf <a href="https://github.com/felixpiccu-wq/laura-schunke" target="_blank">github.com/felixpiccu-wq/laura-schunke</a> und melde dich an.<br>
+        Du brauchst einen GitHub-Account – falls du noch keinen hast, einfach kostenlos registrieren.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h3>In den „posts"-Ordner klicken</h3>
+        <p>Auf der Startseite des Repositories siehst du eine Liste von Ordnern und Dateien. Klick auf den Ordner <strong>posts</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h3>Neue Datei anlegen</h3>
+        <p>Klick oben rechts auf <strong>„Add file"</strong> und dann auf <strong>„Create new file"</strong>.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <h3>Dateinamen eingeben</h3>
+        <p>Gib oben im Namensfeld den Dateinamen ein – nach diesem Schema:<br>
+        <strong>Jahr-Monat-Tag-kurzertitel.md</strong><br>
+        Zum Beispiel: <code style="font-family:monospace;background:var(--cream);padding:0.1rem 0.4rem;border-radius:4px;">2025-06-01-angst-im-alltag.md</code></p>
+        <p style="margin-top:0.5rem">Wichtig: Nur Kleinbuchstaben, Zahlen und Bindestriche – keine Leerzeichen oder Sonderzeichen.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div>
+        <h3>Artikel-Inhalt eingeben</h3>
+        <p>Kopiere die Vorlage weiter unten und füge sie in das große Textfeld ein. Dann ersetze einfach den Beispieltext durch deinen eigenen.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div>
+        <h3>Speichern – fertig!</h3>
+        <p>Klick unten auf den grünen Button <strong>„Commit changes"</strong> und dann nochmal auf <strong>„Commit changes"</strong> im kleinen Fenster. Nach ca. 1–2 Minuten erscheint der Artikel automatisch auf deiner Website.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FILENAME -->
+  <section class="filename-section">
+    <h2>Wie der Dateiname aufgebaut ist</h2>
+    <p class="sub">Der Dateiname bestimmt, wie der Artikel in der URL erscheint – und wann er sortiert wird.</p>
+    <div class="filename-box">
+      <div class="example">2025-06-01-angst-im-alltag.md</div>
+      <div class="filename-parts">
+        <span class="fp fp-date">2025-06-01</span>
+        <span style="color:var(--brown-mid);line-height:2">–</span>
+        <span class="fp fp-slug">angst-im-alltag</span>
+        <span class="fp fp-ext">.md</span>
+      </div>
+      <p><strong style="color:var(--brown)">Datum</strong> (gelb): Jahr-Monat-Tag – bestimmt die Reihenfolge<br>
+      <strong style="color:var(--sage-dark)">Titel-Kurzform</strong> (grün): kurze englische oder deutsche Beschreibung, nur Kleinbuchstaben und Bindestriche<br>
+      <strong style="color:var(--brown-mid)">.md</strong> (grau): immer am Ende – bedeutet „Markdown"</p>
+    </div>
+  </section>
+
+  <!-- CODE BOX -->
+  <section class="code-section">
+    <h2>Vorlage für jeden Artikel</h2>
+    <p class="sub">Kopiere diesen Text, füge ihn ein und ersetze die Werte in Anführungszeichen durch deinen Inhalt.</p>
+    <div class="code-box" id="codeBox"><button class="copy-btn" onclick="copyCode()">Kopieren</button><span class="code-comment">--- (diese Zeile immer so lassen)</span>
+<span class="code-key">title</span>: <span class="code-val">"Dein Artikel-Titel kommt hier"</span>
+<span class="code-key">date</span>: <span class="code-val">2025-06-01</span>
+<span class="code-key">excerpt</span>: <span class="code-val">"Ein kurzer Satz, der in der Blog-Übersicht erscheint (max. 160 Zeichen)"</span>
+<span class="code-comment">--- (diese Zeile immer so lassen)</span>
+
+<span class="code-md">Hier beginnt dein Artikel-Text. Einfach drauflosschreiben.
+
+## So machst du eine Zwischenüberschrift
+
+Normaler Fließtext kommt einfach so.
+Eine Leerzeile macht einen neuen Absatz.
+
+## Noch eine Überschrift
+
+- So machst du eine Liste
+- Zweiter Punkt
+- Dritter Punkt
+
+> So sieht ein hervorgehobenes Zitat aus.</span></div>
+    <div class="tip"><strong>Tipp:</strong> Du kannst so viele Absätze und Überschriften hinzufügen wie du möchtest – es gibt kein Limit.</div>
+  </section>
+
+  <!-- FIELDS -->
+  <section class="fields-section">
+    <h2>Was bedeuten die Felder ganz oben?</h2>
+    <p class="sub">Der Bereich zwischen den drei Strichen ganz oben heißt „Frontmatter" – das sind die Infos über deinen Artikel.</p>
+    <div class="fields-wrap">
+      <table class="fields-table">
+        <thead>
+          <tr>
+            <th>Feld</th>
+            <th>Was es bedeutet</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>title</td>
+            <td>Der Titel deines Artikels – erscheint groß oben auf der Seite und im Browser-Tab</td>
+            <td><span class="badge-req">Pflicht</span></td>
+          </tr>
+          <tr>
+            <td>date</td>
+            <td>Das Datum – Format immer JJJJ-MM-TT, also z.B. 2025-06-01 für den 1. Juni 2025</td>
+            <td><span class="badge-req">Pflicht</span></td>
+          </tr>
+          <tr>
+            <td>excerpt</td>
+            <td>Kurze Vorschau für die Blog-Übersicht – auch für Google wichtig. Max. 160 Zeichen.</td>
+            <td><span class="badge-req">Pflicht</span></td>
+          </tr>
+          <tr>
+            <td>image</td>
+            <td>Link zu einem Titelbild. Wenn leer, wird automatisch ein Standardbild verwendet.</td>
+            <td><span class="badge-opt">Optional</span></td>
+          </tr>
+          <tr>
+            <td>seo_desc</td>
+            <td>Beschreibung für Google (wird in Suchergebnissen angezeigt). Falls leer, wird excerpt verwendet.</td>
+            <td><span class="badge-opt">Optional</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- MARKDOWN -->
+  <section class="md-section">
+    <h2>Text formatieren – die wichtigsten Zeichen</h2>
+    <p class="sub">Markdown ist ganz einfach – du brauchst nur wenige Zeichen zu kennen.</p>
+    <div class="md-grid">
+      <div class="md-card">
+        <div class="label">Überschrift</div>
+        <code>## Deine Überschrift</code>
+        <div class="result">→ Große Zwischenüberschrift im Artikel</div>
+      </div>
+      <div class="md-card">
+        <div class="label">Kleinere Überschrift</div>
+        <code>### Noch kleiner</code>
+        <div class="result">→ Etwas kleinere Überschrift</div>
+      </div>
+      <div class="md-card">
+        <div class="label">Fett</div>
+        <code>**fetter Text**</code>
+        <div class="result">→ <strong>fetter Text</strong></div>
+      </div>
+      <div class="md-card">
+        <div class="label">Kursiv</div>
+        <code>*kursiver Text*</code>
+        <div class="result">→ <em>kursiver Text</em></div>
+      </div>
+      <div class="md-card">
+        <div class="label">Aufzählungsliste</div>
+        <code>- Erster Punkt<br>- Zweiter Punkt</code>
+        <div class="result">→ Liste mit Punkten</div>
+      </div>
+      <div class="md-card">
+        <div class="label">Zitat / Hervorhebung</div>
+        <code>> Das ist ein Zitat</code>
+        <div class="result">→ Grün hervorgehobener Block</div>
+      </div>
+      <div class="md-card">
+        <div class="label">Neuer Absatz</div>
+        <code>Leerzeile lassen</code>
+        <div class="result">→ Einfach eine leere Zeile zwischen zwei Textblöcke</div>
+      </div>
+      <div class="md-card">
+        <div class="label">Link</div>
+        <code>[Linktext](https://...)</code>
+        <div class="result">→ Klickbarer Link im Text</div>
+      </div>
+    </div>
+    <div class="tip"><strong>Brauchst du mehr?</strong> Du kannst deinen Entwurf auch einfach auf <a href="https://dillinger.io" target="_blank">dillinger.io</a> schreiben und live sehen, wie er aussieht – dann einfach kopieren und einfügen.</div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Diese Seite ist nur für Laura Schunke – bitte nicht öffentlich teilen.</p>
+</footer>
+
+<script>
+  function copyCode() {
+    const template = `---
+title: "Dein Artikel-Titel kommt hier"
+date: 2025-06-01
+excerpt: "Ein kurzer Satz, der in der Blog-Übersicht erscheint (max. 160 Zeichen)"
+---
+
+Hier beginnt dein Artikel-Text. Einfach drauflosschreiben.
+
+## So machst du eine Zwischenüberschrift
+
+Normaler Fließtext kommt einfach so.
+Eine Leerzeile macht einen neuen Absatz.
+
+## Noch eine Überschrift
+
+- So machst du eine Liste
+- Zweiter Punkt
+- Dritter Punkt
+
+> So sieht ein hervorgehobenes Zitat aus.`;
+    navigator.clipboard.writeText(template).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Kopiert ✓';
+      setTimeout(() => btn.textContent = 'Kopieren', 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
