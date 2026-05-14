@@ -56,9 +56,11 @@
     /* ---- ARTIKEL ---- */
     .post-hero {
       background: var(--white);
+    }
+    .post-hero-img-wrap {
       position: relative;
     }
-    .post-hero::after {
+    .post-hero-img-wrap::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -249,7 +251,7 @@
 
       container.innerHTML = `
         <div class="post-hero">
-          ${heroImg}
+          <div class="post-hero-img-wrap">${heroImg}</div>
           <div class="post-header">
             <p class="post-meta">${formatDate(meta.date)}</p>
             <h1>${meta.title || 'Artikel'}</h1>
