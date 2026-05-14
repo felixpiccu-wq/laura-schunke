@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/turndown/dist/turndown.js"></script>
   <style>
     :root {
       --cream:     #F5F0E8;
@@ -164,41 +164,35 @@
 
     #titleInput { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; }
 
-    /* ---- EasyMDE Overrides ---- */
-    .EasyMDEContainer { display: flex; flex-direction: column; }
-    .EasyMDEContainer .CodeMirror {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--brown);
-      background: var(--white);
+    /* ---- Quill Overrides ---- */
+    #bodyEditor {
       border: 1.5px solid rgba(74,55,40,0.15);
       border-top: none;
       border-radius: 0 0 10px 10px;
-      padding: 1rem;
+      background: var(--white);
       min-height: 340px;
     }
-    .EasyMDEContainer .CodeMirror-focused { border-color: var(--sage); }
-    .editor-toolbar {
-      border: 1.5px solid rgba(74,55,40,0.15);
-      border-radius: 10px 10px 0 0;
-      background: var(--cream);
-      padding: 0.4rem 0.6rem;
-      opacity: 1;
+    #bodyEditor:focus-within { border-color: var(--sage); }
+    .ql-toolbar {
+      border: 1.5px solid rgba(74,55,40,0.15) !important;
+      border-radius: 10px 10px 0 0 !important;
+      background: var(--cream) !important;
+      font-family: var(--font-body) !important;
     }
-    .editor-toolbar button {
-      color: var(--brown-mid) !important;
-      border-radius: 6px;
-    }
-    .editor-toolbar button:hover,
-    .editor-toolbar button.active {
-      background: var(--sage-light) !important;
-      border-color: transparent !important;
-      color: var(--sage-dark) !important;
-    }
-    .editor-toolbar i.separator { border-color: rgba(74,55,40,0.15); }
-    .editor-statusbar { display: none; }
-    .CodeMirror-scroll { min-height: 340px; }
+    .ql-container { font-family: var(--font-body) !important; font-size: 1rem !important; border: none !important; }
+    .ql-editor { min-height: 340px; line-height: 1.8; color: var(--brown); padding: 1rem 1.25rem; }
+    .ql-editor.ql-blank::before { color: rgba(107,85,71,0.4); font-style: normal; }
+    .ql-editor h2 { font-family: var(--font-heading); font-size: 1.35rem; color: var(--brown); margin: 1.5rem 0 0.5rem; }
+    .ql-editor h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--brown); margin: 1.25rem 0 0.4rem; }
+    .ql-editor blockquote { border-left: 3px solid var(--sage); padding-left: 1rem; color: var(--brown-mid); background: var(--sage-light); border-radius: 0 6px 6px 0; padding: 0.5rem 1rem; }
+    .ql-snow .ql-stroke { stroke: var(--brown-mid) !important; }
+    .ql-snow .ql-fill { fill: var(--brown-mid) !important; }
+    .ql-snow.ql-toolbar button:hover .ql-stroke,
+    .ql-snow.ql-toolbar button.ql-active .ql-stroke { stroke: var(--sage-dark) !important; }
+    .ql-snow.ql-toolbar button:hover,
+    .ql-snow.ql-toolbar button.ql-active { background: var(--sage-light) !important; border-radius: 4px; }
+    .ql-snow.ql-toolbar .ql-picker-label { color: var(--brown-mid); }
+    .ql-snow.ql-toolbar .ql-picker-label:hover { color: var(--sage-dark); }
 
     .filename-preview {
       font-size: 0.8rem; color: var(--brown-mid);
@@ -395,8 +389,8 @@
       </div>
 
       <div class="field-group">
-        <label class="field-label" for="bodyInput">Artikel-Text</label>
-        <textarea id="bodyInput"></textarea>
+        <label class="field-label">Artikel-Text</label>
+        <div id="bodyEditor"></div>
       </div>
 
     </div>
@@ -437,37 +431,45 @@
 
 <script>
   // ── EDITOR ───────────────────────────────────────────────────
-  let editor;
+  let quill;
+  const turndown = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-' });
+  turndown.addRule('blockquote', {
+    filter: 'blockquote',
+    replacement: content => content.trim().split('\n').map(l => '> ' + l).join('\n') + '\n\n'
+  });
 
-  function initEditor(initialValue) {
-    if (editor) return;
-    editor = new EasyMDE({
-      element: document.getElementById('bodyInput'),
+  function initEditor(initialHTML) {
+    if (quill) return;
+    quill = new Quill('#bodyEditor', {
+      theme: 'snow',
       placeholder: 'Schreib hier deinen Artikel …',
-      spellChecker: false,
-      status: false,
-      autosave: { enabled: false },
-      minHeight: '340px',
-      toolbar: [
-        { name: 'bold',           action: EasyMDE.toggleBold,          className: 'fa fa-bold',          title: 'Fett (Strg+B)' },
-        { name: 'italic',         action: EasyMDE.toggleItalic,        className: 'fa fa-italic',        title: 'Kursiv (Strg+I)' },
-        '|',
-        { name: 'heading-2',      action: EasyMDE.toggleHeading2,      className: 'fa fa-header fa-header-x fa-header-2', title: 'Überschrift' },
-        { name: 'heading-3',      action: EasyMDE.toggleHeading3,      className: 'fa fa-header fa-header-x fa-header-3', title: 'Kleinere Überschrift' },
-        '|',
-        { name: 'unordered-list', action: EasyMDE.toggleUnorderedList, className: 'fa fa-list-ul',       title: 'Aufzählungsliste' },
-        { name: 'ordered-list',   action: EasyMDE.toggleOrderedList,   className: 'fa fa-list-ol',       title: 'Nummerierte Liste' },
-        '|',
-        { name: 'quote',          action: EasyMDE.toggleBlockquote,    className: 'fa fa-quote-left',    title: 'Zitat / Hervorhebung' },
-        { name: 'link',           action: EasyMDE.drawLink,            className: 'fa fa-link',          title: 'Link einfügen' },
-      ],
+      modules: {
+        toolbar: [
+          [{ header: 2 }, { header: 3 }],
+          ['bold', 'italic'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
+          ['blockquote', 'link'],
+          ['clean'],
+        ]
+      }
     });
-    if (initialValue) editor.value(initialValue);
-    editor.codemirror.on('change', () => {
+    if (initialHTML) quill.root.innerHTML = initialHTML;
+    quill.on('text-change', () => {
       updatePreview();
       updateFilename();
       scheduleSave();
     });
+  }
+
+  function getBody() {
+    if (!quill) return '';
+    const html = quill.root.innerHTML;
+    if (html === '<p><br></p>' || html === '') return '';
+    return turndown.turndown(html);
+  }
+
+  function getBodyHTML() {
+    return quill ? quill.root.innerHTML : '';
   }
 
   // ── PASSWORT ──────────────────────────────────────────────────
@@ -514,8 +516,8 @@
   function showApp() {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('app').classList.add('visible');
-    loadDraft();
-    initEditor();
+    const draft = loadDraft();
+    initEditor(draft ? draft.body : null);
   }
 
   // ── MOBILE TABS ───────────────────────────────────────────────
@@ -582,16 +584,15 @@
     const title   = document.getElementById('titleInput').value.trim();
     const date    = document.getElementById('dateInput').value;
     const excerpt = document.getElementById('excerptInput').value.trim();
-    const body    = editor ? editor.value().trim() : '';
-
-    const hasContent = title || body;
+    const bodyHTML = getBodyHTML();
+    const hasContent = title || (bodyHTML && bodyHTML !== '<p><br></p>');
     document.getElementById('previewEmpty').style.display  = hasContent ? 'none'  : 'block';
     document.getElementById('previewFilled').style.display = hasContent ? 'block' : 'none';
 
     document.getElementById('prevDate').textContent    = formatDateDE(date);
     document.getElementById('prevTitle').textContent   = title || 'Kein Titel';
     document.getElementById('prevExcerpt').textContent = excerpt;
-    document.getElementById('prevBody').innerHTML      = body ? marked.parse(body) : '';
+    document.getElementById('prevBody').innerHTML      = bodyHTML || '';
   }
 
   function scheduleSave() {
@@ -605,7 +606,7 @@
       title:   document.getElementById('titleInput').value,
       date:    document.getElementById('dateInput').value,
       excerpt: document.getElementById('excerptInput').value,
-      body:    editor ? editor.value() : '',
+      body:    getBodyHTML(),
     };
     localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
     document.getElementById('draftBadge').textContent = 'Entwurf gespeichert ✓';
@@ -614,18 +615,18 @@
   function loadDraft() {
     try {
       const raw = localStorage.getItem(DRAFT_KEY);
-      if (!raw) { updateFilename(); return; }
+      if (!raw) { updateFilename(); return null; }
       const d = JSON.parse(raw);
       if (d.title)   document.getElementById('titleInput').value   = d.title;
       if (d.date)    document.getElementById('dateInput').value    = d.date;
       if (d.excerpt) document.getElementById('excerptInput').value = d.excerpt;
-      if (d.body && editor) editor.value(d.body);
       const len = (d.excerpt || '').length;
       document.getElementById('excerptCount').textContent = `${len} / 160 Zeichen`;
       updatePreview();
       updateFilename();
       document.getElementById('draftBadge').textContent = 'Entwurf geladen';
-    } catch { updateFilename(); }
+      return d;
+    } catch { updateFilename(); return null; }
   }
 
   // ── VERÖFFENTLICHEN ───────────────────────────────────────────
@@ -635,7 +636,7 @@
     const title   = document.getElementById('titleInput').value.trim();
     const date    = document.getElementById('dateInput').value || todayISO();
     const excerpt = document.getElementById('excerptInput').value.trim();
-    const body    = editor ? editor.value().trim() : '';
+    const body = getBody();
 
     if (!title) { showToast('Bitte einen Titel eingeben.', 'error'); return; }
     if (!body)  { showToast('Bitte einen Text schreiben.', 'error'); return; }
@@ -684,7 +685,7 @@
     document.getElementById('titleInput').value   = '';
     document.getElementById('dateInput').value    = todayISO();
     document.getElementById('excerptInput').value = '';
-    if (editor) editor.value('');
+    if (quill) quill.setContents([]);
     document.getElementById('excerptCount').textContent = '0 / 160 Zeichen';
     document.getElementById('successOverlay').classList.remove('show');
     document.getElementById('publishBtn').disabled = false;
