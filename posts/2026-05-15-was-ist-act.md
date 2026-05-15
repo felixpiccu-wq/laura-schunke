@@ -59,3 +59,5 @@ Viele Menschen erleben ACT als eine Art innere Befreiung – nicht weil die schw
 ---
 
 Wenn du mehr darüber erfahren möchtest, ob ACT für dich die richtige Methode ist, lade ich dich herzlich zu einem unverbindlichen Erstgespräch ein.
+
+**[Laura Schunke – Heilpraktikerin für Psychotherapie in Schwabach](https://laura-schunke.de)** · Praxis in Schwabach, gut erreichbar aus Roth, Stein und Wendelstein · Online-Sitzungen deutschlandweit
