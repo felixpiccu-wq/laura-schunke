@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog | Laura Schunke – Heilpraktikerin für Psychotherapie Schwabach</title>
-  <meta name="description" content="Blog von Laura Schunke – Heilpraktikerin für Psychotherapie in Schwabach. Artikel über psychische Gesundheit, KVT, ACT, Schematherapie und Alltag." />
+  <meta name="description" content="Artikel über KVT, ACT und Schematherapie – verständlich erklärt von Heilpraktikerin Laura Schunke aus Schwabach. Themen: Angst, Depression, Burnout, Beziehungsmuster und mentale Gesundheit." />
   <link rel="canonical" href="https://laura-schunke.de/blog/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -259,7 +259,7 @@
     card.onclick = () => { window.location.href = `/blog/post.html?post=${encodeURIComponent(slug)}`; };
     const img = meta.image
       ? `<img src="${meta.image}" alt="${meta.title || ''}" class="post-card-img" loading="lazy" />`
-      : `<img src="/images/psychotherapie-schwabach-blog.jpg" alt="Blog Laura Schunke" class="post-card-img" loading="lazy" />`;
+      : `<img src="/images/psychotherapie-schwabach-blog.jpg" alt="${meta.title || 'Blogartikel Laura Schunke'}" class="post-card-img" loading="lazy" />`;
     card.innerHTML = `
       ${img}
       <div class="post-card-body">

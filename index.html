@@ -1539,7 +1539,7 @@
       card.href = `/blog/post.html?post=${encodeURIComponent(slug)}`;
       const img = meta.image
         ? `<img src="${meta.image}" alt="${meta.title || ''}" class="blog-card-img" loading="lazy" />`
-        : `<img src="/images/psychotherapie-schwabach-blog.jpg" alt="Blog" class="blog-card-img" loading="lazy" />`;
+        : `<img src="/images/psychotherapie-schwabach-blog.jpg" alt="${meta.title || 'Blogartikel'}" class="blog-card-img" loading="lazy" />`;
       card.innerHTML = `
         ${img}
         <div class="blog-card-body">
