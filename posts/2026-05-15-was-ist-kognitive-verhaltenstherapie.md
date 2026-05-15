@@ -56,3 +56,5 @@ Das Ziel ist nicht, nie mehr negative Gedanken zu haben – sondern zu lernen, w
 ---
 
 Wenn du dir vorstellen kannst, mit dieser Methode zu arbeiten, oder wenn du noch unsicher bist, welcher Ansatz zu dir passt – ich helfe dir gerne dabei herauszufinden, was für dich sinnvoll ist.
+
+**[Laura Schunke – Heilpraktikerin für Psychotherapie in Schwabach](https://laura-schunke.de)** · Praxis in Schwabach, gut erreichbar aus Roth, Stein und Wendelstein · Online-Sitzungen deutschlandweit
