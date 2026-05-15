@@ -26,11 +26,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
+  [
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     "name": "Laura Schunke – Heilpraktikerin für Psychotherapie",
-    "description": "Heilpraktikerin für Psychotherapie in Schwabach. KVT, ACT, Schematherapie. Präsenz & Online.",
+    "description": "Spezialisierte Psychotherapie in Schwabach mit KVT, ACT und Schematherapie. Präsenz und Online-Sitzungen deutschlandweit. Keine Wartezeiten, flexible Terminvergabe.",
+    "image": "https://laura-schunke.de/images/laura-schunke-psychotherapie-schwabach.jpg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Königstraße 1A",
@@ -38,13 +40,103 @@
       "postalCode": "91126",
       "addressCountry": "DE"
     },
+    "areaServed": [
+      {"@type": "City", "name": "Schwabach"},
+      {"@type": "City", "name": "Roth"},
+      {"@type": "City", "name": "Stein"},
+      {"@type": "City", "name": "Wendelstein"},
+      {"@type": "Country", "name": "Deutschland"}
+    ],
     "telephone": "0160-92458760",
     "email": "info@laura-schunke.de",
     "url": "https://laura-schunke.de",
-    "priceRange": "90 € / 50 Min",
+    "priceRange": "90 EUR / 50 Min",
     "medicalSpecialty": "Psychotherapy",
-    "hasMap": "https://maps.google.com/?q=Königstraße+1A+91126+Schwabach"
+    "availableLanguage": ["de"],
+    "acceptsNewPatients": true,
+    "hasMap": "https://maps.google.com/?q=Königstraße+1A+91126+Schwabach",
+    "knowsAbout": ["Kognitive Verhaltenstherapie", "ACT", "Schematherapie", "Angststörungen", "Depression", "Burnout", "ADHS", "PTBS"],
+    "employee": {
+      "@type": "Person",
+      "name": "Laura Schunke",
+      "jobTitle": "Heilpraktikerin für Psychotherapie",
+      "image": "https://laura-schunke.de/images/laura-schunke-psychotherapie-schwabach.jpg",
+      "url": "https://laura-schunke.de",
+      "knowsLanguage": ["de"],
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Heilerlaubnis für Psychotherapie",
+        "credentialCategory": "Heilpraktiker für Psychotherapie",
+        "recognizedBy": {
+          "@type": "GovernmentOrganization",
+          "name": "Gesundheitsamt Nürnberg"
+        }
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was kostet Psychotherapie als Selbstzahler in Schwabach?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Eine Sitzung kostet 90 Euro für 50 Minuten. Davor biete ich ein kostenloses 15-Minuten-Kennenlerngespräch an. Als Privatpraxis keine Wartezeiten, maximale Flexibilität. Die Kosten können von einer PKV oder Heilpraktiker-Zusatzversicherung erstattet werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Was unterscheidet eine Heilpraktikerin für Psychotherapie von einer approbierten Therapeutin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Der Hauptunterschied: Approbierte Therapeuten können mit gesetzlichen Krankenkassen abrechnen, Heilpraktiker nicht. Inhaltlich können dieselben anerkannten Methoden angewendet werden. Vorteile: keine langen Wartezeiten, mehr Flexibilität, kein Gutachterverfahren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie läuft das Erstgespräch ab?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vor dem Erstgespräch gibt es ein kostenloses 15-Minuten-Kennenlerngespräch. Das eigentliche Erstgespräch dauert 50 Minuten und kostet 90 €. Danach entscheidest du in Ruhe, ob du weitermachen möchtest."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bietest du auch Online-Therapie an?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, Videositzungen deutschlandweit. Online-Therapie ist genauso wirksam wie Präsenzsitzungen. Benötigt wird nur eine stabile Internetverbindung und ein ruhiger Ort."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Übernimmt die Krankenkasse die Kosten?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gesetzliche Krankenkassen übernehmen die Kosten nicht. Private Krankenversicherungen und Zusatzversicherungen erstatten häufig zumindest teilweise."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Für welche Themen bietet Laura Schunke Therapie an?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Angst, Panik, Depression, Burnout, ADHS (Erwachsene), Zwang, Essstörungen, PTBS, Persönlichkeitsstörungen, emotionale Instabilität, Beziehungsmuster, Lebenskrisen und Orientierungslosigkeit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wie schnell bekomme ich einen Termin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Als Privatpraxis können Termine deutlich schneller vergeben werden als Praxen mit Kassenzulassung. In der Regel ist ein Erstgespräch innerhalb weniger Tage bis Wochen möglich."
+        }
+      }
+    ]
   }
+  ]
   </script>
 
   <style>
@@ -1211,6 +1303,9 @@
             </div>
           </div>
         </div>
+        <p style="font-size:0.82rem; color:var(--brown-mid); opacity:0.7; margin-top:1.25rem;">
+          Gut erreichbar aus Roth, Stein und Wendelstein
+        </p>
       </div>
 
       <div class="contact-form-card">

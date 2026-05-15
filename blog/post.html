@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog | Laura Schunke – Heilpraktikerin für Psychotherapie Schwabach</title>
   <meta name="description" content="Blogartikel von Laura Schunke – Heilpraktikerin für Psychotherapie in Schwabach." />
+  <link rel="canonical" id="postCanonical" href="https://laura-schunke.de/blog/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Laura Schunke – Heilpraktikerin für Psychotherapie" />
+  <meta property="og:title" content="Blog | Laura Schunke" id="ogTitle" />
+  <meta property="og:description" content="Blogartikel von Laura Schunke – Heilpraktikerin für Psychotherapie in Schwabach." id="ogDesc" />
+  <meta property="og:image" content="https://laura-schunke.de/images/psychotherapie-schwabach-blog.jpg" id="ogImage" />
+  <meta property="og:url" content="https://laura-schunke.de/blog/" id="ogUrl" />
+  <meta property="og:locale" content="de_DE" />
+  <script type="application/ld+json" id="postSchema">{}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -239,13 +248,39 @@
       const raw = await res.text();
       const { body, meta } = parseFrontmatter(raw);
 
-      /* Titel in <title> setzen */
-      if (meta.title) {
-        document.title = `${meta.title} | Laura Schunke`;
-      }
-      if (meta.seo_desc) {
-        document.querySelector('meta[name="description"]').content = meta.seo_desc;
-      }
+      /* Titel, Meta, OG, Canonical, Schema setzen */
+      const postUrl = `https://laura-schunke.de/blog/post.html?post=${encodeURIComponent(slug)}`;
+      const postImage = meta.image || 'https://laura-schunke.de/images/psychotherapie-schwabach-blog.jpg';
+      const postDesc = meta.seo_desc || meta.excerpt || '';
+
+      if (meta.title) document.title = `${meta.title} | Laura Schunke`;
+      if (postDesc) document.querySelector('meta[name="description"]').content = postDesc;
+
+      document.getElementById('postCanonical').href = postUrl;
+      document.getElementById('ogTitle').content = meta.title || 'Blog | Laura Schunke';
+      document.getElementById('ogDesc').content = postDesc;
+      document.getElementById('ogImage').content = postImage;
+      document.getElementById('ogUrl').content = postUrl;
+
+      document.getElementById('postSchema').textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": meta.title || '',
+        "description": postDesc,
+        "image": postImage,
+        "datePublished": meta.date || '',
+        "author": {
+          "@type": "Person",
+          "name": "Laura Schunke",
+          "url": "https://laura-schunke.de"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Laura Schunke",
+          "url": "https://laura-schunke.de"
+        },
+        "mainEntityOfPage": postUrl
+      });
 
       /* Artikel rendern */
       const heroImg = meta.image
