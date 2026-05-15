@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Coming Soon – entfernen wenn Praxis öffnet (deploy 3)
+# Coming Soon – entfernen wenn Praxis öffnet
 [[redirects]]
   from = "/preview"
   to   = "/index.html"
