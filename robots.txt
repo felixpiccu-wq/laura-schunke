@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://[DEINE-DOMAIN].de/sitemap.xml
+Sitemap: https://laura-schunke.de/sitemap.xml
