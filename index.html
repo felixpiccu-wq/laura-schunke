@@ -833,6 +833,38 @@
       <article class="therapy-card">
         <div class="therapy-card-head">
           <div class="therapy-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <h3>Schematherapie</h3>
+        </div>
+        <p class="intro-text">
+          Manche Themen tauchen immer wieder auf – in Beziehungen, im Job, im Selbstbild.
+          Schematherapie geht den Wurzeln auf den Grund: Wo kommen diese Muster her?
+          Und wie lassen sie sich verändern?
+        </p>
+        <div class="therapy-tags">
+          <span class="tags-label">Passend bei …</span>
+          <div class="tag-pills">
+            <span class="tag-pill">Persönlichkeitsstörung</span>
+            <span class="tag-pill">Emotionale Instabilität</span>
+            <span class="tag-pill">Beziehungsmuster</span>
+            <span class="tag-pill">Wiederkehrende Depression</span>
+          </div>
+        </div>
+        <button class="therapy-more-btn" onclick="toggleExpand(this)" aria-expanded="false">
+          Mehr erfahren
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="therapy-expand" role="region">
+          <div class="therapy-expand-inner">
+            <p>Schemata sind tief verwurzelte Muster, die entstehen, wenn emotionale Grundbedürfnisse in der Kindheit nicht erfüllt wurden. In der Schematherapie identifizieren wir diese Muster und arbeiten daran, sie zu verändern – durch kognitive Techniken, erfahrungsorientierte Methoden und eine wertschätzende therapeutische Beziehung.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="therapy-card">
+        <div class="therapy-card-head">
+          <div class="therapy-icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
           </div>
           <h3>Akzeptanz- und Commitment-Therapie (ACT)</h3>
@@ -859,38 +891,6 @@
         <div class="therapy-expand" role="region">
           <div class="therapy-expand-inner">
             <p>ACT gehört zur „dritten Welle" der Verhaltenstherapie und ist in vielen Studien belegt. Kernpunkte: psychologische Flexibilität, Achtsamkeit und Werteklarheit. Anstatt Gedanken zu kontrollieren, lernst du, sie zu beobachten – und trotz Belastung das zu tun, was dein Leben bereichert.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="therapy-card">
-        <div class="therapy-card-head">
-          <div class="therapy-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          </div>
-          <h3>Schematherapie</h3>
-        </div>
-        <p class="intro-text">
-          Manche Themen tauchen immer wieder auf – in Beziehungen, im Job, im Selbstbild.
-          Schematherapie geht den Wurzeln auf den Grund: Wo kommen diese Muster her?
-          Und wie lassen sie sich verändern?
-        </p>
-        <div class="therapy-tags">
-          <span class="tags-label">Passend bei …</span>
-          <div class="tag-pills">
-            <span class="tag-pill">Persönlichkeitsstörung</span>
-            <span class="tag-pill">Emotionale Instabilität</span>
-            <span class="tag-pill">Beziehungsmuster</span>
-            <span class="tag-pill">Wiederkehrende Depression</span>
-          </div>
-        </div>
-        <button class="therapy-more-btn" onclick="toggleExpand(this)" aria-expanded="false">
-          Mehr erfahren
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="therapy-expand" role="region">
-          <div class="therapy-expand-inner">
-            <p>Schemata sind tief verwurzelte Muster, die entstehen, wenn emotionale Grundbedürfnisse in der Kindheit nicht erfüllt wurden. In der Schematherapie identifizieren wir diese Muster und arbeiten daran, sie zu verändern – durch kognitive Techniken, erfahrungsorientierte Methoden und eine wertschätzende therapeutische Beziehung.</p>
           </div>
         </div>
       </article>
@@ -1160,26 +1160,6 @@
 </div>
 
 <!-- =============================================
-     BLOG VORSCHAU #blog
-     ============================================= -->
-<section class="section section--cream" id="blog" aria-labelledby="blog-h2">
-  <div class="container">
-    <div class="section-header">
-      <span class="eyebrow">Wissen &amp; Inspiration</span>
-      <h2 id="blog-h2">Aus meinem Blog</h2>
-    </div>
-
-    <div class="blog-grid" id="homeBlogGrid">
-      <!-- wird per JS befüllt -->
-    </div>
-
-    <div class="text-center">
-      <a href="/blog/" class="btn btn--outline">Alle Artikel lesen</a>
-    </div>
-  </div>
-</section>
-
-<!-- =============================================
      KONTAKT #kontakt
      ============================================= -->
 <section class="section contact-section" id="kontakt" aria-labelledby="kontakt-h2">
@@ -1282,6 +1262,26 @@
         </form>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     BLOG VORSCHAU #blog
+     ============================================= -->
+<section class="section section--cream" id="blog" aria-labelledby="blog-h2">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Wissen &amp; Inspiration</span>
+      <h2 id="blog-h2">Aus meinem Blog</h2>
+    </div>
+
+    <div class="blog-grid" id="homeBlogGrid">
+      <!-- wird per JS befüllt -->
+    </div>
+
+    <div class="text-center">
+      <a href="/blog/" class="btn btn--outline">Alle Artikel lesen</a>
     </div>
   </div>
 </section>
