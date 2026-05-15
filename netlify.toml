@@ -17,9 +17,10 @@
   status = 200
 
 [[redirects]]
-  from = "/"
-  to   = "/coming-soon.html"
+  from   = "/"
+  to     = "/coming-soon.html"
   status = 200
+  force  = true
 
 # Weiterleitungen
 [[redirects]]
