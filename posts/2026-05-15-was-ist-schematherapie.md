@@ -53,3 +53,5 @@ Viele Menschen beschreiben, dass sie durch die Schematherapie zum ersten Mal wir
 ---
 
 Wenn du dich in diesen Themen wiederkennst und wissen möchtest, ob Schematherapie für dich passt, schreib mir gerne. Im Erstgespräch schauen wir gemeinsam, welcher Ansatz zu dir und deiner Situation passt.
+
+**[Laura Schunke – Heilpraktikerin für Psychotherapie in Schwabach](https://laura-schunke.de)** · Praxis in Schwabach, gut erreichbar aus Roth, Stein und Wendelstein · Online-Sitzungen deutschlandweit
