@@ -483,7 +483,7 @@
       padding: clamp(48px,7vw,72px) clamp(20px,5vw,56px);
       text-align: center;
     }
-    .cta-banner h2 { color: var(--white); margin-bottom: 1rem; }
+    .cta-banner h2, .cta-banner h3 { color: var(--white); margin-bottom: 1rem; font-size: clamp(1.4rem, 3vw, 1.9rem); }
     .cta-banner p  { color: rgba(255,255,255,0.72); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; font-size: 1.07rem; }
     .cta-banner-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
@@ -720,7 +720,7 @@
        KONTAKT
        ============================================ */
     .contact-section { position: relative; overflow: hidden; background: var(--cream); }
-    .contact-bg-img { position: absolute; inset: 0; background: url('/images/psychotherapeutin-schwabach-abendlicht.jpg') center/cover no-repeat; opacity: 0.10; z-index: 0; }
+    .contact-bg-img { position: absolute; inset: 0; background: url('/images/psychotherapeutin-schwabach-abendlicht.jpg') top center/cover no-repeat; opacity: 0.10; z-index: 0; }
     .contact-section .container { position: relative; z-index: 1; }
     .contact-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(2rem,5vw,5rem); align-items: start; }
     .contact-info h2 { margin-bottom: 1rem; }
@@ -1120,10 +1120,10 @@
 
 <!-- CTA-BANNER nach Über mich -->
 <div class="cta-banner">
-  <h3>Bereit für den ersten Schritt?</h3>
-  <p>Schreib mir einfach – der Rest ergibt sich.</p>
+  <h3>Der erste Schritt ist oft der schwerste.</h3>
+  <p>Ich mache ihn so einfach wie möglich: ein kurzes, kostenloses Gespräch – ohne Druck, ohne Vorentscheidung.</p>
   <div class="cta-banner-btns">
-    <a href="#kontakt" class="btn btn--primary btn--lg">Kontakt aufnehmen</a>
+    <a href="#kontakt" class="btn btn--primary btn--lg">Kostenloses Erstgespräch anfragen</a>
   </div>
 </div>
 
@@ -1277,7 +1277,7 @@
 <!-- =============================================
      EINZUGSGEBIET
      ============================================= -->
-<section class="section section--white" aria-labelledby="region-h2">
+<section class="section section--white" aria-labelledby="region-h2" style="padding-top: clamp(24px, 4vw, 40px);">
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Für Patienten aus der Region</span>
