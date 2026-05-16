@@ -13,22 +13,92 @@
   <url>
     <loc>https://laura-schunke.de/blog/post.html?post=2026-05-15-was-ist-schematherapie</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://laura-schunke.de/blog/post.html?post=2026-05-15-was-ist-kognitive-verhaltenstherapie</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://laura-schunke.de/blog/post.html?post=2026-05-15-was-ist-act</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://laura-schunke.de/blog/post.html?post=2025-05-14-was-ist-psychotherapie</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/psychotherapie-bei-burnout/</loc>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/psychotherapie-bei-depression/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/therapie-bei-angst/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/therapie-bei-trauma/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/therapie-bei-beziehungsproblemen/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/therapie-adhs-erwachsene/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/therapie-hochsensibilitaet/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/kognitive-verhaltenstherapie-schwabach/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/schematherapie-schwabach/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/online-psychotherapie/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/psychotherapie-nuernberg/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/psychotherapie-roth/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/psychotherapie-stein/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/psychotherapie-wendelstein/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://laura-schunke.de/impressum.html</loc>

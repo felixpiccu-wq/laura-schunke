@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Heilpraktikerin für Psychotherapie Schwabach | Laura Schunke – KVT, ACT, Schematherapie</title>
-  <meta name="description" content="Psychotherapie in Schwabach – Laura Schunke, Heilpraktikerin für Psychotherapie. Verhaltenstherapie, ACT & Schematherapie. Präsenz & Online. Selbstzahler & PKV. Termin anfragen." />
+  <title>Psychotherapie Schwabach | Laura Schunke</title>
+  <meta name="description" content="Laura Schunke, Heilpraktikerin für Psychotherapie in Schwabach. KVT, Schematherapie & ACT – bei Angst, Depression, Burnout und mehr. Präsenz & Online, keine Wartezeit." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://laura-schunke.de" />
+  <link rel="canonical" href="https://laura-schunke.de/" />
   <link rel="alternate" hreflang="de" href="https://laura-schunke.de" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Heilpraktikerin für Psychotherapie Schwabach | Laura Schunke" />
-  <meta property="og:description" content="Psychotherapie in Schwabach – Laura Schunke. KVT, ACT & Schematherapie. Präsenz & Online. Jetzt Termin anfragen." />
+  <meta property="og:title" content="Psychotherapie Schwabach | Laura Schunke" />
+  <meta property="og:description" content="Heilpraktikerin für Psychotherapie in Schwabach. KVT, Schematherapie & ACT – bei Angst, Depression, Burnout und mehr. Präsenz & Online." />
   <meta property="og:image" content="https://laura-schunke.de/images/laura-schunke-psychotherapie-schwabach.jpg" />
   <meta property="og:url" content="https://laura-schunke.de" />
   <meta property="og:locale" content="de_DE" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Heilpraktikerin für Psychotherapie Schwabach | Laura Schunke" />
-  <meta name="twitter:description" content="Psychotherapie in Schwabach. KVT, ACT & Schematherapie. Präsenz & Online." />
+  <meta name="twitter:title" content="Psychotherapie Schwabach | Laura Schunke" />
+  <meta name="twitter:description" content="Heilpraktikerin für Psychotherapie in Schwabach. KVT, Schematherapie & ACT – Präsenz & Online." />
   <meta name="twitter:image" content="https://laura-schunke.de/images/laura-schunke-psychotherapie-schwabach.jpg" />
 
   <link rel="preload" as="image" href="/images/laura-schunke-psychotherapie-schwabach.jpg" />
@@ -42,9 +42,11 @@
     },
     "areaServed": [
       {"@type": "City", "name": "Schwabach"},
+      {"@type": "City", "name": "Nürnberg"},
       {"@type": "City", "name": "Roth"},
       {"@type": "City", "name": "Stein"},
       {"@type": "City", "name": "Wendelstein"},
+      {"@type": "City", "name": "Hilpoltstein"},
       {"@type": "Country", "name": "Deutschland"}
     ],
     "telephone": "0160-92458760",
@@ -353,7 +355,8 @@
       margin-bottom: 2.5rem;
       max-width: 480px;
     }
-    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .hero-hint { font-size: 0.8rem; color: var(--brown-mid); opacity: 0.7; margin-bottom: 2rem; letter-spacing: 0.03em; }
     .hero-badges { display: flex; flex-wrap: wrap; gap: 0.65rem; }
     .badge {
       display: inline-flex; align-items: center; gap: 0.4rem;
@@ -695,6 +698,25 @@
     }
 
     /* ============================================
+       EINZUGSGEBIET
+       ============================================ */
+    .region-text { max-width: 640px; margin: 0 auto; text-align: center; }
+    .region-text p { font-size: 1.05rem; color: var(--brown-mid); line-height: 1.85; }
+    .region-text p + p { margin-top: 1rem; }
+    .reach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+    .reach-card { background: var(--cream); border-radius: var(--radius-md); padding: 2rem; }
+    .reach-card--online { background: var(--sage-light); }
+    .reach-icon { width: 44px; height: 44px; background: var(--white); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; box-shadow: var(--shadow-sm); }
+    .reach-card h3 { font-size: 1.15rem; margin-bottom: 0.65rem; }
+    .reach-card p { font-size: 0.97rem; color: var(--brown-mid); line-height: 1.75; margin-bottom: 0.85rem; }
+    .reach-card ul { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .reach-card li { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.95rem; color: var(--brown-mid); }
+    .reach-card li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); flex-shrink: 0; margin-top: 0.55rem; }
+    .reach-link { font-size: 0.9rem; color: var(--sage); font-weight: 500; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .reach-link:hover { text-decoration: underline; }
+    @media (max-width: 680px) { .reach-grid { grid-template-columns: 1fr; } }
+
+    /* ============================================
        KONTAKT
        ============================================ */
     .contact-section { position: relative; overflow: hidden; background: var(--cream); }
@@ -735,7 +757,7 @@
        FOOTER
        ============================================ */
     .footer { background: var(--brown); color: rgba(255,255,255,0.75); padding: 3.5rem 0 2rem; }
-    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1.4fr 0.7fr; gap: 2rem; margin-bottom: 2.5rem; }
     .footer-logo { font-family: var(--font-heading); font-size: 1.25rem; color: var(--white); margin-bottom: 0.5rem; }
     .footer-brand p { font-size: 0.88rem; line-height: 1.65; opacity: 0.7; }
     .footer-nav h4 { font-size: 0.75rem; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.14em; color: var(--white); margin-bottom: 1rem; font-weight: 500; }
@@ -743,7 +765,8 @@
     .footer-nav a { font-size: 0.9rem; color: rgba(255,255,255,0.65); transition: color var(--ease); }
     .footer-nav a:hover { color: var(--white); }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; font-size: 0.83rem; opacity: 0.55; }
-    @media (max-width: 680px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } .footer-bottom { flex-direction: column; text-align: center; } }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    @media (max-width: 540px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } .footer-bottom { flex-direction: column; text-align: center; } }
 
     /* ============================================
        MOBILE POLISH
@@ -831,12 +854,12 @@
       <li><a href="/blog/" onclick="closeMenu()">Blog</a></li>
       <li><a href="#kontakt" onclick="closeMenu()">Kontakt</a></li>
       <li class="nav-mobile-cta">
-        <a href="#kontakt" class="btn btn--primary" onclick="closeMenu()">Termin anfragen</a>
+        <a href="#kontakt" class="btn btn--primary" onclick="closeMenu()">Kostenloses Erstgespräch anfragen</a>
       </li>
     </ul>
 
     <div class="nav-right">
-      <a href="#kontakt" class="btn btn--primary">Termin anfragen</a>
+      <a href="#kontakt" class="btn btn--primary">Kostenloses Erstgespräch anfragen</a>
       <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -855,10 +878,10 @@
     <h1>Heilpraktikerin für Psychotherapie Schwabach</h1>
     <p class="hero-tagline">„Was muss sich ändern, damit sich was ändert?"</p>
     <p class="hero-text">
-      Ich begleite dich in meiner Praxis in Schwabach mit modernen, wissenschaftlich fundierten Methoden.
+      Ich begleite dich mit modernen, wissenschaftlich fundierten Methoden – in Präsenz oder online.
     </p>
     <div class="hero-buttons">
-      <a href="#kontakt" class="btn btn--primary btn--lg">Kostenlos kennenlernen</a>
+      <a href="#kontakt" class="btn btn--primary btn--lg">Unverbindlich schreiben</a>
       <a href="#therapie" class="btn btn--outline btn--lg">Mehr erfahren</a>
     </div>
   </div>
@@ -880,7 +903,7 @@
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Methoden</span>
-      <h2 id="therapie-h2">Mein Therapieangebot</h2>
+      <h2 id="therapie-h2">Psychotherapie in Schwabach &amp; Nürnberger Land</h2>
       <p>Evidenzbasierte Verfahren – flexibel kombiniert, auf dich abgestimmt.</p>
     </div>
 
@@ -1001,6 +1024,7 @@
   </div>
 </section>
 
+
 <!-- =============================================
      4 SCHRITTE #so-gehts
      ============================================= -->
@@ -1037,7 +1061,7 @@
     </div>
 
     <div style="text-align:center; margin-top: 3rem">
-      <a href="#kontakt" class="btn btn--primary btn--lg">Jetzt ersten Schritt machen</a>
+      <a href="#kontakt" class="btn btn--primary btn--lg">Unverbindlich anfragen</a>
     </div>
   </div>
 </section>
@@ -1052,7 +1076,7 @@
       <aside class="about-aside">
         <img
           src="/images/laura-schunke-entspannt-natur.jpg"
-          alt="Laura Schunke, Therapeutin in Schwabach, entspannt in der Natur"
+          alt="Laura Schunke, Heilpraktikerin für Psychotherapie in Schwabach"
           class="about-photo"
           width="340" height="460"
           loading="lazy"
@@ -1096,10 +1120,10 @@
 
 <!-- CTA-BANNER nach Über mich -->
 <div class="cta-banner">
-  <h2>Bereit für den ersten Schritt?</h2>
+  <h3>Bereit für den ersten Schritt?</h3>
   <p>Schreib mir einfach – der Rest ergibt sich.</p>
   <div class="cta-banner-btns">
-    <a href="#kontakt" class="btn btn--primary btn--lg">Jetzt Termin anfragen</a>
+    <a href="#kontakt" class="btn btn--primary btn--lg">Kontakt aufnehmen</a>
   </div>
 </div>
 
@@ -1117,7 +1141,7 @@
       <div class="price-card">
         <span class="price-amount">90 €</span>
         <p class="price-label">Einzelsitzung · 50 Minuten</p>
-        <p class="price-note">Privatpraxis – flexible Terminvergabe, keine Wartezeiten</p>
+        <p class="price-note">Privatpraxis · flexible Terminvergabe</p>
       </div>
     </div>
 
@@ -1251,6 +1275,50 @@
 </section>
 
 <!-- =============================================
+     EINZUGSGEBIET
+     ============================================= -->
+<section class="section section--white" aria-labelledby="region-h2">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Für Patienten aus der Region</span>
+      <h2 id="region-h2">Für dich erreichbar – in Präsenz oder online</h2>
+      <p>Meine Klientinnen kommen aus Schwabach, Roth, Stein, Wendelstein, Hilpoltstein und dem Raum Nürnberg – und aus ganz Deutschland per Video.</p>
+    </div>
+    <div class="reach-grid">
+      <div class="reach-card">
+        <div class="reach-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>In der Praxis – Schwabach</h3>
+        <p>Die Praxis liegt zentral in der Königstraße 1A in Schwabach, gut erreichbar aus dem Raum Nürnberg, Roth, Stein und Wendelstein – mit Auto (A6/A9) und S-Bahn (S4).</p>
+        <a href="https://maps.google.com/?q=Königstraße+1A+91126+Schwabach" target="_blank" rel="noopener" class="reach-link">
+          Auf der Karte ansehen
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      </div>
+      <div class="reach-card reach-card--online">
+        <div class="reach-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Per Video – deutschlandweit</h3>
+        <p>Online-Therapie ist in ihrer Wirksamkeit mit Präsenzsitzungen vergleichbar – das zeigen aktuelle Studien. Du brauchst nur einen ruhigen Ort, eine Kamera und eine stabile Verbindung.</p>
+        <p>Online ist besonders sinnvoll, wenn:</p>
+        <ul>
+          <li>die Anfahrt zu weit ist</li>
+          <li>der Alltag wenig Zeit für Fahrtwege lässt</li>
+          <li>der erste Schritt in eine Praxis gerade zu groß ist</li>
+          <li>du flexibel von unterwegs oder zuhause arbeiten willst</li>
+        </ul>
+        <a href="/online-psychotherapie/" class="reach-link">
+          Mehr zur Online-Therapie
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
      KONTAKT #kontakt
      ============================================= -->
 <section class="section contact-section" id="kontakt" aria-labelledby="kontakt-h2">
@@ -1304,7 +1372,7 @@
           </div>
         </div>
         <p style="font-size:0.82rem; color:var(--brown-mid); opacity:0.7; margin-top:1.25rem;">
-          Gut erreichbar aus Roth, Stein und Wendelstein
+          Gut erreichbar aus Roth, Stein, Wendelstein und dem Raum Nürnberg
         </p>
       </div>
 
@@ -1401,6 +1469,25 @@
           <li><a href="#honorar">Honorar</a></li>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Leistungen">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="/psychotherapie-bei-burnout/">Psychotherapie bei Burnout</a></li>
+          <li><a href="/psychotherapie-bei-depression/">Psychotherapie bei Depression</a></li>
+          <li><a href="/therapie-bei-angst/">Therapie bei Angst</a></li>
+          <li><a href="/therapie-bei-trauma/">Therapie bei Trauma</a></li>
+          <li><a href="/therapie-adhs-erwachsene/">Therapie ADHS Erwachsene</a></li>
+          <li><a href="/therapie-hochsensibilitaet/">Therapie Hochsensibilität</a></li>
+          <li><a href="/therapie-bei-beziehungsproblemen/">Therapie bei Beziehungsproblemen</a></li>
+          <li><a href="/kognitive-verhaltenstherapie-schwabach/">Kognitive Verhaltenstherapie</a></li>
+          <li><a href="/schematherapie-schwabach/">Schematherapie</a></li>
+          <li><a href="/online-psychotherapie/">Online-Psychotherapie</a></li>
+          <li><a href="/psychotherapie-nuernberg/">Psychotherapie Nürnberg</a></li>
+          <li><a href="/psychotherapie-roth/">Psychotherapie Roth</a></li>
+          <li><a href="/psychotherapie-stein/">Psychotherapie Stein</a></li>
+          <li><a href="/psychotherapie-wendelstein/">Psychotherapie Wendelstein</a></li>
         </ul>
       </nav>
       <nav class="footer-nav" aria-label="Rechtliches">
