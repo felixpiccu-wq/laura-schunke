@@ -421,6 +421,7 @@
     <h2>Artikel veröffentlicht!</h2>
     <p>Der Artikel ist live. Netlify baut die Website gerade neu – das dauert ca. 1–2 Minuten.</p>
     <div class="success-actions">
+      <a id="successPostLink" href="/blog/" class="btn-outline" target="_blank">Artikel ansehen</a>
       <a href="/blog/" class="btn-outline" target="_blank">Blog ansehen</a>
       <button class="btn-primary" style="width:auto;padding:0.7rem 1.5rem;border-radius:9999px;" onclick="resetEditor()">Neuer Artikel</button>
     </div>
@@ -667,6 +668,7 @@
 
       // Entwurf löschen
       localStorage.removeItem(DRAFT_KEY);
+      document.getElementById('successPostLink').href = `/blog/${slug}/`;
       document.getElementById('successOverlay').classList.add('show');
 
     } catch {
@@ -677,8 +679,8 @@
   }
 
   function buildMarkdown({ title, date, excerpt, body }) {
-    const esc = s => s.replace(/"/g, '\\"');
-    return `---\ntitle: "${esc(title)}"\ndate: ${date}\nexcerpt: "${esc(excerpt)}"\n---\n\n${body}\n`;
+    const esc = s => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+    return `---\ntitle: "${esc(title)}"\ndate: ${date}\nexcerpt: "${esc(excerpt)}"\nimage: /images/psychotherapie-schwabach-blog.jpg\n---\n\n${body}\n`;
   }
 
   function resetEditor() {

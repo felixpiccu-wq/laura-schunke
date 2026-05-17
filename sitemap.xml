@@ -7,36 +7,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://laura-schunke.de/blog/</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://laura-schunke.de/blog/post.html?post=2026-05-15-was-ist-schematherapie</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://laura-schunke.de/blog/post.html?post=2026-05-15-was-ist-kognitive-verhaltenstherapie</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://laura-schunke.de/blog/post.html?post=2026-05-15-was-ist-act</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://laura-schunke.de/blog/post.html?post=2025-05-14-was-ist-psychotherapie</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://laura-schunke.de/psychotherapie-bei-burnout/</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -131,5 +101,35 @@
     <lastmod>2026-05-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/blog/</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/blog/was-ist-schematherapie/</loc>
+    <lastmod>Fri May 15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/blog/was-ist-kognitive-verhaltenstherapie/</loc>
+    <lastmod>Fri May 15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/blog/was-ist-act/</loc>
+    <lastmod>Fri May 15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://laura-schunke.de/blog/was-ist-psychotherapie/</loc>
+    <lastmod>Wed May 14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

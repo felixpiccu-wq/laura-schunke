@@ -3,155 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog | Laura Schunke – Heilpraktikerin für Psychotherapie Schwabach</title>
-  <meta name="description" content="Artikel über KVT, ACT und Schematherapie – verständlich erklärt von Heilpraktikerin Laura Schunke aus Schwabach. Themen: Angst, Depression, Burnout, Beziehungsmuster und mentale Gesundheit." />
+  <title>Blog – Nürnberg, Schwabach &amp; Umland | Laura Schunke</title>
+  <meta name="description" content="Artikel zu Psychotherapie, mentaler Gesundheit und Themen wie Burnout, Angst und Depression – von Laura Schunke, Heilpraktikerin für Psychotherapie in Schwabach." />
   <link rel="canonical" href="https://laura-schunke.de/blog/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blog | Laura Schunke" />
+  <meta property="og:url" content="https://laura-schunke.de/blog/" />
+  <meta property="og:locale" content="de_DE" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-
-  <!-- marked.js für Markdown-Rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
-
   <style>
-    :root {
-      --cream:     #F5F0E8;
-      --sage:      #7A9E7E;
-      --sage-dark: #5E8262;
-      --sage-light:#EAF0EA;
-      --brown:     #4A3728;
-      --brown-mid: #6B5547;
-      --white:     #FFFFFF;
-      --font-heading: 'Playfair Display', Georgia, serif;
-      --font-body:    'Inter', system-ui, sans-serif;
-      --radius-md: 18px;
-      --shadow-sm: 0 2px 12px rgba(74,55,40,0.07);
-      --shadow-md: 0 6px 28px rgba(74,55,40,0.11);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.75;
-      color: var(--brown);
-      background: var(--cream);
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ---- NAV ---- */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 20px rgba(74,55,40,0.09);
-      padding: 1rem 0;
-    }
-    .nav-inner {
-      max-width: 1180px; margin: 0 auto;
-      padding: 0 clamp(20px,5vw,56px);
-      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 0.55rem;
-      font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--brown);
-      text-decoration: none;
-    }
-    .nav-back {
-      display: flex; align-items: center; gap: 0.4rem;
-      font-size: 0.9rem; color: var(--sage);
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: var(--sage-dark); }
-
-    /* ---- HERO ---- */
-    .blog-hero {
-      position: relative;
-      background: var(--brown);
-      color: var(--white);
-      padding: clamp(60px,10vw,100px) 0;
-      text-align: center;
-      overflow: hidden;
-    }
-    .blog-hero-bg {
-      position: absolute; inset: 0;
-      background: url('/images/psychotherapie-schwabach-blog.jpg') center 20%/cover no-repeat;
-      opacity: 0.18;
-    }
-    .blog-hero .container { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; padding: 0 clamp(20px,5vw,56px); }
-    .blog-hero .eyebrow {
-      display: block; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em;
-      text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 0.75rem;
-    }
-    .blog-hero h1 {
-      font-family: var(--font-heading); font-size: clamp(2rem,5vw,3rem); font-weight: 600;
-      color: var(--white); margin-bottom: 1rem;
-    }
-    .blog-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.75); }
-
-    /* ---- POSTS GRID ---- */
-    .posts-section {
-      max-width: 1180px; margin: 0 auto;
-      padding: clamp(48px,7vw,80px) clamp(20px,5vw,56px);
-    }
-    .posts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.75rem;
-    }
-
-    .post-card {
-      background: var(--white);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      display: flex; flex-direction: column;
-      transition: box-shadow 0.3s, transform 0.3s;
-      cursor: pointer;
-    }
-    .post-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
-    .post-card-img {
-      width: 100%; aspect-ratio: 16/9; object-fit: cover;
-      background: var(--sage-light);
-    }
-    .post-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .post-date {
-      font-size: 0.77rem; font-weight: 500; color: var(--sage);
-      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;
-    }
-    .post-card h2 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.6rem; line-height: 1.4; }
-    .post-card p  { font-size: 0.88rem; color: var(--brown-mid); line-height: 1.65; flex: 1; }
-    .post-read {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      font-size: 0.85rem; font-weight: 500; color: var(--sage);
-      margin-top: 1rem;
-    }
-
-    /* Placeholder card */
-    .placeholder-card {
-      background: var(--sage-light);
-      border: 2px dashed rgba(122,158,126,0.4);
-    }
-    .placeholder-card .post-card-body { align-items: center; justify-content: center; text-align: center; }
-    .placeholder-card h2 { color: var(--brown-mid); }
-
-    /* State messages */
-    .state-msg {
-      text-align: center; padding: 4rem 1rem;
-      color: var(--brown-mid); font-size: 1rem;
-    }
-    .state-msg p { margin-bottom: 0.5rem; }
-
-    /* ---- FOOTER ---- */
-    footer {
-      background: var(--brown);
-      color: rgba(255,255,255,0.65);
-      padding: 1.5rem 0;
-      text-align: center;
-      font-size: 0.85rem;
-    }
-    footer a { color: rgba(255,255,255,0.75); }
+    :root{--cream:#F5F0E8;--sage:#7A9E7E;--sage-dark:#5E8262;--sage-light:#EAF0EA;--brown:#4A3728;--brown-mid:#6B5547;--white:#FFFFFF;--font-heading:'Playfair Display',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;--shadow-md:0 8px 32px rgba(74,55,40,0.12)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font-body);color:var(--brown);background:var(--cream);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(74,55,40,0.09);padding:1rem 0}
+    .nav-inner{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px);display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+    .nav-logo{display:flex;align-items:center;gap:0.55rem;font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:var(--brown)}
+    .nav-back{display:flex;align-items:center;gap:0.4rem;font-size:0.9rem;color:var(--sage)}
+    .nav-back:hover{text-decoration:underline}
+    .blog-header{max-width:1180px;margin:0 auto;padding:clamp(3rem,6vw,5rem) clamp(20px,5vw,56px) 2rem}
+    .eyebrow{display:block;font-size:0.76rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:0.65rem}
+    .blog-header h1{font-family:var(--font-heading);font-size:clamp(1.75rem,4vw,2.6rem);font-weight:600;margin-bottom:0.75rem}
+    .blog-header p{color:var(--brown-mid);max-width:560px;font-size:1.05rem;line-height:1.75}
+    .posts-section{max-width:1180px;margin:0 auto;padding:2rem clamp(20px,5vw,56px) clamp(64px,9vw,104px)}
+    .posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2rem}
+    .post-card{background:var(--white);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 12px rgba(74,55,40,0.07);transition:box-shadow 0.3s,transform 0.3s;cursor:pointer}
+    .post-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+    .post-card-img{width:100%;height:200px;object-fit:cover;display:block}
+    .post-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+    .post-date{font-size:0.78rem;color:var(--sage);font-weight:500;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem}
+    .post-card h2{font-family:var(--font-heading);font-size:1.1rem;margin-bottom:0.6rem;line-height:1.4;color:var(--brown)}
+    .post-card p{font-size:0.88rem;color:var(--brown-mid);line-height:1.65;flex:1}
+    .post-read{display:inline-block;margin-top:1rem;font-size:0.88rem;color:var(--sage);font-weight:500}
+    footer{background:var(--brown);color:rgba(255,255,255,0.65);padding:1.5rem 0;text-align:center;font-size:0.85rem}
+    footer a{color:rgba(255,255,255,0.75)}
   </style>
 </head>
 <body>
@@ -159,35 +46,66 @@
 <nav class="nav" aria-label="Navigation">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Laura Schunke – Startseite">
-        <svg width="22" height="26" viewBox="0 0 26 30" fill="none" aria-hidden="true"><line x1="13" y1="28" x2="13" y2="5" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/><path d="M13 22 C19 20 24 13 21 7 C15 9 12 17 13 22Z" fill="#7A9E7E"/><path d="M13 15 C7 13 3 7 6 2 C11 4 14 11 13 15Z" fill="#7A9E7E" fill-opacity="0.6"/><circle cx="13" cy="4" r="2.5" fill="#7A9E7E" fill-opacity="0.35"/></svg>
-        Laura Schunke
-      </a>
+      <svg width="22" height="26" viewBox="0 0 26 30" fill="none" aria-hidden="true"><line x1="13" y1="28" x2="13" y2="5" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/><path d="M13 22 C19 20 24 13 21 7 C15 9 12 17 13 22Z" fill="#7A9E7E"/><path d="M13 15 C7 13 3 7 6 2 C11 4 14 11 13 15Z" fill="#7A9E7E" fill-opacity="0.6"/><circle cx="13" cy="4" r="2.5" fill="#7A9E7E" fill-opacity="0.35"/></svg>
+      Laura Schunke
+    </a>
     <a href="/" class="nav-back">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-      Zurück zur Website
+      Zur Praxis
     </a>
   </div>
 </nav>
 
-<header class="blog-hero">
-  <div class="blog-hero-bg" aria-hidden="true"></div>
-  <div class="container">
-    <span class="eyebrow">Wissen &amp; Inspiration</span>
-    <h1>Blog – Psychotherapie &amp; Mentale Gesundheit</h1>
-    <p>Artikel über psychische Gesundheit, Therapiemethoden und Impulse für deinen Alltag.</p>
-  </div>
-</header>
+<div class="blog-header">
+  <span class="eyebrow">Blog</span>
+  <h1>Psychotherapie verstehen</h1>
+  <p>Artikel zu mentaler Gesundheit, Therapiemethoden und häufigen Themen aus der Praxis – verständlich erklärt.</p>
+</div>
 
-<main>
-  <div class="posts-section">
-    <div class="posts-grid" id="postsGrid">
-      <!-- Wird per JavaScript befüllt oder zeigt Platzhalter -->
-      <div class="state-msg" id="loadingMsg">
-        <p>Artikel werden geladen …</p>
+<section class="posts-section">
+  <div class="posts-grid">
+    
+    <a href="/blog/was-ist-schematherapie/" class="post-card">
+      <img src="/images/psychotherapie-schwabach-blog.jpg" alt="Was ist Schematherapie?" class="post-card-img" loading="lazy" />
+      <div class="post-card-body">
+        <p class="post-date">15. Mai 2001</p>
+        <h2>Was ist Schematherapie?</h2>
+        <p>Manche Muster tauchen immer wieder auf – in Beziehungen, im Job, im Umgang mit sich selbst. Die Schematherapie geht den Wurzeln dieser Muster auf den Grund und hilft dabei, sie dauerhaft zu verändern.</p>
+        <span class="post-read">Weiterlesen →</span>
       </div>
-    </div>
+    </a>
+
+    <a href="/blog/was-ist-kognitive-verhaltenstherapie/" class="post-card">
+      <img src="/images/psychotherapie-schwabach-blog.jpg" alt="Was ist Kognitive Verhaltenstherapie (KVT)?" class="post-card-img" loading="lazy" />
+      <div class="post-card-body">
+        <p class="post-date">15. Mai 2001</p>
+        <h2>Was ist Kognitive Verhaltenstherapie (KVT)?</h2>
+        <p>Die Kognitive Verhaltenstherapie ist eine der am besten erforschten Therapieformen weltweit. Sie zeigt, wie Gedanken, Gefühle und Verhalten zusammenhängen – und wie man gezielt etwas verändern kann.</p>
+        <span class="post-read">Weiterlesen →</span>
+      </div>
+    </a>
+
+    <a href="/blog/was-ist-act/" class="post-card">
+      <img src="/images/psychotherapie-schwabach-blog.jpg" alt="Was ist ACT – Akzeptanz- und Commitment-Therapie?" class="post-card-img" loading="lazy" />
+      <div class="post-card-body">
+        <p class="post-date">15. Mai 2001</p>
+        <h2>Was ist ACT – Akzeptanz- und Commitment-Therapie?</h2>
+        <p>Was wäre, wenn du nicht mehr gegen deine Gedanken und Gefühle kämpfen müsstest? ACT zeigt einen anderen Weg – nicht Kontrolle, sondern Klarheit darüber, was dir wirklich wichtig ist.</p>
+        <span class="post-read">Weiterlesen →</span>
+      </div>
+    </a>
+
+    <a href="/blog/was-ist-psychotherapie/" class="post-card">
+      <img src="/images/psychotherapie-schwabach-blog.jpg" alt="Was ist eigentlich Psychotherapie – und was passiert in einer Sitzung?" class="post-card-img" loading="lazy" />
+      <div class="post-card-body">
+        <p class="post-date">14. Mai 2001</p>
+        <h2>Was ist eigentlich Psychotherapie – und was passiert in einer Sitzung?</h2>
+        <p>Viele Menschen wissen nicht genau, was sie in einer Therapie erwartet. Dieser Artikel gibt einen ehrlichen Einblick – ohne Fachchinesisch.</p>
+        <span class="post-read">Weiterlesen →</span>
+      </div>
+    </a>
   </div>
-</main>
+</section>
 
 <footer>
   <p>© 2025 Laura Schunke ·
@@ -196,113 +114,6 @@
     <a href="/datenschutz.html">Datenschutz</a>
   </p>
 </footer>
-
-<script>
-  /*
-   * Blog-Posts werden aus dem /posts/ Ordner geladen.
-   * Dafür wird die GitHub Contents API verwendet.
-   *
-   * PFLICHT: felixpiccu-wq und laura-schunke ersetzen!
-   * Das GitHub-Repository muss PUBLIC sein.
-   */
-  const GITHUB_USER = 'felixpiccu-wq';
-  const GITHUB_REPO = 'laura-schunke';
-  const API_BASE    = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/posts`;
-  const RAW_BASE    = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/posts`;
-
-  const grid       = document.getElementById('postsGrid');
-  const loadingMsg = document.getElementById('loadingMsg');
-
-  function showPlaceholders() {
-    loadingMsg.remove();
-    const placeholders = [
-      { title: 'Mein erster Blogartikel kommt bald', excerpt: 'Hier werde ich regelmäßig über Themen rund um psychische Gesundheit, Therapiemethoden und Impulse für den Alltag schreiben.' },
-      { title: 'Was ist eigentlich Schematherapie?', excerpt: 'Ein Überblick über Schemata, Modi und wie tief verwurzelte Muster in der Therapie verändert werden können.' },
-      { title: 'ACT – wenn Annehmen stärker ist als Kämpfen', excerpt: 'Wie die Akzeptanz- und Commitment-Therapie hilft, aus dem ewigen Kampf mit eigenen Gedanken auszusteigen.' },
-    ];
-    placeholders.forEach(p => {
-      const card = document.createElement('article');
-      card.className = 'post-card placeholder-card';
-      card.innerHTML = `
-        <div class="post-card-body">
-          <p class="post-date">Demnächst</p>
-          <h2>${p.title}</h2>
-          <p>${p.excerpt}</p>
-        </div>`;
-      grid.appendChild(card);
-    });
-  }
-
-  /* Frontmatter aus Markdown parsen */
-  function parseFrontmatter(raw) {
-    const match = raw.match(/^---\n([\s\S]+?)\n---/);
-    if (!match) return { body: raw, meta: {} };
-    const meta = {};
-    match[1].split('\n').forEach(line => {
-      const [key, ...rest] = line.split(':');
-      if (key && rest.length) meta[key.trim()] = rest.join(':').trim().replace(/^["']|["']$/g, '');
-    });
-    return { body: raw.replace(/^---[\s\S]+?---\n/, ''), meta };
-  }
-
-  /* Datum formatieren */
-  function formatDate(str) {
-    if (!str) return '';
-    const d = new Date(str);
-    return d.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
-  }
-
-  /* Post-Karte rendern */
-  function renderCard(slug, meta) {
-    const card = document.createElement('article');
-    card.className = 'post-card';
-    card.onclick = () => { window.location.href = `/blog/post.html?post=${encodeURIComponent(slug)}`; };
-    const img = meta.image
-      ? `<img src="${meta.image}" alt="${meta.title || ''}" class="post-card-img" loading="lazy" />`
-      : `<img src="/images/psychotherapie-schwabach-blog.jpg" alt="${meta.title || 'Blogartikel Laura Schunke'}" class="post-card-img" loading="lazy" />`;
-    card.innerHTML = `
-      ${img}
-      <div class="post-card-body">
-        <p class="post-date">${formatDate(meta.date)}</p>
-        <h2>${meta.title || 'Artikel'}</h2>
-        <p>${meta.excerpt || ''}</p>
-        <span class="post-read">
-          Weiterlesen
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </span>
-      </div>`;
-    return card;
-  }
-
-  /* Posts laden */
-  async function loadPosts() {
-    try {
-      const res = await fetch(API_BASE);
-      if (!res.ok) throw new Error('API-Fehler');
-      const files = await res.json();
-      const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse();
-
-      if (mdFiles.length === 0) {
-        showPlaceholders();
-        return;
-      }
-      loadingMsg.remove();
-
-      await Promise.all(mdFiles.map(async file => {
-        const raw = await (await fetch(`${RAW_BASE}/${file.name}`)).text();
-        const { meta } = parseFrontmatter(raw);
-        const slug = file.name.replace('.md', '');
-        grid.appendChild(renderCard(slug, meta));
-      }));
-
-    } catch (err) {
-      console.warn('Blog-Laden fehlgeschlagen:', err.message);
-      showPlaceholders();
-    }
-  }
-
-  loadPosts();
-</script>
 
 </body>
 </html>
