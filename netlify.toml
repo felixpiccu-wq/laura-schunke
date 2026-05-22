@@ -6,7 +6,6 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Coming Soon – entfernen wenn Praxis öffnet
 [[redirects]]
   from = "/preview"
   to   = "/index.html"
@@ -16,12 +15,6 @@
   from = "/preview/*"
   to   = "/:splat"
   status = 200
-
-[[redirects]]
-  from   = "/"
-  to     = "/coming-soon.html"
-  status = 200
-  force  = true
 
 # Weiterleitungen
 [[redirects]]
