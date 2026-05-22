@@ -853,12 +853,12 @@
       <li><a href="/blog/" onclick="closeMenu()">Blog</a></li>
       <li><a href="#kontakt" onclick="closeMenu()">Kontakt</a></li>
       <li class="nav-mobile-cta">
-        <a href="#kontakt" class="btn btn--primary" onclick="closeMenu()">Kostenloses Erstgespräch anfragen</a>
+        <a href="#kontakt" class="btn btn--primary" onclick="closeMenu()">Erstgespräch anfragen</a>
       </li>
     </ul>
 
     <div class="nav-right">
-      <a href="#kontakt" class="btn btn--primary">Kostenloses Erstgespräch anfragen</a>
+      <a href="#kontakt" class="btn btn--primary">Erstgespräch anfragen</a>
       <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -880,7 +880,7 @@
       Ich begleite dich mit modernen, wissenschaftlich fundierten Methoden – in Präsenz oder online.
     </p>
     <div class="hero-buttons">
-      <a href="#kontakt" class="btn btn--primary btn--lg">Unverbindlich schreiben</a>
+      <a href="#kontakt" class="btn btn--primary btn--lg">Jetzt schreiben</a>
       <a href="#therapie" class="btn btn--outline btn--lg">Mehr erfahren</a>
     </div>
   </div>
@@ -1122,7 +1122,7 @@
   <h3>Der erste Schritt ist oft der schwerste.</h3>
   <p>Ich mache ihn so einfach wie möglich: ein kurzes, kostenloses Gespräch – ohne Druck, ohne Vorentscheidung.</p>
   <div class="cta-banner-btns">
-    <a href="#kontakt" class="btn btn--primary btn--lg">Kostenloses Erstgespräch anfragen</a>
+    <a href="#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
   </div>
 </div>
 
@@ -1612,7 +1612,8 @@
     function renderCard(slug, meta) {
       const card = document.createElement('a');
       card.className = 'blog-card';
-      card.href = `/blog/post.html?post=${encodeURIComponent(slug)}`;
+      const cleanSlug = slug.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+      card.href = `/blog/${cleanSlug}/`;
       const img = meta.image
         ? `<img src="${meta.image}" alt="${meta.title || ''}" class="blog-card-img" loading="lazy" />`
         : `<img src="/images/psychotherapie-schwabach-blog.jpg" alt="${meta.title || 'Blogartikel'}" class="blog-card-img" loading="lazy" />`;
@@ -1628,17 +1629,10 @@
     }
 
     function showPlaceholders() {
-      const placeholders = [
-        { title: 'Mein erster Blogartikel kommt bald', excerpt: 'Hier werde ich regelmäßig über psychische Gesundheit, Therapiemethoden und Impulse für den Alltag schreiben.' },
-        { title: 'Was ist eigentlich Schematherapie?', excerpt: 'Schemata, Modi und warum alte Muster sich immer wiederholen – und wie Schematherapie dabei hilft.' },
-        { title: 'ACT – annehmen statt kämpfen', excerpt: 'Wie die Akzeptanz- und Commitment-Therapie hilft, aus dem Kampf mit eigenen Gedanken auszusteigen.' },
-      ];
-      placeholders.forEach(p => {
-        const card = document.createElement('a');
-        card.className = 'blog-card'; card.href = '/blog/';
-        card.innerHTML = `<div class="blog-card-body"><p class="blog-date">Demnächst</p><h3>${p.title}</h3><p>${p.excerpt}</p><span class="blog-read-more">Weiterlesen ${ARROW}</span></div>`;
-        grid.appendChild(card);
-      });
+      const card = document.createElement('a');
+      card.className = 'blog-card'; card.href = '/blog/';
+      card.innerHTML = `<div class="blog-card-body"><h3>Alle Artikel im Blog</h3><p>Informationen zu psychischer Gesundheit, Therapiemethoden und Impulsen für den Alltag.</p><span class="blog-read-more">Zum Blog ${ARROW}</span></div>`;
+      grid.appendChild(card);
     }
 
     try {
