@@ -1,6 +1,6 @@
 ---
 title: Was ist ACT – Akzeptanz- und Commitment-Therapie?
-date: 2026-05-15
+date: 2026-05-16
 excerpt: Was wäre, wenn du nicht mehr gegen deine Gedanken und Gefühle kämpfen müsstest? ACT zeigt einen anderen Weg – nicht Kontrolle, sondern Klarheit darüber, was dir wirklich wichtig ist.
 seo_desc: "Was ist ACT (Akzeptanz- und Commitment-Therapie)? Einfach erklärt: Methode, Wirkweise und Einsatzbereiche bei Angst, Depression, chronischer Belastung und Lebenssinkrisen."
 image: /images/psychotherapie-schwabach-blog.jpg

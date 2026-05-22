@@ -1,6 +1,6 @@
 ---
 title: Was ist Schematherapie?
-date: 2026-05-15
+date: 2026-05-05
 excerpt: Manche Muster tauchen immer wieder auf – in Beziehungen, im Job, im Umgang mit sich selbst. Die Schematherapie geht den Wurzeln dieser Muster auf den Grund und hilft dabei, sie dauerhaft zu verändern.
 seo_desc: "Was ist Schematherapie? Einfach erklärt: Methode, Wirkweise und typische Einsatzbereiche wie Persönlichkeitsstörungen, Beziehungsprobleme und wiederkehrende Depression."
 image: /images/psychotherapie-schwabach-blog.jpg
