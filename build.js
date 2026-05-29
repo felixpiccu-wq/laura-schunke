@@ -15,10 +15,15 @@ function slugFromFile(filename) {
     .replace(/^\d{4}-\d{2}-\d{2}-/, '');
 }
 
-// ── Datum formatieren ─────────────────────────────────────────────────────────
-function formatDate(d) {
-  const date = new Date(d);
-  return date.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+// ── Datum-Hilfsfunktionen ─────────────────────────────────────────────────────
+function toDate(val) {
+  return val instanceof Date ? val : new Date(val + 'T12:00:00');
+}
+function formatDate(val) {
+  return toDate(val).toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+function isoDate(val) {
+  return toDate(val).toISOString().slice(0, 10);
 }
 
 // ── HTML für einen Post ───────────────────────────────────────────────────────
@@ -28,7 +33,7 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
   const imgUrl     = image
     ? (image.startsWith('http') ? image : `${SITE}${image}`)
     : `${SITE}/images/psychotherapie-schwabach-blog.jpg`;
-  const dateStr    = date ? String(date).slice(0, 10) : TODAY;
+  const dateStr    = date ? isoDate(date) : TODAY;
   const dateFormatted = formatDate(dateStr);
   const htmlBody   = marked.parse(body || '');
 
@@ -153,14 +158,14 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
       <div class="post-cta">
         <h3>Klingt das nach dem richtigen Rahmen für dich?</h3>
         <p>Im kostenlosen Kennenlerngespräch schauen wir gemeinsam, ob und wie ich dir helfen kann.</p>
-        <a href="/#kontakt" class="btn">Kostenloses Erstgespräch anfragen</a>
+        <a href="/#kontakt" class="btn">Erstgespräch anfragen</a>
       </div>
     </div>
   </article>
 </main>
 
 <footer>
-  <p>© 2025 Laura Schunke ·
+  <p>© 2026 Laura Schunke ·
     <a href="/">Startseite</a> ·
     <a href="/impressum.html">Impressum</a> ·
     <a href="/datenschutz.html">Datenschutz</a>
@@ -174,7 +179,7 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
 // ── Blog-Index generieren ─────────────────────────────────────────────────────
 function renderIndex(posts) {
   const cards = posts.map(({ slug, title, date, excerpt, image }) => {
-    const dateStr = date ? String(date).slice(0, 10) : '';
+    const dateStr = date ? isoDate(date) : '';
     const imgSrc  = image || '/images/psychotherapie-schwabach-blog.jpg';
     return `
     <a href="/blog/${slug}/" class="post-card">
@@ -259,7 +264,7 @@ function renderIndex(posts) {
 </section>
 
 <footer>
-  <p>© 2025 Laura Schunke ·
+  <p>© 2026 Laura Schunke ·
     <a href="/">Startseite</a> ·
     <a href="/impressum.html">Impressum</a> ·
     <a href="/datenschutz.html">Datenschutz</a>
@@ -289,7 +294,7 @@ function updateSitemap(posts) {
     <priority>0.7</priority>
   </url>`;
   const newEntries = [blogIndex, ...posts.map(({ slug, date }) => {
-    const lastmod = date ? String(date).slice(0, 10) : TODAY;
+    const lastmod = date ? isoDate(date) : TODAY;
     return `  <url>
     <loc>${SITE}/blog/${slug}/</loc>
     <lastmod>${lastmod}</lastmod>
