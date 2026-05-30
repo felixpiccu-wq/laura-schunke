@@ -98,6 +98,8 @@
       .hero-buttons { justify-content: center; }
       .prose h2 { text-align: center; margin-top: 1.5rem; }
       .eyebrow { text-align: center; }
+      .page-hero-content { text-align: center; }
+      .eyebrow + h2 { margin-top: 0.5rem; }
     }
     .section { padding: clamp(56px, 8vw, 96px) 0; }
     .section--cream { background: var(--cream); }
@@ -141,6 +143,7 @@
       .prose li::before { position: absolute; left: 0; top: 0.45rem; margin-top: 0; }
       .prose li strong { display: block; margin-bottom: 0.1rem; }
     }
+    .nav:has(.nav-links.open) { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; }
   </style>
 </head>
 <body>
@@ -193,7 +196,6 @@
   <section class="section section--white">
     <div class="container">
       <div class="prose">
-        <span class="eyebrow">Schwabach · direkt bei Stein</span>
         <h2>Psychotherapeutin für den Raum Stein</h2>
         <p>Meine Praxis befindet sich in Schwabach – keine 10 Kilometer von Stein entfernt. Als Heilpraktikerin für Psychotherapie biete ich dir Termine ohne die langen Wartezeiten, die du aus dem Kassensystem kennst.</p>
         <div class="info-box">
