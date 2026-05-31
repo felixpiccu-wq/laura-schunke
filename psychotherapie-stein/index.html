@@ -14,6 +14,12 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://laura-schunke.de"},{"@type":"ListItem","position":2,"name":"Psychotherapie Stein","item":"https://laura-schunke.de/psychotherapie-stein/"}]}
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MedicalWebPage","name":"Psychotherapie für den Raum Stein","url":"https://laura-schunke.de/psychotherapie-stein/","inLanguage":"de","about":{"@type":"MedicalTherapy","name":"Psychotherapie"},"lastReviewed":"2026-05-30","reviewedBy":{"@type":"Person","name":"Laura Schunke","jobTitle":"Heilpraktikerin für Psychotherapie","hasCredential":{"@type":"EducationalOccupationalCredential","name":"Heilerlaubnis für Psychotherapie","recognizedBy":{"@type":"GovernmentOrganization","name":"Gesundheitsamt Nürnberg"}}},"provider":{"@type":"MedicalBusiness","name":"Laura Schunke – Heilpraktikerin für Psychotherapie","url":"https://laura-schunke.de"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie komme ich aus Stein zur Praxis nach Schwabach?","acceptedAnswer":{"@type":"Answer","text":"Von Stein erreichst du Schwabach mit dem Auto in rund 15 Minuten. Die Praxis in der Königstraße 1A ist gut erreichbar."}},{"@type":"Question","name":"Warum zu dir nach Schwabach statt vor Ort in Stein?","acceptedAnswer":{"@type":"Answer","text":"In Stein gibt es nur wenige Angebote, Wartelisten sind oft lang. Als Privatpraxis kann ich dir zeitnah einen Termin geben – und auf Wunsch komplett online arbeiten."}},{"@type":"Question","name":"Geht das auch online von Stein aus?","acceptedAnswer":{"@type":"Answer","text":"Ja. Online-Sitzungen sind jederzeit möglich und genauso wirksam wie ein Termin vor Ort."}}]}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -124,9 +130,11 @@
     .methoden-card h3 { margin-bottom: 0.5rem; font-size: 1.1rem; }
     .methoden-card p { font-size: 0.93rem; color: var(--brown-mid); line-height: 1.7; margin: 0; }
     @media (max-width: 680px) { .methoden-grid { grid-template-columns: 1fr; } }
-    .cta-banner { background: var(--brown); color: var(--white); text-align: center; padding: clamp(3rem, 6vw, 4.5rem) clamp(24px, 5vw, 48px); }
-    .cta-banner h2 { color: var(--white); margin-bottom: 0.75rem; }
-    .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
+    .cta-banner { background: var(--cream); padding: clamp(3rem,6vw,4.5rem) clamp(24px,5vw,48px); }
+    .cta-card { background: var(--white); border-radius: 24px; max-width: 720px; margin: 0 auto; padding: clamp(2.5rem,5vw,3.5rem); text-align: center; box-shadow: 0 14px 44px rgba(74,55,40,0.12); }
+    .cta-card h2 { color: var(--brown); margin-bottom: 0.75rem; }
+    .cta-card p { color: var(--brown-mid); margin-bottom: 2rem; font-size: 1.05rem; }
+    @media (max-width: 560px) { .cta-card { padding: 2rem 1.25rem; } .cta-card .btn { width: 100%; justify-content: center; } }
     footer { background: var(--brown); color: rgba(255,255,255,0.65); padding: 3rem 0 1.75rem; border-top: 1px solid rgba(255,255,255,0.07); }
     .footer-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1.4fr 0.7fr; gap: 2rem; margin-bottom: 2rem; }
     .footer-logo { font-family: var(--font-heading); font-size: 1.1rem; color: var(--white); font-weight: 600; margin-bottom: 0.5rem; }
@@ -145,6 +153,17 @@
       .prose li strong { display: block; margin-bottom: 0.1rem; }
     }
     .nav:has(.nav-links.open) { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  
+    .faq-d{border-bottom:1px solid rgba(74,55,40,0.12);}
+    .faq-d summary{cursor:pointer;list-style:none;padding:1rem 0;font-weight:500;color:var(--brown);display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+    .faq-d summary::-webkit-details-marker{display:none;}
+    .faq-d summary::after{content:'+';color:var(--sage);font-size:1.3rem;line-height:1;flex-shrink:0;}
+    .faq-d[open] summary::after{content:'–';}
+    .faq-d p{padding:0 0 1.25rem;color:var(--brown-mid);line-height:1.8;}
+  
+    .prose .eyebrow,.prose h2{text-align:center;}
+    .prose .eyebrow{margin-bottom:0.25rem;}
+    .prose .eyebrow + h2{margin-top:0.2rem;}
   </style>
 </head>
 <body>
@@ -184,7 +203,7 @@
     <div class="page-hero-content">
       <p class="breadcrumb"><a href="/">Startseite</a> › Psychotherapie für Stein</p>
       <h1>Psychotherapie in der Nähe von Stein</h1>
-      <p class="lead">Du suchst psychotherapeutische Unterstützung im Raum Stein? Meine Praxis liegt in Schwabach – nur wenige Minuten entfernt, gut erreichbar mit dem Auto.</p>
+      <p class="lead">In Stein und Umgebung orientiert man sich schnell Richtung Nürnberg oder Fürth – wo die Wartelisten lang sind. Meine Praxis in Schwabach ist eine ruhige Alternative: mit dem Auto gut erreichbar und ohne langes Warten.</p>
       <div class="hero-buttons">
         <a href="/#kontakt" class="btn btn--primary">Erstgespräch anfragen</a>
       </div>
@@ -197,12 +216,13 @@
   <section class="section section--white">
     <div class="container">
       <div class="prose">
+        <span class="eyebrow">In deiner Nähe</span>
         <h2>Psychotherapeutin für den Raum Stein</h2>
-        <p>Meine Praxis befindet sich in Schwabach – keine 10 Kilometer von Stein entfernt. Als Heilpraktikerin für Psychotherapie biete ich dir Termine ohne die langen Wartezeiten, die du aus dem Kassensystem kennst.</p>
+        <p>Stein liegt im Ballungsraum von Nürnberg und Fürth – entsprechend voll sind dort die Praxen. In Schwabach, ein Stück weiter südlich, bekommst du psychotherapeutische Begleitung in ruhigerem Rahmen und vor allem ohne monatelanges Warten.</p>
         <div class="info-box">
-          <p><strong>Anreise aus Stein:</strong> Schwabach liegt ca. 8 km südöstlich von Stein. Mit dem Auto in ca. 10 Minuten erreichbar – direkt ohne Umwege.</p>
+          <p><strong>Anreise aus Stein:</strong> Mit dem Auto erreichst du Schwabach in rund 15 Minuten. Wem die Fahrt zu weit ist, für den sind Online-Sitzungen eine bequeme Alternative.</p>
         </div>
-        <p>Ich arbeite mit wissenschaftlich fundierten Methoden – individuell abgestimmt auf das, was dich wirklich beschäftigt.</p>
+        <p>Ich arbeite mit wissenschaftlich fundierten Methoden – Kognitiver Verhaltenstherapie, Schematherapie und ACT –, abgestimmt auf dein Anliegen.</p>
       </div>
     </div>
   </section>
@@ -212,20 +232,20 @@
       <div class="section-header">
         <span class="eyebrow">Warum Laura Schunke</span>
         <h2>Was meine Praxis ausmacht</h2>
-        <p>Drei Dinge, die Klientinnen und Klienten aus dem Raum Stein besonders schätzen.</p>
+        <p>Warum Menschen aus dem Raum Stein die Fahrt nach Schwabach auf sich nehmen.</p>
       </div>
       <div class="methoden-grid">
         <div class="methoden-card">
-          <h3>Kurze Anfahrt</h3>
-          <p>Schwabach liegt direkt vor der Tür. Kein weiter Weg nach Nürnberg, keine langen Fahrten – und auf Wunsch geht auch alles per Video.</p>
+          <h3>Raus aus der Großstadthektik</h3>
+          <p>Statt im Gewühl von Nürnberg oder Fürth: In Schwabach findest du einen ruhigen Rahmen für deine Therapie – mit der Aufmerksamkeit, die eine kleine Praxis möglich macht.</p>
         </div>
         <div class="methoden-card">
-          <h3>Zeitnah starten</h3>
-          <p>Als Privatpraxis vergebe ich Termine deutlich schneller als Praxen mit Kassenzulassung. Kein halbjähriges Warten – du kannst zeitnah beginnen.</p>
+          <h3>Ohne Warteliste</h3>
+          <p>In den Ballungsräumen wartet man oft Monate auf einen Platz. Als Privatpraxis kann ich dir zeitnah einen Termin geben – meist innerhalb weniger Tage.</p>
         </div>
         <div class="methoden-card">
-          <h3>Individuell & ohne Schublade</h3>
-          <p>Kein Gutachterverfahren, kein starres Schema. Wir arbeiten so, wie es zu dir passt – mit dem Ansatz, der für dein Anliegen am sinnvollsten ist.</p>
+          <h3>Ohne Schema F</h3>
+          <p>Kein Gutachterverfahren, keine Schublade. Wir finden gemeinsam den Ansatz, der zu dir und deinem Anliegen passt.</p>
         </div>
       </div>
     </div>
@@ -236,7 +256,7 @@
       <div class="prose">
         <span class="eyebrow">Alle Themen – auch online</span>
         <h2>Womit ich helfen kann</h2>
-        <p>Ich begleite Menschen aus dem Raum Stein bei einer Vielzahl von Themen:</p>
+        <p>Ob du in Stein selbst oder im Umland wohnst – ich unterstütze dich bei vielen Anliegen:</p>
         <ul>
           <li><a href="/psychotherapie-bei-burnout/">Burnout</a></li>
           <li><a href="/psychotherapie-bei-depression/">Depression</a></li>
@@ -246,16 +266,30 @@
           <li><a href="/therapie-adhs-erwachsene/">ADHS bei Erwachsenen</a></li>
           <li><a href="/therapie-hochsensibilitaet/">Hochsensibilität</a></li>
         </ul>
-        <p>Wer die Fahrt nach Schwabach lieber umgeht: Ich biete auch <a href="/online-psychotherapie/">Online-Sitzungen per Video</a> an – deutschlandweit, ohne Wartezeit.</p>
+        <p>Gerade wenn die Anfahrt ein Thema ist: Alles geht auch per <a href="/online-psychotherapie/">Online-Sitzung</a> – genauso wirksam wie vor Ort und ohne jede Fahrt.</p>
       </div>
     </div>
   </section>
 
-  <div class="cta-banner">
-    <h2>Nah dran – und trotzdem kein Kompromiss</h2>
-    <p>Erstgespräch – unverbindlich, ohne Wartezeit.</p>
-    <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
-  </div>
+  <section class="section section--sage" aria-labelledby="faq-h2">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faq-h2">Häufige Fragen</h2>
+        <details class="faq-d"><summary>Wie komme ich aus Stein zur Praxis nach Schwabach?</summary><p>Von Stein erreichst du Schwabach mit dem Auto in rund 15 Minuten. Die Praxis in der Königstraße 1A ist gut erreichbar.</p></details>
+        <details class="faq-d"><summary>Warum zu dir nach Schwabach statt vor Ort in Stein?</summary><p>In Stein gibt es nur wenige Angebote, Wartelisten sind oft lang. Als Privatpraxis kann ich dir zeitnah einen Termin geben – und auf Wunsch komplett online arbeiten.</p></details>
+        <details class="faq-d"><summary>Geht das auch online von Stein aus?</summary><p>Ja. Online-Sitzungen sind jederzeit möglich und genauso wirksam wie ein Termin vor Ort.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-card">
+      <h2>Ein ruhiger Ort für deinen ersten Schritt</h2>
+      <p>Erstgespräch – unverbindlich, ohne Wartezeit.</p>
+      <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
+    </div>
+  </section>
 
 </main>
 

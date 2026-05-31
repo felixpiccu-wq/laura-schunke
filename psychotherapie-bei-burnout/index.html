@@ -15,6 +15,12 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://laura-schunke.de"},{"@type":"ListItem","position":2,"name":"Psychotherapie bei Burnout","item":"https://laura-schunke.de/psychotherapie-bei-burnout/"}]}
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MedicalWebPage","name":"Psychotherapie bei Burnout","url":"https://laura-schunke.de/psychotherapie-bei-burnout/","inLanguage":"de","about":{"@type":"MedicalCondition","name":"Burnout"},"lastReviewed":"2026-05-30","reviewedBy":{"@type":"Person","name":"Laura Schunke","jobTitle":"Heilpraktikerin für Psychotherapie","hasCredential":{"@type":"EducationalOccupationalCredential","name":"Heilerlaubnis für Psychotherapie","recognizedBy":{"@type":"GovernmentOrganization","name":"Gesundheitsamt Nürnberg"}}},"provider":{"@type":"MedicalBusiness","name":"Laura Schunke – Heilpraktikerin für Psychotherapie","url":"https://laura-schunke.de"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was ist der Unterschied zwischen Burnout und Depression?","acceptedAnswer":{"@type":"Answer","text":"Burnout beschreibt eine tiefe Erschöpfung durch anhaltende Überlastung – oft beruflich. Eine Depression kann unabhängig vom Auslöser auftreten und betrifft das gesamte Erleben. Die Übergänge sind fließend; im Gespräch ordnen wir deine Situation ein."}},{"@type":"Question","name":"Welche Anzeichen deuten auf ein Burnout hin?","acceptedAnswer":{"@type":"Answer","text":"Dauerhafte Müdigkeit trotz Erholung, innerer Rückzug, Zynismus gegenüber der Arbeit und das Gefühl, nicht mehr abschalten zu können. Körperliche Beschwerden sind ein deutliches Warnsignal."}},{"@type":"Question","name":"Wie hilft Therapie bei Burnout?","acceptedAnswer":{"@type":"Answer","text":"Wir schauen, was zur Erschöpfung geführt hat, und entwickeln Wege heraus: Belastungen erkennen, Grenzen setzen, Kraftquellen aufbauen – für einen Alltag, der dich langfristig trägt."}}]}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -187,9 +193,11 @@
     /* ============================================
        CTA-BANNER
        ============================================ */
-    .cta-banner { background: var(--brown); color: var(--white); text-align: center; padding: clamp(3rem, 6vw, 4.5rem) clamp(24px, 5vw, 48px); }
-    .cta-banner h2 { color: var(--white); margin-bottom: 0.75rem; }
-    .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
+    .cta-banner { background: var(--cream); padding: clamp(3rem,6vw,4.5rem) clamp(24px,5vw,48px); }
+    .cta-card { background: var(--white); border-radius: 24px; max-width: 720px; margin: 0 auto; padding: clamp(2.5rem,5vw,3.5rem); text-align: center; box-shadow: 0 14px 44px rgba(74,55,40,0.12); }
+    .cta-card h2 { color: var(--brown); margin-bottom: 0.75rem; }
+    .cta-card p { color: var(--brown-mid); margin-bottom: 2rem; font-size: 1.05rem; }
+    @media (max-width: 560px) { .cta-card { padding: 2rem 1.25rem; } .cta-card .btn { width: 100%; justify-content: center; } }
     .btn--outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.5); }
     .btn--outline-white:hover { background: var(--white); color: var(--brown); }
 
@@ -214,6 +222,17 @@
       .prose li strong { display: block; margin-bottom: 0.1rem; }
     }
     .nav:has(.nav-links.open) { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  
+    .faq-d{border-bottom:1px solid rgba(74,55,40,0.12);}
+    .faq-d summary{cursor:pointer;list-style:none;padding:1rem 0;font-weight:500;color:var(--brown);display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+    .faq-d summary::-webkit-details-marker{display:none;}
+    .faq-d summary::after{content:'+';color:var(--sage);font-size:1.3rem;line-height:1;flex-shrink:0;}
+    .faq-d[open] summary::after{content:'–';}
+    .faq-d p{padding:0 0 1.25rem;color:var(--brown-mid);line-height:1.8;}
+  
+    .prose .eyebrow,.prose h2{text-align:center;}
+    .prose .eyebrow{margin-bottom:0.25rem;}
+    .prose .eyebrow + h2{margin-top:0.2rem;}
   </style>
 </head>
 <body>
@@ -323,6 +342,7 @@
   <section class="section section--cream">
     <div class="container">
       <div class="prose">
+        <span class="eyebrow">In deiner Nähe</span>
         <h2>Für Schwabach, Roth, Stein, Wendelstein und den Raum Nürnberg</h2>
         <p>Meine Praxis liegt in der Königstraße 1A in Schwabach – gut erreichbar aus Roth, Stein, Wendelstein und dem Raum Nürnberg. Auf Wunsch biete ich auch <a href="/online-psychotherapie/" style="color:var(--sage)">Online-Sitzungen</a> an, wenn die Fahrt zu weit ist oder der Alltag es gerade nicht anders zulässt.</p>
         <p>Für das Erstgespräch ist kein langer Vorlauf nötig. Schreib mir kurz, was dich beschäftigt – ich melde mich innerhalb von 48 Stunden.</p>
@@ -332,11 +352,25 @@
   </section>
 
   <!-- CTA-BANNER -->
-  <div class="cta-banner">
-    <h2>Burnout muss kein Dauerzustand sein</h2>
-    <p>Schreib mir einfach – der erste Schritt muss nicht schwer sein.</p>
-    <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
-  </div>
+  <section class="section section--sage" aria-labelledby="faq-h2">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faq-h2">Häufige Fragen</h2>
+        <details class="faq-d"><summary>Was ist der Unterschied zwischen Burnout und Depression?</summary><p>Burnout beschreibt eine tiefe Erschöpfung durch anhaltende Überlastung – oft beruflich. Eine Depression kann unabhängig vom Auslöser auftreten und betrifft das gesamte Erleben. Die Übergänge sind fließend; im Gespräch ordnen wir deine Situation ein.</p></details>
+        <details class="faq-d"><summary>Welche Anzeichen deuten auf ein Burnout hin?</summary><p>Dauerhafte Müdigkeit trotz Erholung, innerer Rückzug, Zynismus gegenüber der Arbeit und das Gefühl, nicht mehr abschalten zu können. Körperliche Beschwerden sind ein deutliches Warnsignal.</p></details>
+        <details class="faq-d"><summary>Wie hilft Therapie bei Burnout?</summary><p>Wir schauen, was zur Erschöpfung geführt hat, und entwickeln Wege heraus: Belastungen erkennen, Grenzen setzen, Kraftquellen aufbauen – für einen Alltag, der dich langfristig trägt.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-card">
+      <h2>Burnout muss kein Dauerzustand sein</h2>
+      <p>Schreib mir einfach – der erste Schritt muss nicht schwer sein.</p>
+      <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
+    </div>
+  </section>
 
 </main>
 

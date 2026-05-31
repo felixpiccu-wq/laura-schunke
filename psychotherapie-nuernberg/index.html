@@ -15,6 +15,12 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://laura-schunke.de"},{"@type":"ListItem","position":2,"name":"Psychotherapie Nürnberg","item":"https://laura-schunke.de/psychotherapie-nuernberg/"}]}
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MedicalWebPage","name":"Psychotherapie für den Raum Nürnberg","url":"https://laura-schunke.de/psychotherapie-nuernberg/","inLanguage":"de","about":{"@type":"MedicalTherapy","name":"Psychotherapie"},"lastReviewed":"2026-05-30","reviewedBy":{"@type":"Person","name":"Laura Schunke","jobTitle":"Heilpraktikerin für Psychotherapie","hasCredential":{"@type":"EducationalOccupationalCredential","name":"Heilerlaubnis für Psychotherapie","recognizedBy":{"@type":"GovernmentOrganization","name":"Gesundheitsamt Nürnberg"}}},"provider":{"@type":"MedicalBusiness","name":"Laura Schunke – Heilpraktikerin für Psychotherapie","url":"https://laura-schunke.de"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie komme ich aus Nürnberg zur Praxis nach Schwabach?","acceptedAnswer":{"@type":"Answer","text":"Mit der S-Bahn (S2) bist du in rund 20 Minuten in Schwabach, mit dem Auto über B2 oder A6 ähnlich schnell. Die Praxis in der Königstraße 1A liegt zentral."}},{"@type":"Question","name":"Lohnt sich die Anfahrt trotz der Angebote in Nürnberg?","acceptedAnswer":{"@type":"Answer","text":"Viele schätzen gerade die kurzen Wartezeiten und die persönliche Atmosphäre einer kleinen Privatpraxis. Und wenn du Zeit sparen möchtest: Online-Sitzungen sind jederzeit möglich."}},{"@type":"Question","name":"Bietest du für Nürnberg auch Online-Termine an?","acceptedAnswer":{"@type":"Answer","text":"Ja. Wenn dir die Anfahrt zu weit ist, können wir komplett online arbeiten – genauso wirksam wie vor Ort."}}]}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -192,9 +198,11 @@
     /* ============================================
        CTA-BANNER
        ============================================ */
-    .cta-banner { background: var(--brown); color: var(--white); text-align: center; padding: clamp(3rem, 6vw, 4.5rem) clamp(24px, 5vw, 48px); }
-    .cta-banner h2 { color: var(--white); margin-bottom: 0.75rem; }
-    .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
+    .cta-banner { background: var(--cream); padding: clamp(3rem,6vw,4.5rem) clamp(24px,5vw,48px); }
+    .cta-card { background: var(--white); border-radius: 24px; max-width: 720px; margin: 0 auto; padding: clamp(2.5rem,5vw,3.5rem); text-align: center; box-shadow: 0 14px 44px rgba(74,55,40,0.12); }
+    .cta-card h2 { color: var(--brown); margin-bottom: 0.75rem; }
+    .cta-card p { color: var(--brown-mid); margin-bottom: 2rem; font-size: 1.05rem; }
+    @media (max-width: 560px) { .cta-card { padding: 2rem 1.25rem; } .cta-card .btn { width: 100%; justify-content: center; } }
     .btn--outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.5); }
     .btn--outline-white:hover { background: var(--white); color: var(--brown); }
 
@@ -219,6 +227,17 @@
       .prose li strong { display: block; margin-bottom: 0.1rem; }
     }
     .nav:has(.nav-links.open) { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  
+    .faq-d{border-bottom:1px solid rgba(74,55,40,0.12);}
+    .faq-d summary{cursor:pointer;list-style:none;padding:1rem 0;font-weight:500;color:var(--brown);display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+    .faq-d summary::-webkit-details-marker{display:none;}
+    .faq-d summary::after{content:'+';color:var(--sage);font-size:1.3rem;line-height:1;flex-shrink:0;}
+    .faq-d[open] summary::after{content:'–';}
+    .faq-d p{padding:0 0 1.25rem;color:var(--brown-mid);line-height:1.8;}
+  
+    .prose .eyebrow,.prose h2{text-align:center;}
+    .prose .eyebrow{margin-bottom:0.25rem;}
+    .prose .eyebrow + h2{margin-top:0.2rem;}
   </style>
 </head>
 <body>
@@ -282,6 +301,7 @@
   <section class="section section--white">
     <div class="container">
       <div class="prose">
+        <span class="eyebrow">In deiner Nähe</span>
         <h2>Psychotherapeutin für Nürnberg und Umgebung</h2>
         <p>Als Heilpraktikerin für Psychotherapie in Schwabach biete ich mein Angebot auch für Patientinnen und Patienten aus Nürnberg an. Die Wartezeiten auf Kassensitzplätze in Nürnberg sind oft lang – als Privatpraxis kann ich Ihnen zeitnah einen Termin anbieten.</p>
         <div class="info-box">
@@ -335,11 +355,25 @@
   </section>
 
   <!-- CTA-BANNER -->
-  <div class="cta-banner">
-    <h2>Keine langen Wartezeiten – Therapie die wirkt</h2>
-    <p>Erstgespräch – unverbindlich, persönlich, flexibel.</p>
-    <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
-  </div>
+  <section class="section section--sage" aria-labelledby="faq-h2">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faq-h2">Häufige Fragen</h2>
+        <details class="faq-d"><summary>Wie komme ich aus Nürnberg zur Praxis nach Schwabach?</summary><p>Mit der S-Bahn (S2) bist du in rund 20 Minuten in Schwabach, mit dem Auto über B2 oder A6 ähnlich schnell. Die Praxis in der Königstraße 1A liegt zentral.</p></details>
+        <details class="faq-d"><summary>Lohnt sich die Anfahrt trotz der Angebote in Nürnberg?</summary><p>Viele schätzen gerade die kurzen Wartezeiten und die persönliche Atmosphäre einer kleinen Privatpraxis. Und wenn du Zeit sparen möchtest: Online-Sitzungen sind jederzeit möglich.</p></details>
+        <details class="faq-d"><summary>Bietest du für Nürnberg auch Online-Termine an?</summary><p>Ja. Wenn dir die Anfahrt zu weit ist, können wir komplett online arbeiten – genauso wirksam wie vor Ort.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-card">
+      <h2>Keine langen Wartezeiten – Therapie die wirkt</h2>
+      <p>Erstgespräch – unverbindlich, persönlich, flexibel.</p>
+      <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
+    </div>
+  </section>
 
 </main>
 

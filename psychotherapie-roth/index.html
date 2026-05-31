@@ -14,6 +14,12 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://laura-schunke.de"},{"@type":"ListItem","position":2,"name":"Psychotherapie Roth","item":"https://laura-schunke.de/psychotherapie-roth/"}]}
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MedicalWebPage","name":"Psychotherapie für den Raum Roth","url":"https://laura-schunke.de/psychotherapie-roth/","inLanguage":"de","about":{"@type":"MedicalTherapy","name":"Psychotherapie"},"lastReviewed":"2026-05-30","reviewedBy":{"@type":"Person","name":"Laura Schunke","jobTitle":"Heilpraktikerin für Psychotherapie","hasCredential":{"@type":"EducationalOccupationalCredential","name":"Heilerlaubnis für Psychotherapie","recognizedBy":{"@type":"GovernmentOrganization","name":"Gesundheitsamt Nürnberg"}}},"provider":{"@type":"MedicalBusiness","name":"Laura Schunke – Heilpraktikerin für Psychotherapie","url":"https://laura-schunke.de"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie komme ich aus Roth zur Praxis nach Schwabach?","acceptedAnswer":{"@type":"Answer","text":"Schwabach liegt direkt nördlich von Roth – mit dem Auto bist du in rund 15 Minuten da, mit der S-Bahn (S2) ähnlich schnell."}},{"@type":"Question","name":"Gibt es bei dir lange Wartezeiten?","acceptedAnswer":{"@type":"Answer","text":"Als Privatpraxis ohne Kassenzulassung kann ich Termine deutlich schneller vergeben als Praxen mit Warteliste. Ein Erstgespräch ist meist innerhalb weniger Tage möglich."}},{"@type":"Question","name":"Kann ich aus Roth auch online kommen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Wenn dir die Fahrt nach Schwabach zu viel ist, sind Online-Sitzungen jederzeit möglich."}}]}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -124,9 +130,11 @@
     .methoden-card h3 { margin-bottom: 0.5rem; font-size: 1.1rem; }
     .methoden-card p { font-size: 0.93rem; color: var(--brown-mid); line-height: 1.7; margin: 0; }
     @media (max-width: 680px) { .methoden-grid { grid-template-columns: 1fr; } }
-    .cta-banner { background: var(--brown); color: var(--white); text-align: center; padding: clamp(3rem, 6vw, 4.5rem) clamp(24px, 5vw, 48px); }
-    .cta-banner h2 { color: var(--white); margin-bottom: 0.75rem; }
-    .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; font-size: 1.05rem; }
+    .cta-banner { background: var(--cream); padding: clamp(3rem,6vw,4.5rem) clamp(24px,5vw,48px); }
+    .cta-card { background: var(--white); border-radius: 24px; max-width: 720px; margin: 0 auto; padding: clamp(2.5rem,5vw,3.5rem); text-align: center; box-shadow: 0 14px 44px rgba(74,55,40,0.12); }
+    .cta-card h2 { color: var(--brown); margin-bottom: 0.75rem; }
+    .cta-card p { color: var(--brown-mid); margin-bottom: 2rem; font-size: 1.05rem; }
+    @media (max-width: 560px) { .cta-card { padding: 2rem 1.25rem; } .cta-card .btn { width: 100%; justify-content: center; } }
     footer { background: var(--brown); color: rgba(255,255,255,0.65); padding: 3rem 0 1.75rem; border-top: 1px solid rgba(255,255,255,0.07); }
     .footer-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1.4fr 0.7fr; gap: 2rem; margin-bottom: 2rem; }
     .footer-logo { font-family: var(--font-heading); font-size: 1.1rem; color: var(--white); font-weight: 600; margin-bottom: 0.5rem; }
@@ -145,6 +153,17 @@
       .prose li strong { display: block; margin-bottom: 0.1rem; }
     }
     .nav:has(.nav-links.open) { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  
+    .faq-d{border-bottom:1px solid rgba(74,55,40,0.12);}
+    .faq-d summary{cursor:pointer;list-style:none;padding:1rem 0;font-weight:500;color:var(--brown);display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+    .faq-d summary::-webkit-details-marker{display:none;}
+    .faq-d summary::after{content:'+';color:var(--sage);font-size:1.3rem;line-height:1;flex-shrink:0;}
+    .faq-d[open] summary::after{content:'–';}
+    .faq-d p{padding:0 0 1.25rem;color:var(--brown-mid);line-height:1.8;}
+  
+    .prose .eyebrow,.prose h2{text-align:center;}
+    .prose .eyebrow{margin-bottom:0.25rem;}
+    .prose .eyebrow + h2{margin-top:0.2rem;}
   </style>
 </head>
 <body>
@@ -184,7 +203,7 @@
     <div class="page-hero-content">
       <p class="breadcrumb"><a href="/">Startseite</a> › Psychotherapie für Roth</p>
       <h1>Psychotherapie in der Nähe von Roth</h1>
-      <p class="lead">Du suchst psychotherapeutische Unterstützung im Raum Roth? Meine Praxis liegt in Schwabach – direkt nebenan, gut erreichbar mit Auto oder S-Bahn.</p>
+      <p class="lead">Zwischen Roth und Schwabach liegen nur wenige Kilometer – und eine direkte S-Bahn-Verbindung. Meine Praxis erreichst du bequem mit Auto oder Bahn, ohne die langen Wartezeiten des Kassensystems.</p>
       <div class="hero-buttons">
         <a href="/#kontakt" class="btn btn--primary">Erstgespräch anfragen</a>
       </div>
@@ -197,12 +216,13 @@
   <section class="section section--white">
     <div class="container">
       <div class="prose">
+        <span class="eyebrow">In deiner Nähe</span>
         <h2>Psychotherapeutin für den Raum Roth</h2>
-        <p>Meine Praxis befindet sich in Schwabach – keine 15 Kilometer von Roth entfernt. Als Heilpraktikerin für Psychotherapie biete ich dir Termine ohne die langen Wartezeiten, die du aus dem Kassensystem kennst.</p>
+        <p>Als Kreisstadt orientiert sich Roth oft nach Nürnberg – dabei liegt Schwabach deutlich näher. Meine Praxis in der Königstraße erreichst du in rund einer Viertelstunde, egal ob mit dem Auto oder der S-Bahn. So bekommst du psychotherapeutische Begleitung, ohne dafür in die Großstadt fahren zu müssen.</p>
         <div class="info-box">
-          <p><strong>Anreise aus Roth:</strong> Schwabach liegt ca. 12 km nördlich von Roth. Mit dem Auto über die B2 ca. 15 Minuten. Mit der S-Bahn (S4, Richtung Nürnberg) ebenfalls gut erreichbar.</p>
+          <p><strong>Anreise aus Roth:</strong> Mit dem Auto bist du über die B2 in etwa 15 Minuten in Schwabach. Bequem ist auch die S-Bahn: Die S2 verbindet Roth und Schwabach direkt, ohne Umsteigen.</p>
         </div>
-        <p>Ich arbeite mit wissenschaftlich fundierten Methoden – individuell abgestimmt auf das, was dich wirklich beschäftigt.</p>
+        <p>Ich arbeite mit wissenschaftlich fundierten Methoden – Kognitiver Verhaltenstherapie, Schematherapie und ACT –, abgestimmt auf das, was dich gerade beschäftigt.</p>
       </div>
     </div>
   </section>
@@ -212,20 +232,20 @@
       <div class="section-header">
         <span class="eyebrow">Warum Laura Schunke</span>
         <h2>Was meine Praxis ausmacht</h2>
-        <p>Drei Dinge, die Klientinnen und Klienten aus dem Raum Roth besonders schätzen.</p>
+        <p>Warum Menschen aus Roth den kurzen Weg nach Schwabach gehen.</p>
       </div>
       <div class="methoden-grid">
         <div class="methoden-card">
-          <h3>Kurze Anfahrt</h3>
-          <p>Schwabach liegt direkt vor der Tür. Kein weiter Weg nach Nürnberg, keine langen Fahrten – und auf Wunsch geht auch alles per Video.</p>
+          <h3>Direkt mit der S2</h3>
+          <p>Roth und Schwabach liegen auf derselben S-Bahn-Linie. Du steigst ein, wenige Minuten später bist du da – kein Umsteigen, kein Stau, kein Parkplatzstress.</p>
         </div>
         <div class="methoden-card">
-          <h3>Zeitnah starten</h3>
-          <p>Als Privatpraxis vergebe ich Termine deutlich schneller als Praxen mit Kassenzulassung. Kein halbjähriges Warten – du kannst zeitnah beginnen.</p>
+          <h3>Schneller als die Großstadt</h3>
+          <p>Statt nach Nürnberg zu pendeln und dort auf der Warteliste zu stehen: Als Privatpraxis vergebe ich Termine zeitnah – oft schon innerhalb weniger Tage.</p>
         </div>
         <div class="methoden-card">
-          <h3>Individuell & ohne Schublade</h3>
-          <p>Kein Gutachterverfahren, kein starres Schema. Wir arbeiten so, wie es zu dir passt – mit dem Ansatz, der für dein Anliegen am sinnvollsten ist.</p>
+          <h3>Auf dich zugeschnitten</h3>
+          <p>Kein Gutachterverfahren, kein starres Schema. Wir arbeiten mit dem Ansatz, der zu deinem Anliegen passt – in deinem Tempo.</p>
         </div>
       </div>
     </div>
@@ -236,7 +256,7 @@
       <div class="prose">
         <span class="eyebrow">Alle Themen – auch online</span>
         <h2>Womit ich helfen kann</h2>
-        <p>Ich begleite Menschen aus dem Raum Roth bei einer Vielzahl von Themen:</p>
+        <p>Ob aus der Rother Innenstadt oder den umliegenden Orten – ich begleite dich bei den unterschiedlichsten Anliegen:</p>
         <ul>
           <li><a href="/psychotherapie-bei-burnout/">Burnout</a></li>
           <li><a href="/psychotherapie-bei-depression/">Depression</a></li>
@@ -246,16 +266,30 @@
           <li><a href="/therapie-adhs-erwachsene/">ADHS bei Erwachsenen</a></li>
           <li><a href="/therapie-hochsensibilitaet/">Hochsensibilität</a></li>
         </ul>
-        <p>Wer die Fahrt nach Schwabach lieber umgeht: Ich biete auch <a href="/online-psychotherapie/">Online-Sitzungen per Video</a> an – deutschlandweit, ohne Wartezeit.</p>
+        <p>Und wenn dir die Fahrt einmal zu viel ist, geht alles auch per <a href="/online-psychotherapie/">Online-Sitzung</a> – deutschlandweit und ohne Wartezeit.</p>
       </div>
     </div>
   </section>
 
-  <div class="cta-banner">
-    <h2>Nah dran – und trotzdem kein Kompromiss</h2>
-    <p>Erstgespräch – unverbindlich, ohne Wartezeit.</p>
-    <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
-  </div>
+  <section class="section section--sage" aria-labelledby="faq-h2">
+    <div class="container">
+      <div class="prose">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faq-h2">Häufige Fragen</h2>
+        <details class="faq-d"><summary>Wie komme ich aus Roth zur Praxis nach Schwabach?</summary><p>Schwabach liegt direkt nördlich von Roth – mit dem Auto bist du in rund 15 Minuten da, mit der S-Bahn (S2) ähnlich schnell.</p></details>
+        <details class="faq-d"><summary>Gibt es bei dir lange Wartezeiten?</summary><p>Als Privatpraxis ohne Kassenzulassung kann ich Termine deutlich schneller vergeben als Praxen mit Warteliste. Ein Erstgespräch ist meist innerhalb weniger Tage möglich.</p></details>
+        <details class="faq-d"><summary>Kann ich aus Roth auch online kommen?</summary><p>Ja. Wenn dir die Fahrt nach Schwabach zu viel ist, sind Online-Sitzungen jederzeit möglich.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-card">
+      <h2>Der Weg nach Schwabach ist kürzer als du denkst</h2>
+      <p>Erstgespräch – unverbindlich, ohne Wartezeit.</p>
+      <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
+    </div>
+  </section>
 
 </main>
 
