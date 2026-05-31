@@ -39,15 +39,27 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
 
   const schema = JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: title,
     description: metaDesc,
     datePublished: dateStr,
-    author: { '@type': 'Person', 'name': 'Laura Schunke' },
+    dateModified: dateStr,
+    author: {
+      '@type': 'Person',
+      name: 'Laura Schunke',
+      jobTitle: 'Heilpraktikerin für Psychotherapie',
+      url: SITE,
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        name: 'Heilerlaubnis für Psychotherapie',
+        recognizedBy: { '@type': 'GovernmentOrganization', name: 'Gesundheitsamt Nürnberg' }
+      }
+    },
     publisher: {
       '@type': 'Organization',
       name: 'Laura Schunke – Heilpraktikerin für Psychotherapie',
-      url: SITE
+      url: SITE,
+      logo: { '@type': 'ImageObject', url: `${SITE}/images/laura-schunke-psychotherapie-schwabach.jpg` }
     },
     image: imgUrl,
     url: canonical,
@@ -193,6 +205,18 @@ function renderIndex(posts) {
     </a>`;
   }).join('\n');
 
+  const itemList = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Blog – Laura Schunke, Heilpraktikerin für Psychotherapie',
+    itemListElement: posts.map(({ slug, title }, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE}/blog/${slug}/`,
+      name: title
+    }))
+  });
+
   return `<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -205,6 +229,7 @@ function renderIndex(posts) {
   <meta property="og:title" content="Blog | Laura Schunke" />
   <meta property="og:url" content="${SITE}/blog/" />
   <meta property="og:locale" content="de_DE" />
+  <script type="application/ld+json">${itemList}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
