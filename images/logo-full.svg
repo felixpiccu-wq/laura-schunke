@@ -1,0 +1,15 @@
+<svg width="520" height="72" viewBox="0 0 520 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&amp;family=Inter:wght@400&amp;display=swap');</style>
+  </defs>
+  <!-- Symbol (scaled 2.2×, centered vertically) -->
+  <g transform="translate(1, 6) scale(2.2)">
+    <line x1="13" y1="28" x2="13" y2="5" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M13 22 C19 20 24 13 21 7 C15 9 12 17 13 22Z" fill="#7A9E7E"/>
+    <path d="M13 15 C7 13 3 7 6 2 C11 4 14 11 13 15Z" fill="#7A9E7E" fill-opacity="0.6"/>
+    <circle cx="13" cy="4" r="2.5" fill="#7A9E7E" fill-opacity="0.35"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="72" y="34" font-family="'Playfair Display', Georgia, serif" font-size="26" font-weight="600" fill="#4A3728" letter-spacing="0.2">Laura Schunke</text>
+  <text x="74" y="54" font-family="'Inter', Arial, sans-serif" font-size="12" font-weight="400" fill="#6B5547" opacity="0.75" letter-spacing="0.6">Heilpraktikerin für Psychotherapie</text>
+</svg>

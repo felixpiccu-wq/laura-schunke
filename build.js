@@ -95,9 +95,7 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
   <meta property="article:author" content="Laura Schunke" />
   <script type="application/ld+json">${schema}</script>
   <script type="application/ld+json">${breadcrumb}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
   <style>
     :root {
       --cream:#F5F0E8; --sage:#7A9E7E; --sage-dark:#5E8262; --sage-light:#EAF0EA;
@@ -230,9 +228,7 @@ function renderIndex(posts) {
   <meta property="og:url" content="${SITE}/blog/" />
   <meta property="og:locale" content="de_DE" />
   <script type="application/ld+json">${itemList}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
   <style>
     :root{--cream:#F5F0E8;--sage:#7A9E7E;--sage-dark:#5E8262;--sage-light:#EAF0EA;--brown:#4A3728;--brown-mid:#6B5547;--white:#FFFFFF;--font-heading:'Playfair Display',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;--shadow-md:0 8px 32px rgba(74,55,40,0.12)}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -375,6 +371,25 @@ function main() {
   // Sitemap aktualisieren
   updateSitemap(posts);
   console.log('✓ sitemap.xml');
+
+  // Statische Blog-Vorschau in index.html injizieren (keine Runtime-Fetches mehr)
+  const ARROW = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+  const top3 = posts.slice(0, 3);
+  const cards = top3.map(post => {
+    const cleanSlug = post.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+    const img = post.image
+      ? `<img src="${post.image}" alt="${post.title}" class="blog-card-img" loading="lazy">`
+      : `<img src="/images/psychotherapie-schwabach-blog.jpg" alt="${post.title}" class="blog-card-img" loading="lazy">`;
+    const dateStr = post.date ? new Date(isoDate(post.date) + 'T12:00:00').toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+    return `<a class="blog-card" href="/blog/${cleanSlug}/">${img}<div class="blog-card-body"><p class="blog-date">${dateStr}</p><h3>${post.title}</h3><p>${post.excerpt || ''}</p><span class="blog-read-more">Weiterlesen ${ARROW}</span></div></a>`;
+  }).join('\n');
+  let indexHtml = fs.readFileSync('index.html', 'utf8');
+  indexHtml = indexHtml.replace(
+    /<!-- BLOG_PREVIEW_START -->[\s\S]*?<!-- BLOG_PREVIEW_END -->/,
+    `<!-- BLOG_PREVIEW_START -->\n${cards}\n<!-- BLOG_PREVIEW_END -->`
+  );
+  fs.writeFileSync('index.html', indexHtml);
+  console.log('✓ index.html blog preview injected');
 
   console.log(`\nBlog-Build abgeschlossen: ${posts.length} Artikel.`);
 }

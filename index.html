@@ -21,9 +21,7 @@
   <meta name="twitter:image" content="https://laura-schunke.de/images/laura-schunke-psychotherapie-schwabach.jpg" />
 
   <link rel="preload" as="image" href="/images/laura-schunke-psychotherapie-schwabach.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
 
   <script type="application/ld+json">
   [
@@ -1465,7 +1463,11 @@
     </div>
 
     <div class="blog-grid" id="homeBlogGrid">
-      <!-- wird per JS befüllt -->
+<!-- BLOG_PREVIEW_START -->
+<a class="blog-card" href="/blog/teufelskreis-der-angst/"><img src="/images/psychotherapie-schwabach-blog.jpg" alt="Teufelskreis der Angst" class="blog-card-img" loading="lazy"><div class="blog-card-body"><p class="blog-date">7. Juni 2026</p><h3>Teufelskreis der Angst</h3><p>Was ist das und am wichtigsten: Wie komme ich da wieder raus?</p><span class="blog-read-more">Weiterlesen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div></a>
+<a class="blog-card" href="/blog/was-ist-act/"><img src="/images/verhaltenstherapie-act-schwabach.jpg" alt="Was ist ACT – Akzeptanz- und Commitment-Therapie?" class="blog-card-img" loading="lazy"><div class="blog-card-body"><p class="blog-date">16. Mai 2026</p><h3>Was ist ACT – Akzeptanz- und Commitment-Therapie?</h3><p>Was wäre, wenn du nicht mehr gegen deine Gedanken und Gefühle kämpfen müsstest? ACT zeigt einen anderen Weg – nicht Kontrolle, sondern Klarheit darüber, was dir wirklich wichtig ist.</p><span class="blog-read-more">Weiterlesen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div></a>
+<a class="blog-card" href="/blog/was-ist-kognitive-verhaltenstherapie/"><img src="/images/therapeutin-schwabach-natur.jpg" alt="Was ist Kognitive Verhaltenstherapie (KVT)?" class="blog-card-img" loading="lazy"><div class="blog-card-body"><p class="blog-date">12. Mai 2026</p><h3>Was ist Kognitive Verhaltenstherapie (KVT)?</h3><p>Die Kognitive Verhaltenstherapie ist eine der am besten erforschten Therapieformen weltweit. Sie zeigt, wie Gedanken, Gefühle und Verhalten zusammenhängen – und wie man gezielt etwas verändern kann.</p><span class="blog-read-more">Weiterlesen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></div></a>
+<!-- BLOG_PREVIEW_END -->
     </div>
 
     <div class="text-center">
@@ -1624,71 +1626,5 @@
   });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
-<script>
-  (async function loadHomeBlog() {
-    const grid = document.getElementById('homeBlogGrid');
-    const ARROW = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
-
-    function formatDate(str) {
-      if (!str) return '';
-      return new Date(str + 'T12:00:00').toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
-    }
-
-    function parseFrontmatter(raw) {
-      const match = raw.match(/^---\n([\s\S]+?)\n---/);
-      if (!match) return {};
-      const meta = {};
-      match[1].split('\n').forEach(line => {
-        const [key, ...rest] = line.split(':');
-        if (key && rest.length) meta[key.trim()] = rest.join(':').trim().replace(/^["']|["']$/g, '');
-      });
-      return meta;
-    }
-
-    function renderCard(slug, meta) {
-      const card = document.createElement('a');
-      card.className = 'blog-card';
-      const cleanSlug = slug.replace(/^\d{4}-\d{2}-\d{2}-/, '');
-      card.href = `/blog/${cleanSlug}/`;
-      const img = meta.image
-        ? `<img src="${meta.image}" alt="${meta.title || ''}" class="blog-card-img" loading="lazy" />`
-        : `<img src="/images/psychotherapie-schwabach-blog.jpg" alt="${meta.title || 'Blogartikel'}" class="blog-card-img" loading="lazy" />`;
-      card.innerHTML = `
-        ${img}
-        <div class="blog-card-body">
-          <p class="blog-date">${formatDate(meta.date)}</p>
-          <h3>${meta.title || 'Artikel'}</h3>
-          <p>${meta.excerpt || ''}</p>
-          <span class="blog-read-more">Weiterlesen ${ARROW}</span>
-        </div>`;
-      return card;
-    }
-
-    function showPlaceholders() {
-      const card = document.createElement('a');
-      card.className = 'blog-card'; card.href = '/blog/';
-      card.innerHTML = `<div class="blog-card-body"><h3>Alle Artikel im Blog</h3><p>Informationen zu psychischer Gesundheit, Therapiemethoden und Impulsen für den Alltag.</p><span class="blog-read-more">Zum Blog ${ARROW}</span></div>`;
-      grid.appendChild(card);
-    }
-
-    try {
-      const res = await fetch('https://api.github.com/repos/felixpiccu-wq/laura-schunke/contents/posts');
-      if (!res.ok) throw new Error();
-      const files = await res.json();
-      const mdFiles = files.filter(f => f.name.endsWith('.md')).reverse().slice(0, 3);
-      if (mdFiles.length === 0) { showPlaceholders(); return; }
-
-      await Promise.all(mdFiles.map(async file => {
-        const raw = await (await fetch(`https://raw.githubusercontent.com/felixpiccu-wq/laura-schunke/main/posts/${file.name}`)).text();
-        const meta = parseFrontmatter(raw);
-        const slug = file.name.replace('.md', '');
-        grid.appendChild(renderCard(slug, meta));
-      }));
-    } catch {
-      showPlaceholders();
-    }
-  })();
-</script>
 </body>
 </html>
