@@ -25,6 +25,27 @@ const FALLBACK_IMAGES = [
   '/images/laura-schunke-psychotherapie-schwabach.jpg',
 ];
 
+// ── Escaping (gültig für HTML-Attribute/-Text UND XML/SVG) ────────────────────
+// Muss auf jeden von Laura eingegebenen Wert (Titel, Excerpt) angewandt werden,
+// bevor er in HTML oder in die Thumbnail-SVG eingesetzt wird.
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+// JSON-LD sicher in ein <script>-Element einbetten: <, >, & als Unicode-Escapes,
+// damit ein Titel mit "</script>" o. Ä. den Block nicht aufbrechen kann.
+function jsonLd(obj) {
+  return JSON.stringify(obj)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
+}
+
 // ── Slug aus Dateiname ────────────────────────────────────────────────────────
 function slugFromFile(filename) {
   return filename
@@ -147,7 +168,7 @@ function renderThumb(title) {
   const astY = eyebrowBaseline - 87;   // Ast-Unterkante ~28px über der „BLOG"-Grundlinie
   const accentY = lastBaseline + 30;
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${title.replace(/"/g, '&quot;')} – Blog">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title)} – Blog">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#7FA383"/>
@@ -177,7 +198,7 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
   const dateFormatted = formatDate(dateStr);
   const htmlBody   = marked.parse(body || '');
 
-  const schema = JSON.stringify({
+  const schema = jsonLd({
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: title,
@@ -206,7 +227,7 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
     mainEntityOfPage: canonical
   });
 
-  const breadcrumb = JSON.stringify({
+  const breadcrumb = jsonLd({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
@@ -221,19 +242,19 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${title} – Nürnberg, Schwabach &amp; Umland | Laura Schunke</title>
-  <meta name="description" content="${metaDesc.replace(/"/g, '&quot;')}" />
+  <title>${esc(title)} – Nürnberg, Schwabach &amp; Umland | Laura Schunke</title>
+  <meta name="description" content="${esc(metaDesc)}" />
   <link rel="canonical" href="${canonical}" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Laura Schunke – Heilpraktikerin für Psychotherapie" />
-  <meta property="og:title" content="${title} | Laura Schunke" />
-  <meta property="og:description" content="${metaDesc.replace(/"/g, '&quot;')}" />
+  <meta property="og:title" content="${esc(title)} | Laura Schunke" />
+  <meta property="og:description" content="${esc(metaDesc)}" />
   <meta property="og:image" content="${imgUrl}" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:locale" content="de_DE" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${title.replace(/"/g, '&quot;')} | Laura Schunke" />
-  <meta name="twitter:description" content="${metaDesc.replace(/"/g, '&quot;')}" />
+  <meta name="twitter:title" content="${esc(title)} | Laura Schunke" />
+  <meta name="twitter:description" content="${esc(metaDesc)}" />
   <meta name="twitter:image" content="${imgUrl}" />
   <meta property="article:published_time" content="${dateStr}" />
   <meta property="article:author" content="Laura Schunke" />
@@ -301,11 +322,11 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
 
 <main>
   <article class="post-hero">
-    ${image ? `<div class="post-hero-img-wrap"><img src="${image}" alt="${title}" class="post-hero-img" /></div>` : ''}
+    ${image ? `<div class="post-hero-img-wrap"><img src="${image}" alt="${esc(title)}" class="post-hero-img" /></div>` : ''}
     <header class="post-header">
       <p class="post-meta">Laura Schunke · <time datetime="${dateStr}">${dateFormatted}</time></p>
-      <h1>${title}</h1>
-      ${excerpt ? `<p class="post-excerpt">${excerpt}</p>` : ''}
+      <h1>${esc(title)}</h1>
+      ${excerpt ? `<p class="post-excerpt">${esc(excerpt)}</p>` : ''}
     </header>
     <div class="post-body">
       ${htmlBody}
@@ -336,11 +357,11 @@ function renderIndex(posts) {
     const dateStr = date ? isoDate(date) : '';
     return `
     <a href="/blog/${slug}/" class="post-card">
-      <img src="/blog/${slug}/thumb.svg" alt="${title}" class="post-card-img" loading="lazy" />
+      <img src="/blog/${slug}/thumb.svg" alt="${esc(title)}" class="post-card-img" loading="lazy" />
       <div class="post-card-body">
         ${dateStr ? `<p class="post-date">${formatDate(dateStr)}</p>` : ''}
-        <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">${title}</h2>
-        ${excerpt ? `<p>${excerpt}</p>` : ''}
+        <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">${esc(title)}</h2>
+        ${excerpt ? `<p>${esc(excerpt)}</p>` : ''}
         <span class="post-read">Weiterlesen →</span>
       </div>
     </a>`;
@@ -349,7 +370,7 @@ function renderIndex(posts) {
   const indexDesc = 'Artikel zu Psychotherapie, mentaler Gesundheit und Themen wie Burnout, Angst und Depression – von Laura Schunke, Heilpraktikerin für Psychotherapie in Schwabach.';
   const indexImg  = `${SITE}/images/psychotherapie-schwabach-blog.jpg`; // echtes Foto (kein SVG) fürs Teilen
 
-  const itemList = JSON.stringify({
+  const itemList = jsonLd({
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Blog – Laura Schunke, Heilpraktikerin für Psychotherapie',
@@ -361,7 +382,7 @@ function renderIndex(posts) {
     }))
   });
 
-  const indexBreadcrumb = JSON.stringify({
+  const indexBreadcrumb = jsonLd({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
@@ -560,9 +581,9 @@ function main() {
   const top3 = posts.slice(0, 3);
   const cards = top3.map(post => {
     const cleanSlug = post.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '');
-    const img = `<img src="/blog/${cleanSlug}/thumb.svg" alt="${post.title}" class="blog-card-img" loading="lazy">`;
+    const img = `<img src="/blog/${cleanSlug}/thumb.svg" alt="${esc(post.title)}" class="blog-card-img" loading="lazy">`;
     const dateStr = post.date ? new Date(isoDate(post.date) + 'T12:00:00').toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
-    return `<a class="blog-card" href="/blog/${cleanSlug}/">${img}<div class="blog-card-body"><p class="blog-date">${dateStr}</p><h3 style="position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">${post.title}</h3><p>${post.excerpt || ''}</p><span class="blog-read-more">Weiterlesen ${ARROW}</span></div></a>`;
+    return `<a class="blog-card" href="/blog/${cleanSlug}/">${img}<div class="blog-card-body"><p class="blog-date">${dateStr}</p><h3 style="position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">${esc(post.title)}</h3><p>${esc(post.excerpt || '')}</p><span class="blog-read-more">Weiterlesen ${ARROW}</span></div></a>`;
   }).join('\n');
   let indexHtml = fs.readFileSync('index.html', 'utf8');
   indexHtml = indexHtml.replace(
