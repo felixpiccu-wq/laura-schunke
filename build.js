@@ -25,6 +25,31 @@ const FALLBACK_IMAGES = [
   '/images/laura-schunke-psychotherapie-schwabach.jpg',
 ];
 
+// ── Interne Verlinkung: Blog-Thema → passende Leistungsseite ──────────────────
+// Nur real existierende URLs (geprüft). Stärkt Themen-Relevanz + leitet Autorität
+// auf die konversionsnahen Leistungsseiten.
+const SERVICE_LINKS = [
+  { re: /angst|panik|phobie/i,            url: '/therapie-bei-angst/',               label: 'Therapie bei Angst' },
+  { re: /burnout|erschöpf|ausgebrannt/i,  url: '/psychotherapie-bei-burnout/',       label: 'Psychotherapie bei Burnout' },
+  { re: /depression|depressiv/i,          url: '/psychotherapie-bei-depression/',    label: 'Psychotherapie bei Depression' },
+  { re: /trauma|ptbs|posttraumat/i,       url: '/therapie-bei-trauma/',              label: 'Traumatherapie' },
+  { re: /adhs|aufmerksamkeitsdefizit/i,   url: '/therapie-adhs-erwachsene/',         label: 'ADHS-Therapie für Erwachsene' },
+  { re: /beziehung|partnerschaft|\bpaar/i,url: '/therapie-bei-beziehungsproblemen/',  label: 'Therapie bei Beziehungsproblemen' },
+  { re: /hochsensib/i,                    url: '/therapie-hochsensibilitaet/',       label: 'Therapie bei Hochsensibilität' },
+  { re: /schematherapie|\bschema/i,       url: '/schematherapie-schwabach/',         label: 'Schematherapie' },
+  { re: /kognitive verhaltenstherapie|verhaltenstherapie|\bkvt\b/i, url: '/kognitive-verhaltenstherapie-schwabach/', label: 'Kognitive Verhaltenstherapie' },
+  { re: /online|videosprech/i,            url: '/online-psychotherapie/',            label: 'Online-Psychotherapie' },
+];
+
+// Bis zu 3 passende Leistungsseiten zu einem Artikel (Titel-Treffer zuerst)
+function relatedServices(title, body) {
+  const t = String(title || '');
+  const all = t + '\n' + String(body || '');
+  const inTitle = SERVICE_LINKS.filter(s => s.re.test(t));
+  const inBody  = SERVICE_LINKS.filter(s => s.re.test(all) && !inTitle.includes(s));
+  return [...inTitle, ...inBody].slice(0, 3);
+}
+
 // ── Escaping (gültig für HTML-Attribute/-Text UND XML/SVG) ────────────────────
 // Muss auf jeden von Laura eingegebenen Wert (Titel, Excerpt) angewandt werden,
 // bevor er in HTML oder in die Thumbnail-SVG eingesetzt wird.
@@ -197,6 +222,14 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
   const dateStr    = date ? isoDate(date) : TODAY;
   const dateFormatted = formatDate(dateStr);
   const htmlBody   = marked.parse(body || '');
+  const related    = relatedServices(title, body);
+  const relatedHtml = related.length ? `
+      <section class="post-related" aria-label="Passende Angebote">
+        <h2>So kann ich dich unterstützen</h2>
+        <ul>
+          ${related.map(s => `<li><a href="${s.url}">${esc(s.label)}</a></li>`).join('\n          ')}
+        </ul>
+      </section>` : '';
 
   const schema = jsonLd({
     '@context': 'https://schema.org',
@@ -242,7 +275,7 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${esc(title)} – Nürnberg, Schwabach &amp; Umland | Laura Schunke</title>
+  <title>${esc(title)} | Laura Schunke</title>
   <meta name="description" content="${esc(metaDesc)}" />
   <link rel="canonical" href="${canonical}" />
   <meta property="og:type" content="article" />
@@ -296,6 +329,11 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
     .post-body img{max-width:100%;border-radius:12px;margin:1.5rem 0}
     .post-body strong{color:var(--brown)}
     .post-body a{color:var(--sage);text-decoration:underline}
+    .post-related{margin:2.75rem 0 0;padding:1.5rem 1.75rem;background:var(--sage-light);border-radius:16px}
+    .post-related h2{font-family:var(--font-heading);font-size:1.15rem;color:var(--brown);margin-bottom:0.9rem}
+    .post-related ul{list-style:none;display:flex;flex-wrap:wrap;gap:0.6rem;padding:0;margin:0}
+    .post-related a{display:inline-block;background:var(--white);border:1px solid var(--sage);color:var(--sage-dark);padding:0.5rem 1.05rem;border-radius:9999px;font-size:0.92rem;font-weight:500;text-decoration:none;transition:background .2s,color .2s}
+    .post-related a:hover{background:var(--sage);color:#fff;text-decoration:none}
     .post-cta{background:var(--sage-light);border-radius:18px;padding:2rem 2.5rem;text-align:center;margin:3rem 0}
     .post-cta h3{font-family:var(--font-heading);font-size:1.3rem;margin-bottom:0.75rem}
     .post-cta p{color:var(--brown-mid);margin-bottom:1.5rem}
@@ -330,6 +368,7 @@ function renderPost({ slug, title, date, excerpt, seo_desc, image, body }) {
     </header>
     <div class="post-body">
       ${htmlBody}
+      ${relatedHtml}
       <div class="post-cta">
         <h3>Klingt das nach dem richtigen Rahmen für dich?</h3>
         <p>Im kostenlosen Kennenlerngespräch schauen wir gemeinsam, ob und wie ich dir helfen kann.</p>
