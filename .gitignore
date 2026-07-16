@@ -3,3 +3,4 @@
 .claude/
 CLAUDE.md
 skills-lock.json
+node_modules/
