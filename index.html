@@ -836,8 +836,12 @@
     .cookie-banner.hidden { transform: translateY(110%); pointer-events: none; }
     .cookie-banner p { flex: 1; min-width: 200px; }
     .cookie-banner a { color: var(--sage); text-decoration: underline; }
-    .cookie-close { background: var(--sage); color: var(--white); border: none; padding: 0.6rem 1.5rem; border-radius: var(--radius-full); font-size: 0.9rem; font-family: var(--font-body); font-weight: 500; cursor: pointer; white-space: nowrap; transition: background var(--ease); }
+    .cookie-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .cookie-close, .cookie-reject { border: none; padding: 0.6rem 1.5rem; border-radius: var(--radius-full); font-size: 0.9rem; font-family: var(--font-body); font-weight: 500; cursor: pointer; white-space: nowrap; transition: background var(--ease); }
+    .cookie-close { background: var(--sage); color: var(--white); }
     .cookie-close:hover { background: var(--sage-dark); }
+    .cookie-reject { background: transparent; color: rgba(255,255,255,0.88); border: 1px solid rgba(255,255,255,0.4); }
+    .cookie-reject:hover { background: rgba(255,255,255,0.1); }
 
     /* ============================================
        MISC
@@ -845,14 +849,38 @@
     .text-center { text-align: center; }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; } html { scroll-behavior: auto; } }
   </style>
+
+  <!-- Google Consent Mode v2: alles standardmäßig abgelehnt, bis Einwilligung erfolgt -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5QS7J486N"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-N5QS7J486N');
+  </script>
 </head>
 <body>
 
 <!-- COOKIE BANNER -->
 <div class="cookie-banner" id="cookieBanner">
-  <p>Diese Website verwendet ausschließlich technisch notwendige Cookies.
-     Mehr in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
-  <button class="cookie-close" onclick="dismissCookie()">Verstanden</button>
+  <p>Neben technisch notwendigen Cookies nutze ich mit deiner Einwilligung Google-Dienste zur
+     Reichweiten- und Werbemessung. Du kannst frei entscheiden. Mehr in der
+     <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+  <div class="cookie-actions">
+    <button class="cookie-reject" onclick="handleCookieConsent(false)">Ablehnen</button>
+    <button class="cookie-close" onclick="handleCookieConsent(true)">Akzeptieren</button>
+  </div>
 </div>
 
 <!-- NAVIGATION -->
@@ -1523,6 +1551,7 @@
         <ul>
           <li><a href="/impressum.html">Impressum</a></li>
           <li><a href="/datenschutz.html">Datenschutz</a></li>
+          <li><a href="#" onclick="openCookieSettings(); return false;">Cookie-Einstellungen</a></li>
         </ul>
       </nav>
     </div>
@@ -1591,12 +1620,34 @@
     btn.setAttribute('aria-expanded', !isOpen);
   }
 
-  /* COOKIE */
+  /* COOKIE / CONSENT MODE */
   const banner = document.getElementById('cookieBanner');
-  if (localStorage.getItem('cookieOk')) banner.classList.add('hidden');
-  function dismissCookie() {
-    localStorage.setItem('cookieOk', '1');
+  const cookieConsent = localStorage.getItem('cookieConsent');
+  if (cookieConsent === 'granted') {
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted'
+    });
+  }
+  if (cookieConsent) banner.classList.add('hidden');
+
+  function handleCookieConsent(accepted) {
+    localStorage.setItem('cookieConsent', accepted ? 'granted' : 'denied');
+    if (accepted) {
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted'
+      });
+    }
     banner.classList.add('hidden');
+  }
+
+  function openCookieSettings() {
+    banner.classList.remove('hidden');
   }
 
   /* FORM */
