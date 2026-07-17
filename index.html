@@ -1660,6 +1660,9 @@
         form.reset();
         success.style.display = 'block';
         setTimeout(() => { success.style.display = 'none'; }, 8000);
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { event_category: 'contact_form' });
+        }
       })
       .catch(() => alert('Etwas hat nicht geklappt. Bitte schreib mir direkt eine E-Mail.'));
   }
