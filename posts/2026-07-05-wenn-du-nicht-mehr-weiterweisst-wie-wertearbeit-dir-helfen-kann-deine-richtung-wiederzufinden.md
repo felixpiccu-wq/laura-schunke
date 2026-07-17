@@ -2,7 +2,7 @@
 title: "Wenn du nicht mehr weiterweißt: Wie Wertearbeit dir helfen kann, deine Richtung wiederzufinden"
 date: 2026-07-05
 excerpt: "Du steckst fest und bist dir nicht mehr sicher, was du willst? Wertearbeit hilft dir, deine Werte zu finden und wieder Orientierung im Leben zu gewinnen."
-image: /images/psychotherapie-schwabach-blog.jpg
+image: /images/psychotherapeutin-schwabach-abendlicht.jpg
 ---
 
 Kennst du das Gefühl, wenn du an einem Punkt in deinem Leben stehst, an dem sich einfach nichts mehr richtig anfühlt? Der Job, der eigentlich okay sein sollte. Die Beziehung, die läuft, aber irgendwie nicht erfüllt. Die Entscheidung, die ansteht, aber zu der du dich aber nicht durchringen kannst.

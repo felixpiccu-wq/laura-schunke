@@ -3,7 +3,7 @@ title: Was ist Kognitive Verhaltenstherapie (KVT)?
 date: 2026-05-12
 excerpt: Die Kognitive Verhaltenstherapie ist eine der am besten erforschten Therapieformen weltweit. Sie zeigt, wie Gedanken, Gefühle und Verhalten zusammenhängen – und wie man gezielt etwas verändern kann.
 seo_desc: "Was ist Kognitive Verhaltenstherapie? Einfach erklärt: Methode, Wirkweise und Einsatzbereiche bei Depression, Angst, Zwang und weiteren psychischen Belastungen."
-image: /images/therapeutin-schwabach-natur.jpg
+image: /images/psychotherapeutin-schwabach-abendlicht.jpg
 ---
 
 Stell dir vor, du machst einen Fehler im Job. Was geht dir durch den Kopf? „Das passiert jedem mal" – oder eher „Ich bin so unfähig, das hätte mir nie passieren dürfen"?

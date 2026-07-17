@@ -2,7 +2,7 @@
 title: "ADHS im Erwachsenenalter"
 date: 2026-06-28
 excerpt: "ADHS beginnt in der Kindheit, bleibt aber bei etwa 60–70 % der Betroffenen bis ins Erwachsenenalter bestehen – oft verändert sich das Erscheinungsbild jedoch deutlich."
-image: /images/psychotherapie-schwabach-blog.jpg
+image: /images/psychotherapeutin-schwabach-abendlicht.jpg
 ---
 
 Im Kindesalter häufig als "Traumsuse" (Erscheinungsform: Unaufmerksamer Typ) oder "Zappelphilipp" (Erscheinungsform: Impulsiv-hyperaktiver Typ) abgestempelt, zeigt sich die Störung bei Erwachsenen anders: Sichtbare Hyperaktivität wie zappeln und rennen kehrt sich nach innen und wird zu innerer Unruhe und Gedankenrasen. Während sich die Impulsivität früher z.B. als spontanes und unüberlegtes Handeln und gravierende Ungeduld zeigte, drückt sie sich heute durch Frustrationsintoleranz und emotionale Labilität aus.

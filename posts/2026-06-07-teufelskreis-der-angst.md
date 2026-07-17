@@ -2,7 +2,7 @@
 title: "Teufelskreis der Angst"
 date: 2026-06-07
 excerpt: "Was ist das und am wichtigsten: Wie komme ich da wieder raus?"
-image: /images/psychotherapie-schwabach-blog.jpg
+image: /images/psychotherapeutin-schwabach-abendlicht.jpg
 ---
 
 #### Grundidee

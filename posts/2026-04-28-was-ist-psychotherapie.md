@@ -3,7 +3,7 @@ title: "Was ist eigentlich Psychotherapie – und was passiert in einer Sitzung?
 date: 2026-04-28
 excerpt: "Viele Menschen wissen nicht genau, was sie in einer Therapie erwartet. Dieser Artikel gibt einen ehrlichen Einblick – ohne Fachchinesisch."
 seo_desc: "Was passiert in einer Psychotherapie-Sitzung? Laura Schunke, Heilpraktikerin für Psychotherapie in Schwabach, erklärt es verständlich."
-image: /images/heilpraktikerin-psychotherapie-schwabach-portrait.jpg
+image: /images/psychotherapeutin-schwabach-abendlicht.jpg
 ---
 
 Viele Menschen tragen sich lange mit dem Gedanken, eine Therapie zu beginnen – und zögern trotzdem. Oft liegt das daran, dass man nicht weiß, was einen eigentlich erwartet. Ich möchte das ändern.
