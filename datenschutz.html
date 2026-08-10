@@ -189,33 +189,76 @@
   Servern (z. B. Google Fonts) statt; deine IP-Adresse wird dabei nicht an Dritte übermittelt.</p>
 
   <h2>6. Cookies und lokale Speicherung</h2>
-  <p><strong>Technisch notwendig:</strong></p>
+  <p>Beim Aufruf dieser Website kannst du im Cookie-Banner auswählen, welche der folgenden
+  Kategorien du zulässt. Deine Auswahl kannst du jederzeit über den Link
+  „Cookie-Einstellungen" im Footer der Website ändern.</p>
+
+  <p><strong>Notwendig (immer aktiv):</strong></p>
   <ul>
-    <li><strong>localStorage (Cookie-Banner):</strong> Es wird ein Eintrag im Browser-Lokalspeicher
-    gesetzt, sobald du dich im Cookie-Banner für „Akzeptieren" oder „Ablehnen" entscheidest.
-    Dieser Eintrag enthält keine personenbezogenen Daten, wird nicht an den Server übertragen und
-    dient nur dazu, deine Entscheidung zu speichern und den Banner nicht erneut anzuzeigen. Du
-    kannst deine Auswahl jederzeit über den Link „Cookie-Einstellungen" im Footer ändern.</li>
+    <li><strong>localStorage (Cookie-Consent):</strong> Ein Eintrag im Browser-Lokalspeicher
+    speichert deine Kategorien-Auswahl (Notwendig/Statistik/Marketing) und den Zeitpunkt deiner
+    Entscheidung. Enthält keine personenbezogenen Daten und wird nicht an den Server übertragen.</li>
   </ul>
 
-  <p><strong>Nur mit deiner Einwilligung – Google Tag (Google Ads &amp; Google Analytics):</strong></p>
-  <p>Wenn du dem im Cookie-Banner zustimmst, bindet diese Website das Google-Tag
-  (gtag.js) von Google ein. Darüber werden Google Analytics (Reichweitenmessung) und
-  Google Ads (Erfolgsmessung von Werbekampagnen, Conversion-Tracking) genutzt. Dabei können
-  Cookies gesetzt und Daten wie IP-Adresse (gekürzt), Geräte- und Browserinformationen,
-  besuchte Seiten und Interaktionen mit dieser Website erhoben und an Google übermittelt werden.</p>
+  <p><strong>Statistik (nur mit deiner Einwilligung) – Google Analytics:</strong></p>
+  <p>Bei Zustimmung zur Kategorie „Statistik" bindet diese Website Google Analytics (gtag.js)
+  ein, um anonymisiert auszuwerten, wie die Website genutzt wird (z. B. aufgerufene Seiten,
+  Verweildauer, Herkunft der Besucher). Dabei werden Cookies gesetzt und Daten wie IP-Adresse
+  (gekürzt), Geräte- und Browserinformationen an Google übermittelt.</p>
+
+  <p><strong>Marketing (nur mit deiner Einwilligung) – Google Ads:</strong></p>
+  <p>Bei Zustimmung zur Kategorie „Marketing" werden zusätzlich Signale an Google Ads
+  übermittelt, um den Erfolg von Werbekampagnen zu messen (Conversion-Tracking) und – sofern
+  eingerichtet – Besucher innerhalb von Google-Anzeigen erneut anzusprechen (Remarketing).
+  Ohne diese Einwilligung findet keine Übermittlung zu Marketingzwecken statt.</p>
+
+  <div style="overflow-x:auto; margin: 1rem 0;">
+  <table style="width:100%; border-collapse:collapse; font-size:0.92rem;">
+    <thead>
+      <tr style="text-align:left; border-bottom:2px solid #EAF0EA;">
+        <th style="padding:0.5rem 0.75rem 0.5rem 0;">Cookie</th>
+        <th style="padding:0.5rem 0.75rem;">Kategorie</th>
+        <th style="padding:0.5rem 0.75rem;">Zweck</th>
+        <th style="padding:0.5rem 0 0.5rem 0.75rem;">Laufzeit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #EAF0EA;">
+        <td style="padding:0.5rem 0.75rem 0.5rem 0;"><code>_ga</code></td>
+        <td style="padding:0.5rem 0.75rem;">Statistik</td>
+        <td style="padding:0.5rem 0.75rem;">Unterscheidung von Website-Besuchern (Google Analytics)</td>
+        <td style="padding:0.5rem 0 0.5rem 0.75rem;">2 Jahre</td>
+      </tr>
+      <tr style="border-bottom:1px solid #EAF0EA;">
+        <td style="padding:0.5rem 0.75rem 0.5rem 0;"><code>_ga_&lt;container-id&gt;</code></td>
+        <td style="padding:0.5rem 0.75rem;">Statistik</td>
+        <td style="padding:0.5rem 0.75rem;">Sitzungsstatus für Google Analytics 4</td>
+        <td style="padding:0.5rem 0 0.5rem 0.75rem;">2 Jahre</td>
+      </tr>
+      <tr>
+        <td style="padding:0.5rem 0.75rem 0.5rem 0;"><code>_gcl_au</code> u. a.</td>
+        <td style="padding:0.5rem 0.75rem;">Marketing</td>
+        <td style="padding:0.5rem 0.75rem;">Conversion-Tracking für Google Ads (wird ergänzt, sobald aktiv genutzt)</td>
+        <td style="padding:0.5rem 0 0.5rem 0.75rem;">bis zu 90 Tage</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
   <p>Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland (im Auftrag
   von Google LLC, USA). Es kann dabei zu einer Datenübermittlung in die USA kommen; Google ist
   im Rahmen des EU-US Data Privacy Framework zertifiziert. Weitere Informationen:
   <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
   <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO i. V. m. § 25 Abs. 1 TTDSG
-  (Einwilligung). Diese Dienste werden erst aktiv, nachdem du im Cookie-Banner „Akzeptieren"
-  ausgewählt hast (Google Consent Mode). Bei „Ablehnen" bzw. ohne Auswahl werden keine
-  entsprechenden Cookies gesetzt und keine personenbezogenen Daten zu diesem Zweck übermittelt.</p>
+  (Einwilligung). Die Statistik- und Marketing-Dienste werden technisch erst geladen, nachdem du
+  im Cookie-Banner die jeweilige Kategorie zugelassen hast (Google Consent Mode) – vor deiner
+  Entscheidung findet keine Verbindung zu Google statt. Bei „Alle ablehnen" bzw. ohne Auswahl
+  werden keine entsprechenden Cookies gesetzt und keine personenbezogenen Daten zu diesem Zweck
+  übermittelt.</p>
   <p><strong>Widerruf:</strong> Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft
-  widerrufen – über den Link „Cookie-Einstellungen" im Footer dieser Seite oder über deine
-  Browser-Einstellungen. Zusätzlich kannst du der Erfassung durch Google Analytics
-  browserübergreifend widersprechen, z. B. über das
+  widerrufen – über den Link „Cookie-Einstellungen" im Footer der Website (öffnet die
+  Kategorien-Auswahl erneut) oder über deine Browser-Einstellungen. Zusätzlich kannst du der
+  Erfassung durch Google Analytics browserübergreifend widersprechen, z. B. über das
   <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics
   Opt-out-Add-on</a>, sowie personalisierte Werbung in deinem
   <a href="https://myadcenter.google.com/personalizationoff" target="_blank" rel="noopener">Google-Konto</a>
