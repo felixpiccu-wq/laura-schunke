@@ -1626,7 +1626,11 @@
   /* FORM */
   function handleFormSubmit(e) {
     e.preventDefault();
-    const form    = e.target;
+    const form = e.target;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
     const success = document.getElementById('formSuccess');
     fetch('/', { method: 'POST', body: new FormData(form) })
       .then(() => {
@@ -1635,6 +1639,7 @@
         setTimeout(() => { success.style.display = 'none'; }, 8000);
         if (typeof gtag === 'function') {
           gtag('event', 'generate_lead', { event_category: 'contact_form' });
+          gtag('event', 'kontaktformular_senden_validiert');
         }
       })
       .catch(() => alert('Etwas hat nicht geklappt. Bitte schreib mir direkt eine E-Mail.'));
