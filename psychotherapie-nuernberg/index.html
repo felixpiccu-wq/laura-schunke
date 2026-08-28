@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Psychotherapie Nürnberg – Nürnberg, Schwabach & Umland | Laura Schunke</title>
-  <meta name="description" content="Psychotherapie für Nürnberg – Laura Schunke, Heilpraktikerin für Psychotherapie in Schwabach. 15 Min von Nürnberg, keine Wartezeit, auch Online. KVT, Schematherapie & ACT. Jetzt anfragen." />
+  <title>Psychotherapie Nürnberg – Schwabach & Umland | Laura Schunke</title>
+  <meta name="description" content="Psychotherapie für Nürnberg – Laura Schunke, Heilpraktikerin für Psychotherapie in Schwabach. Ca. 20 Min von Nürnberg, keine Wartezeit, auch Online. KVT, Schematherapie & ACT. Jetzt anfragen." />
   <link rel="canonical" href="https://laura-schunke.de/psychotherapie-nuernberg/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Psychotherapie Nürnberg – Praxis in Schwabach | Laura Schunke" />
-  <meta property="og:description" content="Psychotherapie für Nürnberg – 15 Min von der Stadtgrenze. Unverbindlich anfragen." />
+  <meta property="og:description" content="Psychotherapie für Nürnberg – ca. 20 Min von der Stadtgrenze. Unverbindlich anfragen." />
   <meta property="og:image" content="https://laura-schunke.de/images/laura-schunke-psychotherapie-nuernberg.jpg" />
   <meta property="og:url" content="https://laura-schunke.de/psychotherapie-nuernberg/" />
   <meta property="og:locale" content="de_DE" />
@@ -40,6 +40,7 @@
       --font-body:    'Inter', system-ui, sans-serif;
       --shadow-sm:    0 2px 12px rgba(74,55,40,0.07);
       --shadow-md:    0 6px 28px rgba(74,55,40,0.11);
+      --shadow-lg:    0 12px 48px rgba(74,55,40,0.15);
       --radius-sm:    10px;
       --radius-md:    18px;
       --radius-lg:    28px;
@@ -196,11 +197,11 @@
     /* ============================================
        CTA-BANNER
        ============================================ */
-    .cta-banner { background: var(--cream); padding: clamp(3rem,6vw,4.5rem) clamp(24px,5vw,48px); }
-    .cta-card { background: var(--white); border-radius: 24px; max-width: 720px; margin: 0 auto; padding: clamp(2.5rem,5vw,3.5rem); text-align: center; box-shadow: 0 14px 44px rgba(74,55,40,0.12); }
-    .cta-card h2 { color: var(--brown); margin-bottom: 0.75rem; }
-    .cta-card p { color: var(--brown-mid); margin-bottom: 2rem; font-size: 1.05rem; }
-    @media (max-width: 560px) { .cta-card { padding: 2rem 1.25rem; } .cta-card .btn { width: 100%; justify-content: center; } }
+    .cta-banner { background: var(--brown); color: var(--white); padding: clamp(48px,7vw,72px) clamp(20px,5vw,56px); text-align: center; }
+    .cta-banner h2, .cta-banner h3 { color: var(--white); margin-bottom: 1rem; font-size: clamp(1.4rem, 3vw, 1.9rem); }
+    .cta-banner p { color: rgba(255,255,255,0.72); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; font-size: 1.07rem; }
+    .cta-banner-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 680px) { .cta-banner h2 { font-size: clamp(1.4rem, 5vw, 1.9rem); } .cta-banner-btns { flex-direction: column; align-items: center; } }
     .btn--outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.5); }
     .btn--outline-white:hover { background: var(--white); color: var(--brown); }
 
@@ -241,6 +242,86 @@
     .prose li{display:block;padding-left:1.5rem;position:relative;gap:0;}
     .prose li::before{position:absolute;left:0;top:0.55rem;margin-top:0;}
     .prose li strong{display:block;margin-bottom:0.1rem;}
+
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; }
+    .steps-grid::before { content: ''; position: absolute; top: 28px; left: calc(12.5% + 16px); right: calc(12.5% + 16px); height: 1px; background: var(--sage); opacity: 0.25; }
+    .step { text-align: center; position: relative; }
+    .step-num { width: 56px; height: 56px; background: var(--sage); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 1.3rem; margin: 0 auto 1.25rem; position: relative; z-index: 1; }
+    .step-num--outline { background: var(--white); color: var(--sage); border: 2px solid var(--sage); }
+    .step h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.88rem; color: var(--brown-mid); line-height: 1.6; }
+    .step-price { display: inline-block; margin-top: 0.5rem; font-size: 0.8rem; font-weight: 500; color: var(--sage); background: var(--sage-light); padding: 0.2rem 0.7rem; border-radius: var(--radius-full); }
+    @media (max-width: 700px) { .steps-grid { grid-template-columns: 1fr 1fr; } .steps-grid::before { display: none; } }
+    @media (max-width: 400px) { .steps-grid { grid-template-columns: 1fr; } }
+
+    .about-layout { display: grid; grid-template-columns: 340px 1fr; gap: clamp(2rem,5vw,5rem); align-items: start; }
+    .about-aside { position: sticky; top: 110px; }
+    .about-photo { width: 100%; border-radius: var(--radius-md); object-fit: cover; box-shadow: var(--shadow-lg); display: block; }
+    .about-main h2 { margin-bottom: 1.5rem; }
+    .about-text { font-size: 1.05rem; color: var(--brown-mid); line-height: 1.85; margin-bottom: 1.5rem; }
+    .training-section h3 { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sage); font-family: var(--font-body); margin-bottom: 1rem; }
+    .training-list { margin-bottom: 1.5rem; }
+    .training-list li { padding: 0.65rem 0; border-bottom: 1px solid rgba(74,55,40,0.1); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+    .training-list li::before { content: ''; display: block; width: 6px; height: 6px; background: var(--sage); border-radius: 50%; margin-top: 0.6rem; flex-shrink: 0; }
+    .heilerlaubnis-badge { display: flex; align-items: flex-start; gap: 0.85rem; background: var(--sage-light); border: 1px solid rgba(122,158,126,0.35); border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-top: 1.5rem; }
+    .heilerlaubnis-badge svg { color: var(--sage); flex-shrink: 0; margin-top: 2px; }
+    .heilerlaubnis-badge strong { display: block; font-size: 0.9rem; color: var(--brown); margin-bottom: 0.2rem; }
+    .heilerlaubnis-badge span { font-size: 0.8rem; color: var(--brown-mid); line-height: 1.5; }
+    @media (max-width: 760px) { .about-layout { grid-template-columns: 1fr; gap: 2rem; } .about-aside { position: static; } .about-photo { max-width: 100%; border-radius: var(--radius-md); } .about-main .eyebrow, .about-main h2 { text-align: center; } }
+
+    .honorar-price-wrap { text-align: center; margin-bottom: 3rem; }
+    .price-card { display: inline-block; background: var(--brown); color: var(--white); padding: clamp(2rem,4vw,3rem) clamp(2.5rem,6vw,5rem); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-lg); }
+    .price-amount { font-family: var(--font-heading); font-size: clamp(2.8rem,6vw,4rem); font-weight: 600; line-height: 1; display: block; margin-bottom: 0.35rem; }
+    .price-label { font-size: 1.05rem; opacity: 0.75; margin-bottom: 0.75rem; }
+    .price-note { font-size: 0.87rem; opacity: 0.6; }
+    .honorar-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .honorar-card { background: var(--white); border-radius: var(--radius-md); padding: 2rem 1.75rem; box-shadow: var(--shadow-sm); }
+    .honorar-icon { width: 42px; height: 42px; background: var(--sage-light); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--sage); flex-shrink: 0; }
+    .honorar-card-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+    .honorar-card h3 { font-size: 1rem; margin-bottom: 0; }
+    .honorar-card p { font-size: 0.92rem; color: var(--brown-mid); line-height: 1.7; }
+    @media (max-width: 680px) { .honorar-cards { grid-template-columns: 1fr; } }
+
+    .contact-section { position: relative; overflow: hidden; background: var(--cream); }
+    .contact-bg-img { position: absolute; inset: 0; background: url('/images/psychotherapeutin-schwabach-abendlicht.jpg') top center/cover no-repeat; opacity: 0.10; z-index: 0; }
+    .contact-section .container { position: relative; z-index: 1; }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(2rem,5vw,5rem); align-items: start; }
+    .contact-info h2 { margin-bottom: 1rem; }
+    .contact-intro { font-size: 1.05rem; color: var(--brown-mid); line-height: 1.85; margin-bottom: 2.5rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .contact-item-icon { width: 42px; height: 42px; background: var(--sage-light); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--sage); flex-shrink: 0; }
+    .contact-item-text strong { display: block; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage); margin-bottom: 0.2rem; }
+    .contact-item-text span, .contact-item-text a { font-size: 0.97rem; color: var(--brown-mid); }
+    .contact-item-text a:hover { color: var(--sage); }
+    .contact-form-card { background: var(--white); border-radius: var(--radius-md); padding: clamp(1.75rem,3vw,2.5rem); box-shadow: var(--shadow-md); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label { display: block; font-size: 0.88rem; font-weight: 500; margin-bottom: 0.4rem; }
+    .form-group label .req { color: var(--sage); }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid rgba(74,55,40,0.2); border-radius: var(--radius-sm); font-size: 1rem; font-family: var(--font-body); color: var(--brown); background: var(--cream); transition: border-color var(--ease), background var(--ease); resize: vertical; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--sage); background: var(--white); }
+    .form-group textarea { min-height: 130px; }
+    .form-check { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .form-check input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; accent-color: var(--sage); cursor: pointer; }
+    .form-check label { font-size: 0.85rem; color: var(--brown-mid); line-height: 1.55; }
+    .form-check label a { color: var(--sage); text-decoration: underline; }
+    .form-note { font-size: 0.82rem; color: var(--brown-mid); opacity: 0.7; margin-top: 1rem; font-style: italic; line-height: 1.6; }
+    .form-success { display: none; background: var(--sage-light); border: 1.5px solid var(--sage); border-radius: var(--radius-sm); padding: 1.25rem; color: var(--sage-dark); font-size: 0.97rem; margin-top: 1rem; text-align: center; }
+    @media (max-width: 760px) { .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; } .form-row { grid-template-columns: 1fr; } .contact-info .eyebrow, .contact-info h2 { text-align: center; } }
+
+    .reach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+    .reach-card { background: var(--cream); border-radius: var(--radius-md); padding: 2rem; }
+    .reach-card--online { background: var(--sage-light); }
+    .reach-icon { width: 44px; height: 44px; background: var(--white); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; box-shadow: var(--shadow-sm); }
+    .reach-card h3 { font-size: 1.15rem; margin-bottom: 0.65rem; }
+    .reach-card p { font-size: 0.97rem; color: var(--brown-mid); line-height: 1.75; margin-bottom: 0.85rem; }
+    .reach-card ul { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .reach-card li { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.95rem; color: var(--brown-mid); }
+    .reach-card li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); flex-shrink: 0; margin-top: 0.55rem; }
+    .reach-link { font-size: 0.9rem; color: var(--sage); font-weight: 500; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .reach-link:hover { text-decoration: underline; }
+    @media (max-width: 680px) { .reach-grid { grid-template-columns: 1fr; } }
   </style>
 
   <!-- Google Consent Mode v2: alles standardmäßig abgelehnt, bis Einwilligung erfolgt.
@@ -337,9 +418,9 @@
     <div class="page-hero-content">
       <p class="breadcrumb"><a href="/">Startseite</a> › Psychotherapie Nürnberg</p>
       <h1>Psychotherapie Nürnberg – Praxis in Schwabach</h1>
-      <p class="lead">Sie suchen psychotherapeutische Unterstützung im Raum Nürnberg, kurzfristig verfügbar? Meine Praxis liegt in Schwabach – nur etwa 15 Minuten von Nürnberg entfernt – und ist auch per Online-Sitzung erreichbar.</p>
+      <p class="lead">Du suchst psychotherapeutische Unterstützung im Raum Nürnberg und möchtest kurzfristig einen Termin? Meine Praxis liegt in Schwabach – nur etwa 20 Minuten von Nürnberg entfernt – und ist auch per Online-Sitzung erreichbar.</p>
       <div class="hero-buttons">
-        <a href="/#kontakt" class="btn btn--primary">Erstgespräch anfragen</a>
+        <a href="#kontakt" class="btn btn--primary">Erstgespräch anfragen</a>
       </div>
 </div>
     <div class="page-hero-visual" aria-hidden="true">
@@ -358,9 +439,9 @@
       <div class="prose">
         <span class="eyebrow">In deiner Nähe</span>
         <h2>Heilpraktikerin für Psychotherapie in Nürnberg und Umgebung</h2>
-        <p>Als Heilpraktikerin für Psychotherapie in Schwabach biete ich mein Angebot auch für Patientinnen und Patienten aus Nürnberg an. Die Wartezeiten auf Kassensitzplätze in Nürnberg sind oft lang – als Privatpraxis kann ich Ihnen zeitnah einen Termin anbieten.</p>
+        <p>Als Heilpraktikerin für Psychotherapie in Schwabach biete ich mein Angebot auch für Patientinnen und Patienten aus Nürnberg an. Die Wartezeiten auf Kassensitzplätze in Nürnberg sind oft lang – als Privatpraxis kann ich dir zeitnah einen Termin anbieten.</p>
         <div class="info-box">
-          <p><strong>Anreise aus Nürnberg:</strong> Schwabach liegt ca. 15 km südlich von Nürnberg, gut erreichbar mit dem Auto (A6/A9) und der S-Bahn (S2, Linie Richtung Roth). Fahrtzeit: ca. 15–20 Minuten.</p>
+          <p><strong>Anreise aus Nürnberg:</strong> Schwabach liegt ca. 15 km südlich von Nürnberg, gut erreichbar mit dem Auto (A6/A9) und der S-Bahn (S2, Linie Richtung Roth). Fahrtzeit: ca. 20 Minuten.</p>
         </div>
         <p>Ich arbeite mit wissenschaftlich fundierten Methoden, die sich für viele psychische Themen bewährt haben – immer individuell abgestimmt auf die Person, die zu mir kommt.</p>
       </div>
@@ -373,7 +454,7 @@
       <div class="section-header">
         <span class="eyebrow">Mein Angebot</span>
         <h2>Mein Therapieangebot für Nürnberg</h2>
-        <p>Drei bewährte Methoden – individuell eingesetzt, je nachdem was Ihnen am meisten hilft.</p>
+        <p>Drei bewährte Methoden – individuell eingesetzt, je nachdem was dir am meisten hilft.</p>
       </div>
       <div class="methoden-grid">
         <div class="methoden-card">
@@ -397,7 +478,7 @@
     <div class="container">
       <div class="prose">
         <span class="eyebrow">Alle Themen – auch online</span>
-        <h2>Womit ich Ihnen helfen kann</h2>
+        <h2>Womit ich dir helfen kann</h2>
         <p>Alle Themen, zu denen ich arbeite:</p>
         <ul>
           <li><a href="/psychotherapie-bei-burnout/">Burnout</a></li>
@@ -413,8 +494,136 @@
     </div>
   </section>
 
-  <!-- CTA-BANNER -->
-  <section class="section section--sage" aria-labelledby="faq-h2">
+  <section class="section section--cream" id="so-gehts" aria-labelledby="steps-h2">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">So funktioniert's</span>
+        <h2 id="steps-h2">Dein Weg zur Therapie</h2>
+        <p>Von der ersten Anfrage bis zur ersten Sitzung – unkompliziert und mit kurzen Wartezeiten.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num" aria-label="Schritt 1">1</div>
+          <h3>Anfrage senden</h3>
+          <p>Schreib mir über das Formular oder ruf an. Ich melde mich innerhalb von 48 Stunden.</p>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-label="Schritt 2">2</div>
+          <h3>Kennenlerngespräch</h3>
+          <p>15 Minuten am Telefon – wir klären, ob wir gut zusammenpassen. Ganz unverbindlich.</p>
+          <span class="step-price">Kostenlos</span>
+        </div>
+        <div class="step">
+          <div class="step-num" aria-label="Schritt 3">3</div>
+          <h3>Erstgespräch</h3>
+          <p>50 Minuten in der Praxis. Dein Anliegen, meine Arbeitsweise – ohne Druck, ohne Urteil.</p>
+        </div>
+        <div class="step">
+          <div class="step-num step-num--outline" aria-label="Schritt 4">4</div>
+          <h3>Therapiebeginn</h3>
+          <p>Wir entwickeln gemeinsam einen Plan – und starten in regelmäßige Sitzungen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" id="ueber-mich" aria-labelledby="about-h2">
+    <div class="container">
+      <div class="about-layout">
+        <aside class="about-aside">
+          <img
+            src="/images/laura-schunke-entspannt-natur.jpg"
+            alt="Laura Schunke, Heilpraktikerin für Psychotherapie in Schwabach"
+            class="about-photo"
+            width="340" height="460"
+            loading="lazy"
+          />
+        </aside>
+        <div class="about-main">
+          <span class="eyebrow">Hinter der Praxis</span>
+          <h2 id="about-h2">Über mich</h2>
+          <p class="about-text">
+            Ich glaube nicht daran, dass du deinen Ängsten oder Problemen hilflos ausgeliefert bist.
+            Was sich wie ein unveränderlicher Teil von dir anfühlt, ist häufig ein erlerntes Muster –
+            und was gelernt wurde, kann sich verändern. In meiner Arbeit verbinde ich echte Neugier
+            für deine Geschichte mit wissenschaftlich fundierten Methoden, die wirken.
+            Nicht um dich zu „reparieren", sondern damit du wieder selbst das Steuer in der Hand hast.
+          </p>
+          <div class="training-section">
+            <h3>Ausbildung &amp; Spezialisierungen</h3>
+            <ul class="training-list">
+              <li>Heilpraktikerin für Psychotherapie</li>
+              <li>Kognitive Verhaltenstherapie (KVT)</li>
+              <li>Akzeptanz- und Commitment-Therapie (ACT)</li>
+              <li>Schematherapie</li>
+            </ul>
+            <div class="heilerlaubnis-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div>
+                <strong>Staatlich anerkannte Heilerlaubnis</strong>
+                <span>Heilkunde beschränkt auf das Gebiet der Psychotherapie<br>Gesundheitsamt Nürnberg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <h3>Der erste Schritt ist oft der schwerste.</h3>
+    <p>Ich mache ihn so einfach wie möglich: ein kurzes, kostenloses Gespräch – ohne Druck, ohne Vorentscheidung.</p>
+    <div class="cta-banner-btns">
+      <a href="#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
+    </div>
+  </div>
+
+  <section class="section section--cream" id="honorar" aria-labelledby="honorar-h2">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Kosten &amp; Abrechnung</span>
+        <h2 id="honorar-h2">Honorar</h2>
+      </div>
+      <div class="honorar-price-wrap">
+        <div class="price-card">
+          <span class="price-amount">90 €</span>
+          <p class="price-label">Einzelsitzung · 50 Minuten</p>
+          <p class="price-note">Privatpraxis · flexible Terminvergabe</p>
+        </div>
+      </div>
+      <div class="honorar-cards">
+        <div class="honorar-card">
+          <div class="honorar-card-head">
+            <div class="honorar-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <h3>Selbstzahler</h3>
+          </div>
+          <p>Du zahlst direkt – mit kurzer Terminvergabe, ohne Eintrag bei der Krankenkasse. Anonym und unter Umständen steuerlich absetzbar (§ 33 EStG).</p>
+        </div>
+        <div class="honorar-card">
+          <div class="honorar-card-head">
+            <div class="honorar-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Private Krankenversicherung</h3>
+          </div>
+          <p>Viele PKVs erstatten Heilpraktikerleistungen teilweise oder vollständig. Am besten vorher anfragen.</p>
+        </div>
+        <div class="honorar-card">
+          <div class="honorar-card-head">
+            <div class="honorar-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Heilpraktiker-Zusatzversicherung</h3>
+          </div>
+          <p>Mit einer Zusatzversicherung kannst du einen Erstattungsantrag stellen. Höhe variiert je nach Vertrag.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="faq-h2">
     <div class="container">
       <div class="prose">
         <span class="eyebrow">FAQ</span>
@@ -426,11 +635,148 @@
     </div>
   </section>
 
-  <section class="cta-banner">
-    <div class="cta-card">
-      <h2>Therapie ohne monatelange Wartezeit</h2>
-      <p>Erstgespräch – unverbindlich, persönlich, flexibel.</p>
-      <a href="/#kontakt" class="btn btn--primary btn--lg">Erstgespräch anfragen</a>
+  <section class="section section--white" aria-labelledby="region-h2" style="padding-top: clamp(24px, 4vw, 40px);">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Für Patienten aus der Region</span>
+        <h2 id="region-h2">Für dich erreichbar – in Präsenz oder online</h2>
+        <p>Meine Klientinnen kommen aus Schwabach, Roth, Stein, Wendelstein, Hilpoltstein und dem Raum Nürnberg – und aus ganz Deutschland per Video.</p>
+      </div>
+      <div class="reach-grid">
+        <div class="reach-card">
+          <div class="reach-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3>In der Praxis – Schwabach</h3>
+          <p>Die Praxis liegt zentral in der Königstraße 1A in Schwabach, gut erreichbar aus dem Raum Nürnberg, Roth, Stein und Wendelstein – mit Auto (A6/A9) und S-Bahn (S2).</p>
+          <a href="https://maps.google.com/?q=Königstraße+1A+91126+Schwabach" target="_blank" rel="noopener" class="reach-link">
+            Auf der Karte ansehen
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <div class="reach-card reach-card--online">
+          <div class="reach-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Per Video – deutschlandweit</h3>
+          <p>Online-Therapie ist in ihrer Wirksamkeit mit Präsenzsitzungen vergleichbar – das zeigen aktuelle Studien. Du brauchst nur einen ruhigen Ort, eine Kamera und eine stabile Verbindung.</p>
+          <p>Online ist besonders sinnvoll, wenn:</p>
+          <ul>
+            <li>die Anfahrt zu weit ist</li>
+            <li>der Alltag wenig Zeit für Fahrtwege lässt</li>
+            <li>der erste Schritt in eine Praxis gerade zu groß ist</li>
+            <li>du flexibel von unterwegs oder zuhause arbeiten willst</li>
+          </ul>
+          <a href="/online-psychotherapie/" class="reach-link">
+            Mehr zur Online-Therapie
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section" id="kontakt" aria-labelledby="kontakt-h2">
+    <div class="contact-bg-img" aria-hidden="true"></div>
+    <div class="container">
+      <div class="contact-layout">
+        <div class="contact-info">
+          <span class="eyebrow">Kontakt</span>
+          <h2 id="kontakt-h2">Lass uns sprechen</h2>
+          <p class="contact-intro">
+            Etwas in dir hat dich bis hierher gebracht – das ist schon der Anfang.
+            Schreib mir einfach – ich melde mich innerhalb von 48 Stunden.
+          </p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <strong>Adresse</strong>
+                <a href="https://maps.google.com/?q=Königstraße+1A+91126+Schwabach" target="_blank" rel="noopener">Königstraße 1A, 91126 Schwabach</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <strong>Telefon</strong>
+                <a href="tel:+4991291400544">09129 1400544</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <strong>E-Mail</strong>
+                <a href="mailto:info@laura-schunke.de">info@laura-schunke.de</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <strong>Online-Sitzungen</strong>
+                <span>Deutschlandweit per Videoanruf</span>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:0.82rem; color:var(--brown-mid); opacity:0.7; margin-top:1.25rem;">
+            Gut erreichbar aus Roth, Stein, Wendelstein und dem Raum Nürnberg
+          </p>
+        </div>
+
+        <div class="contact-form-card">
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleFormSubmit(event)" novalidate>
+            <input type="hidden" name="form-name" value="contact" />
+            <p style="display:none"><label>Nicht ausfüllen: <input name="bot-field" /></label></p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstname">Vorname <span class="req">*</span></label>
+                <input type="text" id="firstname" name="vorname" required autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="lastname">Nachname <span class="req">*</span></label>
+                <input type="text" id="lastname" name="nachname" required autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">E-Mail <span class="req">*</span></label>
+                <input type="email" id="email" name="email" required autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Telefon <span style="font-weight:400;opacity:.6">(optional)</span></label>
+                <input type="tel" id="phone" name="telefon" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Dein Anliegen <span class="req">*</span></label>
+              <textarea id="message" name="anliegen" required placeholder="Erzähl mir kurz, was dich beschäftigt …"></textarea>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" id="privacy" name="datenschutz" required />
+              <label for="privacy">
+                Ich habe die <a href="/datenschutz.html">Datenschutzerklärung</a> gelesen und zur Kenntnis genommen. <span class="req">*</span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">
+              Nachricht senden
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+            <div class="form-success" id="formSuccess" role="alert">
+              Vielen Dank! Ich melde mich innerhalb von 48 Stunden bei dir.
+            </div>
+            <p class="form-note">
+              Bitte teile hier keine vertraulichen medizinischen Informationen mit.
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -505,6 +851,27 @@
     navLinks.classList.remove('open');
     burger.classList.remove('open');
     burger.setAttribute('aria-expanded', false);
+  }
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const success = document.getElementById('formSuccess');
+    fetch('/', { method: 'POST', body: new FormData(form) })
+      .then(() => {
+        form.reset();
+        success.style.display = 'block';
+        setTimeout(() => { success.style.display = 'none'; }, 8000);
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { event_category: 'contact_form' });
+          gtag('event', 'kontaktformular_senden_validiert');
+        }
+      })
+      .catch(() => alert('Etwas hat nicht geklappt. Bitte schreib mir direkt eine E-Mail.'));
   }
 </script>
 
